@@ -43,6 +43,23 @@ namespace AutoAuctionProjekt.Classes
         /// The buyer or potential buyer of the auction
         /// </summary>
         internal IBuyer Buyer { get; set; }
+
+        public IBuyer IBuyer
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public ISeller ISeller
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public override string ToString()
         {
             throw new NotImplementedException();
