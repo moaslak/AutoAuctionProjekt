@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AutoAuctionProjekt.Classes.Bus">
+    <Position X="0.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAABAAAAEAAAACAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Vehicles\Bus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.HeavyVehicle">
+    <Position X="1.75" Y="7.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="AutoAuctionProjekt.Classes.HeavyVehicle.VehicleDimensionsStruct" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Classes\Vehicles\HeavyVehicle.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Vehicles\HeavyVehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.PersonalCar">
+    <Position X="6.25" Y="7.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="AutoAuctionProjekt.Classes.PersonalCar.TrunkDimentionsStruct" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Classes\Vehicles\PersonalCar.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAEAAAAAAAABAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Vehicles\PersonalCar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.PrivatePersonalCar">
+    <Position X="7.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Vehicles\PrivatePersonalCar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.ProfessionalPersonalCar">
+    <Position X="5.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAQCAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Vehicles\ProfessionalPersonalCar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.Truck">
+    <Position X="3" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAQAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Vehicles\Truck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.Vehicle">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="AutoAuctionProjekt.Classes.Vehicle.DriversLisenceEnum" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Classes\Vehicles\Vehicle.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="AutoAuctionProjekt.Classes.Vehicle.FuelTypeEnum" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Classes\Vehicles\Vehicle.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="AutoAuctionProjekt.Classes.Vehicle.EnergyClassEnum" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Classes\Vehicles\Vehicle.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQIAAAEBAAAgAgEAAAAAAQAAAgACEAAEAQAAAAAAIA=</HashCode>
+      <FileName>Classes\Vehicles\Vehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.Auction">
+    <Position X="11.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAgAAAAgAAEAAAQgAAABAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Classes\Auction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IBuyer" />
+      <Property Name="ISeller" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.AuctionHouse">
+    <Position X="11.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAQAAAAAAAEAAAAAAAAAAAAQAEBAACAECAAAAAAAA=</HashCode>
+      <FileName>Classes\AuctionHouse.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Auctions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.CorporateUser">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\CorporateUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.PrivateUser">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\PrivateUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoAuctionProjekt.Classes.User">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gACAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="AutoAuctionProjekt.IBuyer">
+    <Position X="14.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IBuyer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AutoAuctionProjekt.ISeller">
+    <Position X="8.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAgAAAAAAAAAAAAAAQAAAQAAAAA=</HashCode>
+      <FileName>Interfaces\ISeller.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="AutoAuctionProjekt.Classes.NodificationDelegate" Collapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\AuctionHouse.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
