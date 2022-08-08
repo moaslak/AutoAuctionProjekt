@@ -33,6 +33,20 @@ namespace AutoAuctionProjekt.Classes
             this.EnergyClass = energyClass;
             //TODO: V2 - Add to database and set ID
         }
+
+        protected Vehicle(string name, double km, string registrationNumber, ushort year, decimal newPrice, bool hasTowbar, double engineSize, double kmPerLiter, FuelTypeEnum fuelType)
+        {
+            Name = name;
+            Km = km;
+            RegistrationNumber = registrationNumber;
+            Year = year;
+            NewPrice = newPrice;
+            HasTowbar = hasTowbar;
+            EngineSize = engineSize;
+            KmPerLiter = kmPerLiter;
+            FuelType = fuelType;
+        }
+
         /// <summary>
         /// ID field and proberty
         /// </summary>
