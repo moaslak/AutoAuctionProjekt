@@ -14,7 +14,10 @@ namespace AutoAuctionProjekt.Classes
             bool hasTowbar,
             double engineSize,
             double kmPerLiter,
-            FuelTypeEnum fuelType)
+            FuelTypeEnum fuelType,
+            DriversLisenceEnum driversLisence,
+            uint id,
+            EnergyClassEnum energyClass)
         {
             this.Name = name;
             this.Km = km;
@@ -25,6 +28,9 @@ namespace AutoAuctionProjekt.Classes
             this.EngineSize = engineSize;
             this.KmPerLiter = kmPerLiter;
             this.FuelType = fuelType;
+            this.DriversLisence = driversLisence;
+            this.ID = id;
+            this.EnergyClass = energyClass;
             //TODO: V1 - Constructor for Vehicle
             //TODO: V2 - Add to database and set ID
         }
