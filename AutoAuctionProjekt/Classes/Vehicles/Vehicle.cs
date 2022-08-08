@@ -31,7 +31,6 @@ namespace AutoAuctionProjekt.Classes
             this.DriversLisence = driversLisence;
             this.ID = id;
             this.EnergyClass = energyClass;
-            //TODO: V1 - Constructor for Vehicle
             //TODO: V2 - Add to database and set ID
         }
         /// <summary>
