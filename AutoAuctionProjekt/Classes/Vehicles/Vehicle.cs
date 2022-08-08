@@ -116,7 +116,19 @@ namespace AutoAuctionProjekt.Classes
         public new virtual string ToString()
         {
             //TODO: V3 - Vehicle tostring
-            throw new NotImplementedException();
+            return("ID: " + ID +
+                   "Name" + Name +
+                   "Number of km: " + Km +
+                   "Registration number: " + RegistrationNumber +
+                   "Year: " + Year +
+                   "New price: " + NewPrice +
+                   "Tow bar : " + HasTowbar +
+                   "Engine size: " + EngineSize +
+                   "Km/l: " + KmPerLiter +
+                   "Fuel type: " + FuelType);
+            
+
+            //throw new NotImplementedException();
         }
     }
 }
