@@ -58,8 +58,10 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-            //TODO: V9 - Tostring for bus
-            throw new NotImplementedException();
+            return "Name: " + this.Name + ", Km: " + this.Km + ", Registarion number: " + this.RegistrationNumber + ", Year: " + this.Year +
+                ", New price: " + this.NewPrice + ", Has towbar: " + this.HasTowbar + ", Engine size: " + this.EngineSize + ", Km/L: " + this.KmPerLiter +
+                ", Fuel type: " + this.FuelType + ", Number of seat: " + this.NumberOfSeats + ", Number of sleeping spaces: " + this.NumberOfSleepingSpaces +
+                ", Vehicle height: " + this.VehicleDimensions.Height + ", Vehicle length: " + this.VehicleDimensions.Length + ", Vehicle weight: " + this.VehicleDimensions.Weight;
         }
     }
 }
