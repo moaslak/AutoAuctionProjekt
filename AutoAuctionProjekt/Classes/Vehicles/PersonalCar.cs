@@ -17,11 +17,23 @@ namespace AutoAuctionProjekt.Classes
             double kmPerLiter,
             FuelTypeEnum fuelType,
             ushort numberOfSeat,
-            TrunkDimentionsStruct trunkDimentions)
+            TrunkDimentionsStruct trunkDimentions,
+            DriversLisenceEnum driversLisence)
             : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType)
         {
             this.NumberOfSeat = numberOfSeat;
             this.TrunkDimentions = trunkDimentions;
+            this.DriversLisence = driversLisence;
+            this.Name = name;
+            this.Year = year;
+            this.Km = km;
+            this.RegistrationNumber = registrationNumber;
+            this.NewPrice = newPrice;
+            this.HasTowbar = hasTowbar;
+            this.EngineSize = engineSize;
+            this.KmPerLiter = kmPerLiter;
+            this.FuelType = fuelType;
+            this.Year = year;
         }
         /// <summary>
         /// Number of seat proberty
@@ -54,10 +66,16 @@ namespace AutoAuctionProjekt.Classes
             set
             {
                 //TODO: V13 - EngineSize: must be between 0.7 and 10.0 L or cast an out of range exection.
-                throw new NotImplementedException();
+                if(EngineSize <= 0.7 && EngineSize >= 10.0)
+                    EngineSize = value;
+                else
+                    throw new ArgumentOutOfRangeException();
 
-                EngineSize = value;
             }
+        }
+        public int DriversLicenceClass(DriversLisenceEnum driver)
+        {
+            driver = DriversLisenceEnum.B;
         }
         /// <summary>
         /// Returns the PersonalCar in a string with relivant information.
