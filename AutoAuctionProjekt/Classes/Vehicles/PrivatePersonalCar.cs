@@ -21,7 +21,7 @@ namespace AutoAuctionProjekt.Classes
             bool hasIsofixFittings)
             : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions)
         {
-            //TODO: V19 - PrivatePersonalCar constructor. DriversLicense should be 'B'
+            this.DriversLisence = DriversLisenceEnum.B;
             //TODO: V20 - Add to database and set ID
             throw new NotImplementedException();
         }
