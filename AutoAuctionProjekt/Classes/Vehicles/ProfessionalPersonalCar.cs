@@ -18,8 +18,10 @@ namespace AutoAuctionProjekt.Classes
             ushort numberOfSeat,
             TrunkDimentionsStruct trunkDimentions,
             bool hasSafetyBar,
-            double loadCapacity)
-            : base(name, km, registrationNumber, year, newPrice, true, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions)
+            double loadCapacity,
+            DriversLisenceEnum driversLisence,
+            EnergyClassEnum energyClass)
+            : base(name, km, registrationNumber, year, newPrice, true, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions, driversLisence, energyClass)
         {
             if (this.LoadCapacity > 750)
                 this.DriversLisence = DriversLisenceEnum.BE;

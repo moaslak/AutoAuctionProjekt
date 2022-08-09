@@ -18,8 +18,9 @@ namespace AutoAuctionProjekt.Classes
             FuelTypeEnum fuelType,
             ushort numberOfSeat,
             TrunkDimentionsStruct trunkDimentions,
-            DriversLisenceEnum driversLisence)
-            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType)
+            DriversLisenceEnum driversLisence,
+            EnergyClassEnum energyClass)
+            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, driversLisence, energyClass)
         {
             this.NumberOfSeat = numberOfSeat;
             this.TrunkDimentions = trunkDimentions;
@@ -72,10 +73,6 @@ namespace AutoAuctionProjekt.Classes
                     throw new ArgumentOutOfRangeException();
 
             }
-        }
-        public int DriversLicenceClass(DriversLisenceEnum driver)
-        {
-            driver = DriversLisenceEnum.B;
         }
         /// <summary>
         /// Returns the PersonalCar in a string with relivant information.

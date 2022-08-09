@@ -16,7 +16,6 @@ namespace AutoAuctionProjekt.Classes
             double kmPerLiter,
             FuelTypeEnum fuelType,
             DriversLisenceEnum driversLisence,
-            uint id,
             EnergyClassEnum energyClass)
         {
             this.Name = name;
@@ -29,7 +28,6 @@ namespace AutoAuctionProjekt.Classes
             this.KmPerLiter = kmPerLiter;
             this.FuelType = fuelType;
             this.DriversLisence = driversLisence;
-            this.ID = id;
             this.EnergyClass = energyClass;
             //TODO: V2 - Add to database and set ID
         }
@@ -139,29 +137,30 @@ namespace AutoAuctionProjekt.Classes
             byte bClassNewPetrol = 16;
             byte cClassNewPetrol = 12;
 
+
             if(this.Year < 2010)
             {
                 if(this.FuelType == FuelTypeEnum.Diesel)
                 {
                     if (this.KmPerLiter >= aClassOldDiesel)
-                        this.EnergyClass = EnergyClassEnum.A;
+                        return EnergyClassEnum.A;
                     if (this.KmPerLiter < aClassOldDiesel && this.KmPerLiter >= bClassOldDiesel)
-                        this.EnergyClass = EnergyClassEnum.B;
+                        return EnergyClassEnum.B;
                     if (this.KmPerLiter < bClassOldDiesel && this.KmPerLiter >= cClassOldDiesel)
-                        this.EnergyClass = EnergyClassEnum.C;
+                        return EnergyClassEnum.C;
                     else
-                        this.EnergyClass = EnergyClassEnum.D;
+                        return EnergyClassEnum.D;
                 }
                 else if (this.FuelType == FuelTypeEnum.Benzin)
                 {
                     if (this.KmPerLiter >= aClassOldPetrol)
-                        this.EnergyClass = EnergyClassEnum.A;
-                    if (this.KmPerLiter < aClassOldPetrol && this.KmPerLiter >= bClassOldPetrol)
-                        this.EnergyClass = EnergyClassEnum.B;
+                        return EnergyClassEnum.A;
+                    if (KmPerLiter < aClassOldPetrol && this.KmPerLiter >= bClassOldPetrol)
+                        return EnergyClassEnum.B;
                     if (this.KmPerLiter < bClassOldPetrol && this.KmPerLiter >= cClassOldPetrol)
-                        this.EnergyClass = EnergyClassEnum.C;
+                        return EnergyClassEnum.C;
                     else
-                        this.EnergyClass = EnergyClassEnum.D;
+                        return EnergyClassEnum.D;
                 }
             }
             else if (this.Year >= 2010)
@@ -169,30 +168,27 @@ namespace AutoAuctionProjekt.Classes
                 if (this.FuelType == FuelTypeEnum.Diesel)
                 {
                     if (this.KmPerLiter >= aClassNewDiesel)
-                        this.EnergyClass = EnergyClassEnum.A;
+                        return EnergyClassEnum.A;
                     if (this.KmPerLiter < aClassNewDiesel && this.KmPerLiter >= bClassNewDiesel)
-                        this.EnergyClass = EnergyClassEnum.B;
+                        return EnergyClassEnum.B;
                     if (this.KmPerLiter < bClassNewDiesel && this.KmPerLiter >= cClassNewDiesel)
-                        this.EnergyClass = EnergyClassEnum.C;
+                        return EnergyClassEnum.C;
                     else
-                        this.EnergyClass = EnergyClassEnum.D;
+                        return EnergyClassEnum.D;
                 }
                 else if (this.FuelType == FuelTypeEnum.Benzin)
                 {
                     if (this.KmPerLiter >= aClassNewPetrol)
-                        this.EnergyClass = EnergyClassEnum.A;
+                        return EnergyClassEnum.A;
                     if (this.KmPerLiter < aClassNewPetrol && this.KmPerLiter >= bClassNewPetrol)
-                        this.EnergyClass = EnergyClassEnum.B;
+                        return EnergyClassEnum.B;
                     if (this.KmPerLiter < bClassNewPetrol && this.KmPerLiter >= cClassNewPetrol)
-                        this.EnergyClass = EnergyClassEnum.C;
+                        return EnergyClassEnum.C;
                     else
-                        this.EnergyClass = EnergyClassEnum.D;
-                }
-                else
-                {
-                    this.EnergyClass = EnergyClassEnum.A;
+                        return EnergyClassEnum.D;
                 }
             }
+            return EnergyClassEnum.A;
         }
         /// <summary>
         /// Returns the vehicle in a string with relivant information.
