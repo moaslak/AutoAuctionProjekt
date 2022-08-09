@@ -111,8 +111,74 @@ namespace AutoAuctionProjekt.Classes
         /// </returns>
         private EnergyClassEnum GetEnergyClass()
         {
-            //TODO: V4 - Implement GetEnergyClass
-            throw new NotImplementedException();
+            byte aClassOldDiesel = 23;
+            byte bClassOldDiesel = 18;
+            byte cClassOldDiesel = 13;
+            byte aClassOldPetrol = 18;
+            byte bClassOldPetrol = 14;
+            byte cClassOldPetrol = 10;
+
+            byte aClassNewDiesel = 25;
+            byte bClassNewDiesel = 20;
+            byte cClassNewDiesel = 15;
+            byte aClassNewPetrol = 20;
+            byte bClassNewPetrol = 16;
+            byte cClassNewPetrol = 12;
+
+            if(this.Year < 2010)
+            {
+                if(this.FuelType == FuelTypeEnum.Diesel)
+                {
+                    if (this.KmPerLiter >= aClassOldDiesel)
+                        this.EnergyClass = EnergyClassEnum.A;
+                    if (this.KmPerLiter < aClassOldDiesel && this.KmPerLiter >= bClassOldDiesel)
+                        this.EnergyClass = EnergyClassEnum.B;
+                    if (this.KmPerLiter < bClassOldDiesel && this.KmPerLiter >= cClassOldDiesel)
+                        this.EnergyClass = EnergyClassEnum.C;
+                    else
+                        this.EnergyClass = EnergyClassEnum.D;
+                }
+                else if (this.FuelType == FuelTypeEnum.Benzin)
+                {
+                    if (this.KmPerLiter >= aClassOldPetrol)
+                        this.EnergyClass = EnergyClassEnum.A;
+                    if (this.KmPerLiter < aClassOldPetrol && this.KmPerLiter >= bClassOldPetrol)
+                        this.EnergyClass = EnergyClassEnum.B;
+                    if (this.KmPerLiter < bClassOldPetrol && this.KmPerLiter >= cClassOldPetrol)
+                        this.EnergyClass = EnergyClassEnum.C;
+                    else
+                        this.EnergyClass = EnergyClassEnum.D;
+                }
+            }
+            else if (this.Year >= 2010)
+            {
+                if (this.FuelType == FuelTypeEnum.Diesel)
+                {
+                    if (this.KmPerLiter >= aClassNewDiesel)
+                        this.EnergyClass = EnergyClassEnum.A;
+                    if (this.KmPerLiter < aClassNewDiesel && this.KmPerLiter >= bClassNewDiesel)
+                        this.EnergyClass = EnergyClassEnum.B;
+                    if (this.KmPerLiter < bClassNewDiesel && this.KmPerLiter >= cClassNewDiesel)
+                        this.EnergyClass = EnergyClassEnum.C;
+                    else
+                        this.EnergyClass = EnergyClassEnum.D;
+                }
+                else if (this.FuelType == FuelTypeEnum.Benzin)
+                {
+                    if (this.KmPerLiter >= aClassNewPetrol)
+                        this.EnergyClass = EnergyClassEnum.A;
+                    if (this.KmPerLiter < aClassNewPetrol && this.KmPerLiter >= bClassNewPetrol)
+                        this.EnergyClass = EnergyClassEnum.B;
+                    if (this.KmPerLiter < bClassNewPetrol && this.KmPerLiter >= cClassNewPetrol)
+                        this.EnergyClass = EnergyClassEnum.C;
+                    else
+                        this.EnergyClass = EnergyClassEnum.D;
+                }
+                else
+                {
+                    this.EnergyClass = EnergyClassEnum.A;
+                }
+            }
         }
         /// <summary>
         /// Returns the vehicle in a string with relivant information.
