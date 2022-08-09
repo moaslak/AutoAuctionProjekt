@@ -19,6 +19,15 @@ namespace AutoAuctionProjekt.Classes
          VehicleDimensionsStruct vehicleDimentions) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType)
         {
             this.VehicleDimensions = vehicleDimentions;
+            this.Name = name;
+            this.Km = km;
+            this.RegistrationNumber = registrationNumber;
+            this.Year = year;
+            this.NewPrice = newPrice;
+            this.EngineSize = engineSize;
+            this.HasTowbar = hasTowbar;
+            this.KmPerLiter = kmPerLiter;
+            this.FuelType = fuelType;
         }
         /// <summary>
         /// Vehicle dimentions proberty and struct
@@ -46,7 +55,7 @@ namespace AutoAuctionProjekt.Classes
         public override string ToString()
         {
             //TODO: V6 - ToString for HeavyVehicle
-            throw new NotImplementedException();
+            return VehicleDimensionsStruct();
         }
     }
 }
