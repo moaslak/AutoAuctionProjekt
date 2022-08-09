@@ -54,8 +54,7 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-            //TODO: V6 - ToString for HeavyVehicle
-            return VehicleDimensionsStruct();
+            return base.ToString() + VehicleDimensions.ToString();
         }
     }
 }
