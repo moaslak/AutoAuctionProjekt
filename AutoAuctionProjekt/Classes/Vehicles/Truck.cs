@@ -51,8 +51,10 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-            //TODO: V12 - ToString for Truck 
-            throw new NotImplementedException();
+                return "Name: " + this.Name + ", Km: " + this.Km + ", Registration number: " + this.RegistrationNumber + ", Year: " + this.Year +
+                ", New price: " + this.NewPrice + ", Has towbar: " + this.HasTowbar + ", Engine size: " + this.EngineSize + ", Km/L: " + this.KmPerLiter +
+                ", Fuel type: " + this.FuelType + ", Vehicle height: " + this.VehicleDimensions.Height + ", Vehicel length: " + this.VehicleDimensions.Length +
+                ", Vehicle weight: " + this.VehicleDimensions.Weight + ", Load capacity: " + this.LoadCapacity + ", Drivers license: " + this.DriversLisence;
         }
     }
 }
