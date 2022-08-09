@@ -21,7 +21,10 @@ namespace AutoAuctionProjekt.Classes
             double loadCapacity)
             : base(name, km, registrationNumber, year, newPrice, true, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions)
         {
-            //TODO: V16 - ProfessionalPersonalCar constructor. DriversLicense should be 'B' if load capasity is below 750 otherwise it should be 'BE'
+            if (this.LoadCapacity > 750)
+                this.DriversLisence = DriversLisenceEnum.BE;
+            else
+                this.DriversLisence = DriversLisenceEnum.B;
             //TODO: V17 - Add to database and set ID
             throw new NotImplementedException();
         }
