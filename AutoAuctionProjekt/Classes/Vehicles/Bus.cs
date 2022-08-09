@@ -24,7 +24,10 @@ namespace AutoAuctionProjekt.Classes
             this.NumberOfSeats = numberOfSeats;
             this.NumberOfSleepingSpaces = numberOfSleepingSpaces;
             this.HasToilet = hasToilet;
-            //TODO: V7 - set contructor and DriversLisence to DE if the car has a towbar or D if not.
+            if (this.HasTowbar == true)
+                this.DriversLisence = DriversLisenceEnum.DE;
+            else
+                this.DriversLisence = DriversLisenceEnum.D;
             //TODO: V8 - Add to database and set ID
             throw new NotImplementedException();
         }
