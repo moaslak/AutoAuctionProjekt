@@ -44,7 +44,7 @@ namespace AutoAuctionProjekt.Classes
         /// <returns>The Veihcle as a string</returns>
         public override string ToString()
         {
-                return base.ToString() + "Has tow bar: " + this.HasTowbar + ", Load capacity: " + this.LoadCapacity;
+                return base.ToString() + ", Has tow bar: " + this.HasTowbar + ", Load capacity: " + this.LoadCapacity;
         }
     }
 }

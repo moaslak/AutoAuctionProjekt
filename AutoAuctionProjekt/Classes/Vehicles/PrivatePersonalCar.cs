@@ -36,7 +36,7 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-            return base.ToString() + "Has iso fix fitting: " + this.HasIsofixFittings;
+            return base.ToString() + ", Has iso fix fitting: " + this.HasIsofixFittings;
         }
     }
 }
