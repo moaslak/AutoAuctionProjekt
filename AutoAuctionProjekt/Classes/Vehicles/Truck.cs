@@ -17,7 +17,9 @@ namespace AutoAuctionProjekt.Classes
             double kmPerLiter,
             FuelTypeEnum fuelType,
             VehicleDimensionsStruct vehicleDimentions,
-            double LoadCapacity) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, vehicleDimentions)
+            EnergyClassEnum energyClass,
+            DriversLisenceEnum driversLisence,
+            double LoadCapacity) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, vehicleDimentions, energyClass, driversLisence)
         {
             if (this.HasTowbar == true)
                 this.DriversLisence = DriversLisenceEnum.CE;
@@ -51,10 +53,7 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-                return "Name: " + this.Name + ", Km: " + this.Km + ", Registration number: " + this.RegistrationNumber + ", Year: " + this.Year +
-                ", New price: " + this.NewPrice + ", Has towbar: " + this.HasTowbar + ", Engine size: " + this.EngineSize + ", Km/L: " + this.KmPerLiter +
-                ", Fuel type: " + this.FuelType + ", Vehicle height: " + this.VehicleDimensions.Height + ", Vehicel length: " + this.VehicleDimensions.Length +
-                ", Vehicle weight: " + this.VehicleDimensions.Weight + ", Load capacity: " + this.LoadCapacity + ", Drivers license: " + this.DriversLisence;
+                return base.ToString() + ", Engine size: " + this.EngineSize + ", Load capacity: " + this.LoadCapacity; ;
         }
     }
 }
