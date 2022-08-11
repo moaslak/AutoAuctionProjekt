@@ -44,10 +44,7 @@ namespace AutoAuctionProjekt.Classes
         /// <returns>The Veihcle as a string</returns>
         public override string ToString()
         {
-                return "Name: " + this.Name + ", Km: " + this.Km + ", Registation number: " + this.RegistrationNumber + ", Year: " + this.Year +
-                ", New price: " + this.NewPrice + ", Engine size: " + this.EngineSize + ", Km/L: " + this.KmPerLiter + ", Fuel type: " + this.FuelType +
-                ", Number of seats: " + this.NumberOfSeat + ", Drivers license: " + this.DriversLisence + ", Trunk height: " + this.TrunkDimentions.Height +
-                ", Trunk width: " + this.TrunkDimentions.Width + ", Trunk depth: " + this.TrunkDimentions.Depth + ", Load capacity: " + this.LoadCapacity;
+                return base.ToString() + "Has tow bar: " + this.HasTowbar + ", Load capacity: " + this.LoadCapacity;
         }
     }
 }
