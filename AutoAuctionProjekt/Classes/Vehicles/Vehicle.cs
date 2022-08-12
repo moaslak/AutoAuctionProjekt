@@ -14,7 +14,9 @@ namespace AutoAuctionProjekt.Classes
             bool hasTowbar,
             double engineSize,
             double kmPerLiter,
-            FuelTypeEnum fuelType)
+            FuelTypeEnum fuelType,
+            EnergyClassEnum energyClass,
+            DriversLisenceEnum driversLisence)
         {
             this.Name = name;
             this.Km = km;
@@ -25,6 +27,8 @@ namespace AutoAuctionProjekt.Classes
             this.EngineSize = engineSize;
             this.KmPerLiter = kmPerLiter;
             this.FuelType = fuelType;
+            this.EnergyClass = energyClass;
+            this.DriversLisence = driversLisence;
             //TODO: V1 - Constructor for Vehicle
             //TODO: V2 - Add to database and set ID
         }
@@ -115,20 +119,16 @@ namespace AutoAuctionProjekt.Classes
         /// <returns>The Veihcle as a string</returns>
         public new virtual string ToString()
         {
-            //TODO: V3 - Vehicle tostring
             return("ID: " + ID +
-                   "Name" + Name +
-                   "Number of km: " + Km +
-                   "Registration number: " + RegistrationNumber +
-                   "Year: " + Year +
-                   "New price: " + NewPrice +
-                   "Tow bar : " + HasTowbar +
-                   "Engine size: " + EngineSize +
-                   "Km/l: " + KmPerLiter +
-                   "Fuel type: " + FuelType);
-            
-
-            //throw new NotImplementedException();
+                   ", Name" + Name +
+                   ", Number of km: " + Km +
+                   ", Registration number: " + RegistrationNumber +
+                   ", Year: " + Year +
+                   ", New price: " + NewPrice +
+                   ", Tow bar : " + HasTowbar +
+                   ", Engine size: " + EngineSize +
+                   ", Km/l: " + KmPerLiter +
+                   ", Fuel type: " + FuelType);
         }
     }
 }
