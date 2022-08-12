@@ -18,10 +18,15 @@ namespace AutoAuctionProjekt.Classes
             ushort numberOfSeat,
             TrunkDimentionsStruct trunkDimentions,
             bool hasSafetyBar,
-            double loadCapacity)
-            : base(name, km, registrationNumber, year, newPrice, true, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions)
+            double loadCapacity,
+            DriversLisenceEnum driversLisence,
+            EnergyClassEnum energyClass)
+            : base(name, km, registrationNumber, year, newPrice, true, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions, driversLisence, energyClass)
         {
-            //TODO: V16 - ProfessionalPersonalCar constructor. DriversLicense should be 'B' if load capasity is below 750 otherwise it should be 'BE'
+            if (this.LoadCapacity > 750)
+                this.DriversLisence = DriversLisenceEnum.BE;
+            else
+                this.DriversLisence = DriversLisenceEnum.B;
             //TODO: V17 - Add to database and set ID
             throw new NotImplementedException();
         }
@@ -39,8 +44,10 @@ namespace AutoAuctionProjekt.Classes
         /// <returns>The Veihcle as a string</returns>
         public override string ToString()
         {
-            //TODO: V18 - ToString for ProfessionalPersonalCar 
-            throw new NotImplementedException();
+                return "Name: " + this.Name + ", Km: " + this.Km + ", Registation number: " + this.RegistrationNumber + ", Year: " + this.Year +
+                ", New price: " + this.NewPrice + ", Engine size: " + this.EngineSize + ", Km/L: " + this.KmPerLiter + ", Fuel type: " + this.FuelType +
+                ", Number of seats: " + this.NumberOfSeat + ", Drivers license: " + this.DriversLisence + ", Trunk height: " + this.TrunkDimentions.Height +
+                ", Trunk width: " + this.TrunkDimentions.Width + ", Trunk depth: " + this.TrunkDimentions.Depth + ", Load capacity: " + this.LoadCapacity;
         }
     }
 }

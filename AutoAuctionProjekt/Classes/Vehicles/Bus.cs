@@ -24,7 +24,10 @@ namespace AutoAuctionProjekt.Classes
             this.NumberOfSeats = numberOfSeats;
             this.NumberOfSleepingSpaces = numberOfSleepingSpaces;
             this.HasToilet = hasToilet;
-            //TODO: V7 - set contructor and DriversLisence to DE if the car has a towbar or D if not.
+            if (this.HasTowbar == true)
+                this.DriversLisence = DriversLisenceEnum.DE;
+            else
+                this.DriversLisence = DriversLisenceEnum.D;
             //TODO: V8 - Add to database and set ID
             throw new NotImplementedException();
         }
@@ -58,8 +61,10 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-            //TODO: V9 - Tostring for bus
-            throw new NotImplementedException();
+            return "Name: " + this.Name + ", Km: " + this.Km + ", Registarion number: " + this.RegistrationNumber + ", Year: " + this.Year +
+                ", New price: " + this.NewPrice + ", Has towbar: " + this.HasTowbar + ", Engine size: " + this.EngineSize + ", Km/L: " + this.KmPerLiter +
+                ", Fuel type: " + this.FuelType + ", Number of seat: " + this.NumberOfSeats + ", Number of sleeping spaces: " + this.NumberOfSleepingSpaces +
+                ", Vehicle height: " + this.VehicleDimensions.Height + ", Vehicle length: " + this.VehicleDimensions.Length + ", Vehicle weight: " + this.VehicleDimensions.Weight;
         }
     }
 }

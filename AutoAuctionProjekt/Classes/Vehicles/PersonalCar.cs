@@ -17,11 +17,24 @@ namespace AutoAuctionProjekt.Classes
             double kmPerLiter,
             FuelTypeEnum fuelType,
             ushort numberOfSeat,
-            TrunkDimentionsStruct trunkDimentions)
-            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType)
+            TrunkDimentionsStruct trunkDimentions,
+            DriversLisenceEnum driversLisence,
+            EnergyClassEnum energyClass)
+            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, driversLisence, energyClass)
         {
             this.NumberOfSeat = numberOfSeat;
             this.TrunkDimentions = trunkDimentions;
+            this.DriversLisence = driversLisence;
+            this.Name = name;
+            this.Year = year;
+            this.Km = km;
+            this.RegistrationNumber = registrationNumber;
+            this.NewPrice = newPrice;
+            this.HasTowbar = hasTowbar;
+            this.EngineSize = engineSize;
+            this.KmPerLiter = kmPerLiter;
+            this.FuelType = fuelType;
+            this.Year = year;
         }
         /// <summary>
         /// Number of seat proberty
@@ -54,9 +67,11 @@ namespace AutoAuctionProjekt.Classes
             set
             {
                 //TODO: V13 - EngineSize: must be between 0.7 and 10.0 L or cast an out of range exection.
-                throw new NotImplementedException();
+                if(EngineSize <= 0.7 && EngineSize >= 10.0)
+                    EngineSize = value;
+                else
+                    throw new ArgumentOutOfRangeException();
 
-                EngineSize = value;
             }
         }
         /// <summary>
@@ -64,8 +79,10 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-            //TODO: V15 - ToString for PersonalCar
-            throw new NotImplementedException();
+            return "Name: " + this.Name + ", Km: " + this.Km + ", Registation number: " + this.RegistrationNumber + ", Year: " + this.Year +
+                ", New price: " + this.NewPrice + ", Has towbar: " + this.HasTowbar + ", Engine size: " + this.EngineSize + ", Km/L: " + this.KmPerLiter +
+                ", Fuel type: " + this.FuelType + ", Number of seats: " + this.NumberOfSeat + ", Trunk height: " + this.TrunkDimentions.Height +
+                ", Trunk width: " + this.TrunkDimentions.Width + ", Trunk depth: " + this.TrunkDimentions.Depth;
         }
     }
 }

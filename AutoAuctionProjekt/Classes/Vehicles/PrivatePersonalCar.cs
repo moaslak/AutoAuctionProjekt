@@ -18,10 +18,12 @@ namespace AutoAuctionProjekt.Classes
             FuelTypeEnum fuelType,
             ushort numberOfSeat,
             TrunkDimentionsStruct trunkDimentions,
-            bool hasIsofixFittings)
-            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions)
+            bool hasIsofixFittings,
+            DriversLisenceEnum driversLisence, 
+            EnergyClassEnum energyClass)
+            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions, driversLisence, energyClass)
         {
-            //TODO: V19 - PrivatePersonalCar constructor. DriversLicense should be 'B'
+            this.DriversLisence = DriversLisenceEnum.B;
             //TODO: V20 - Add to database and set ID
             throw new NotImplementedException();
         }
@@ -34,8 +36,10 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-            //TODO: V21 - ToString for PrivatePersonalCar
-            throw new NotImplementedException();
+            return "Name: " + this.Name + ", Km: " + this.Km + ", Registation number: " + this.RegistrationNumber + ", Year: " + this.Year +
+                ", New price: " + this.NewPrice + ", Engine size: " + this.EngineSize + ", Km/L: " + this.KmPerLiter + ", Fuel type: " + this.FuelType +
+                ", Number of seats: " + this.NumberOfSeat + ", Drivers license: " + this.DriversLisence + ", Trunk height: " + this.TrunkDimentions.Height +
+                ", Trunk width: " + this.TrunkDimentions.Width + ", Trunk depth: " + this.TrunkDimentions.Depth + ", Has IsoFix fittings: " + this.HasIsofixFittings;
         }
     }
 }
