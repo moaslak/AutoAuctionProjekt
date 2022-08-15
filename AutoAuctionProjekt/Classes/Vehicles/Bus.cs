@@ -19,7 +19,9 @@ namespace AutoAuctionProjekt.Classes
             VehicleDimensionsStruct vehicleDimentions,
             ushort numberOfSeats,
             ushort numberOfSleepingSpaces,
-            bool hasToilet) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, vehicleDimentions)
+            EnergyClassEnum energyClass,
+            DriversLisenceEnum driversLisence,
+            bool hasToilet) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, vehicleDimentions, energyClass, driversLisence)
         {
             this.NumberOfSeats = numberOfSeats;
             this.NumberOfSleepingSpaces = numberOfSleepingSpaces;
@@ -61,10 +63,8 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-            return "Name: " + this.Name + ", Km: " + this.Km + ", Registarion number: " + this.RegistrationNumber + ", Year: " + this.Year +
-                ", New price: " + this.NewPrice + ", Has towbar: " + this.HasTowbar + ", Engine size: " + this.EngineSize + ", Km/L: " + this.KmPerLiter +
-                ", Fuel type: " + this.FuelType + ", Number of seat: " + this.NumberOfSeats + ", Number of sleeping spaces: " + this.NumberOfSleepingSpaces +
-                ", Vehicle height: " + this.VehicleDimensions.Height + ", Vehicle length: " + this.VehicleDimensions.Length + ", Vehicle weight: " + this.VehicleDimensions.Weight;
+            return base.ToString() + ", Number of seats: " + this.NumberOfSeats + ", Number of sleeping spaces: " +
+                this.NumberOfSleepingSpaces + ", Has toilet: " + this.HasToilet;
         }
     }
 }

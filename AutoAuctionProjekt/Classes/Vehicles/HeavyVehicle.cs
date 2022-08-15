@@ -16,7 +16,9 @@ namespace AutoAuctionProjekt.Classes
          double engineSize,
          double kmPerLiter,
          FuelTypeEnum fuelType,
-         VehicleDimensionsStruct vehicleDimentions) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType)
+         VehicleDimensionsStruct vehicleDimentions,
+         EnergyClassEnum energyClass,
+         DriversLisenceEnum driversLisence) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, driversLisence, energyClass)
         {
             this.VehicleDimensions = vehicleDimentions;
             this.Name = name;
@@ -28,6 +30,8 @@ namespace AutoAuctionProjekt.Classes
             this.HasTowbar = hasTowbar;
             this.KmPerLiter = kmPerLiter;
             this.FuelType = fuelType;
+            this.DriversLisence = driversLisence;
+            this.EnergyClass = energyClass;
         }
         /// <summary>
         /// Vehicle dimentions proberty and struct
