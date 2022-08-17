@@ -6,6 +6,8 @@ namespace AutoAuctionProjekt.Classes
 {
     class Bus : HeavyVehicle
     {
+        double minEngineSize = 4.2;
+        double maxEngineSize = 15;
         public Bus (
             string name,
             double km,
@@ -39,12 +41,15 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override double EngineSize
         {
+            
             get { return EngineSize; }
             set
             {
                 //V7 - TODO value must be between 4.2 and 15.0 L or cast an out of range exection.
-                throw new NotImplementedException();
-                EngineSize = value;
+                if (EngineSize >= maxEngineSize || EngineSize <= minEngineSize)
+                    throw new ArgumentOutOfRangeException();
+                else
+                    EngineSize = value;
             }
         }
         /// <summary>
