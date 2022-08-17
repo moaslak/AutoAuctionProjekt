@@ -1,0 +1,75 @@
+﻿USE [mort40f43.SKOLE]
+DROP TABLE Vehicle 
+DROP TABLE HeavyVehicle
+DROP TABLE Truck
+DROP TABLE Bus
+DROP TABLE PersonalCar
+DROP TABLE ProfessionalPersonalCar
+DROP TABLE PrivatePersonalCar
+
+USE [mort40f43.SKOLE]
+CREATE TABLE Vehicle(
+ID INT IDENTITY(1,1),
+Name VARCHAR(32),
+Km DECIMAL(12,2) NOT NULL,
+RegistrationNumber VARCHAR(16),
+Year int NOT NULL,
+NewPrice DECIMAL(12,2) NOT NULL,
+HasTowBar BIT NOT NULL,
+EngineSize DECIMAL(8,2) NOT NULL,
+KmPrLiter DECIMAL(8,2),
+DriversLicense VARCHAR(4) NOT NULL,
+FuelType VARCHAR(8) NOT NULL,
+EnergyClass VARCHAR(8) NOT NULL,
+PRIMARY KEY (ID)
+)
+
+CREATE TABLE HeavyVehicle(
+ID INT IDENTITY(1,1),
+VehicleID INT FOREIGN KEY REFERENCES Vehicle(ID),
+VehicleHeight DECIMAL(12,2) NOT NULL,
+VehicleWeight DECIMAL(12,2) NOT NULL,
+VehicleLength DECIMAL(12,2) NOT NULL
+PRIMARY KEY (ID),
+)
+
+CREATE TABLE Truck(
+ID INT IDENTITY(1,1),
+HeavyVehicleID INT FOREIGN KEY REFERENCES HeavyVehicle(ID),
+LoadCapacity DECIMAL(12,2) NOT NULL,
+PRIMARY KEY(ID)
+)
+
+CREATE TABLE Bus(
+ID INT IDENTITY(1,1),
+HeavyVehicleID INT FOREIGN KEY REFERENCES HeavyVehicle(ID),
+NumberOfSeats INT NOT NULL,
+NumberOfSleepingSpaces INT,
+HasToilet BIT,
+PRIMARY KEY(ID)
+)
+
+CREATE TABLE PersonalCar(
+ID INT IDENTITY(1,1),
+VehicleID INT FOREIGN KEY REFERENCES Vehicle(ID),
+NumberOfSeats INT NOT NULL,
+TrunkHeight DECIMAL(12,2),
+TrunkWidth DECIMAL(12,2),
+TrunkDepth DECIMAL(12,2),
+PRIMARY KEY(ID)
+)
+
+CREATE TABLE PrivatePeronalCar(
+ID INT IDENTITY(1,1),
+PersonalCarID INT FOREIGN KEY REFERENCES PersonalCar(ID),
+HasISOFittings BIT,
+PRIMARY KEY(ID)
+)
+
+CREATE TABLE ProfessionalPersonalCar(
+ID INT IDENTITY(1,1),
+PersonalCarID INT FOREIGN KEY REFERENCES PersonalCar(ID),
+HasSaftyBar BIT,
+LoadCapacity DECIMAL(12,2) NOT NULL,
+PRIMARY KEY(ID)
+)
