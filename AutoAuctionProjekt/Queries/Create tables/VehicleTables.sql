@@ -1,13 +1,4 @@
 ﻿USE [mort40f43.SKOLE]
-DROP TABLE Vehicle 
-DROP TABLE HeavyVehicle
-DROP TABLE Truck
-DROP TABLE Bus
-DROP TABLE PersonalCar
-DROP TABLE ProfessionalPersonalCar
-DROP TABLE PrivatePersonalCar
-
-USE [mort40f43.SKOLE]
 CREATE TABLE Vehicle(
 ID INT IDENTITY(1,1),
 Name VARCHAR(32),
@@ -59,7 +50,7 @@ TrunkDepth DECIMAL(12,2),
 PRIMARY KEY(ID)
 )
 
-CREATE TABLE PrivatePeronalCar(
+CREATE TABLE PrivatePersonalCar(
 ID INT IDENTITY(1,1),
 PersonalCarID INT FOREIGN KEY REFERENCES PersonalCar(ID),
 HasISOFittings BIT,
