@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace LNE_Security.Data
+namespace AutoAuctionProjekt.Classes
 {
     public class DatabaseConnection
     {
