@@ -1,0 +1,28 @@
+﻿<Window x:Class="UserInterface.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserInterface"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="200" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold">Auto Auction Login</Label>
+        <Label Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">User:</Label>
+        <TextBox Name="UserTxtbox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="225" TextChanged="UserTxtbox_TextChanged"></TextBox>
+        <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Password:</Label>
+        <TextBox Name="PasswordTxtbox" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="225" TextChanged="PasswordTxtbox_TextChanged"></TextBox>
+        <Button Name="LoginBtn" Grid.Column="1" Grid.Row="3" Width="100" Height="Auto" HorizontalAlignment="Left" Click="LoginBtn_Click">Login</Button>
+        <Button Name="CreateUserBtn" Grid.Column="1" Grid.Row="3" Width="100" Height="Auto" HorizontalAlignment="Right" Click="CreateUserBtn_Click">Create user</Button>
+    </Grid>
+</Window>
