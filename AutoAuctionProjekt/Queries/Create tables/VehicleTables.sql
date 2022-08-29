@@ -1,4 +1,4 @@
-﻿USE [mort40f43.SKOLE]
+﻿USE [AutoAuctionDB]
 CREATE TABLE Vehicle(
 ID INT IDENTITY(1,1),
 Name VARCHAR(32),
