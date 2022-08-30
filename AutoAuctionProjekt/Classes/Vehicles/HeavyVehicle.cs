@@ -37,9 +37,9 @@ namespace AutoAuctionProjekt.Classes
                 Weight = weight;
                 Length = length;
             }
-            public double Height { get; }
-            public double Weight { get; }
-            public double Length { get; }
+            public double Height { get; set; }
+            public double Weight { get; set; }
+            public double Length { get; set; }
             public override string ToString() => $"(Height: {Height}, Weight: {Weight}, Depth: {Length})";
         }
         /// <summary>

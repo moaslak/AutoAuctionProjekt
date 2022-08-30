@@ -211,7 +211,7 @@ namespace AutoAuctionProjekt.Classes
                    ", Registration number: " + RegistrationNumber +
                    ", Year: " + Year +
                    ", New price: " + NewPrice +
-                   ", Tow bar : " + HasTowbar +
+                   ", Tow bar: " + HasTowbar +
                    ", Engine size: " + EngineSize +
                    ", Km/l: " + KmPerLiter +
                    ", Fuel type: " + FuelType);

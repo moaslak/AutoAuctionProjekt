@@ -7,9 +7,9 @@ using AutoAuctionProjekt.Interfaces;
 
 namespace AutoAuctionProjekt.Classes
 {
-    partial class Database : IDatabase
+    partial class Database : IDatabase<Truck>
     {
-        public void DatabaseCreate()
+        public void DatabaseCreate(Truck truck)
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
@@ -36,24 +36,210 @@ namespace AutoAuctionProjekt.Classes
             connection.Close();
         }
 
-        public Truck DatabaseSelect()
+        public Truck DatabaseSelect(ushort Id)
         {
-            throw new NotImplementedException();
+            List<Truck> trucks = new List<Truck>();
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            SqlConnection connection = databaseConnection.SetSqlConnection();
+            SqlCommand cmd = new SqlCommand("dbo.SelectTruck", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = Id;
+            Truck truck = new Truck("1", 2, "3", 4, 5, false, 6, 7, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(8, 9, 10), Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, 11);
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                truck.SetId(Convert.ToUInt16(reader.GetValue(0)));
+                truck.LoadCapacity = Convert.ToUInt16(reader.GetValue(1));
+                truck.VehicleDimensions = new HeavyVehicle.VehicleDimensionsStruct(
+                    Convert.ToDouble(reader.GetValue(2)), Convert.ToDouble(reader.GetValue(3)),
+                    Convert.ToDouble(reader.GetValue(4)));
+                truck.Name = Convert.ToString(reader.GetValue(5));
+                truck.Km = Convert.ToDouble(reader.GetValue(6));
+                truck.RegistrationNumber = Convert.ToString(reader.GetValue(7));
+                truck.Year = Convert.ToInt32(reader.GetValue(8));
+                truck.NewPrice = Convert.ToDecimal(reader.GetValue(9));
+                truck.HasTowbar = Convert.ToBoolean(reader.GetValue(10));
+                truck.EngineSize = Convert.ToDouble(reader.GetValue(11));
+                truck.KmPerLiter = Convert.ToDouble(reader.GetValue(12));
+
+                string driversLicense = Convert.ToString(reader.GetValue(13));
+                switch (driversLicense)
+                {
+                    case "A":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.A;
+                        break;
+                    case "B":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.B;
+                        break;
+                    case "BE":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.BE;
+                        break;
+                    case "C":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.C;
+                        break;
+                    case "CE":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.CE;
+                        break;
+                    case "D":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.D;
+                        break;
+                    case "DE":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.DE;
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid driver license");
+                }
+
+                string fuelType = Convert.ToString(reader.GetValue(14));
+                switch (fuelType)
+                {
+                    case "Diesel":
+                        truck.FuelType = Vehicle.FuelTypeEnum.Diesel;
+                        break;
+                    case "Petrol":
+                        truck.FuelType = Vehicle.FuelTypeEnum.Petrol;
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid fuel type");
+                }
+
+                string energyClass = Convert.ToString(reader.GetValue(15));
+                switch (energyClass)
+                {
+                    case "A":
+                        truck.EnergyClass = Vehicle.EnergyClassEnum.A;
+                        break;
+                    case "B":
+                        truck.EnergyClass = Vehicle.EnergyClassEnum.B;
+                        break;
+                    case "C":
+                        truck.EnergyClass = Vehicle.EnergyClassEnum.C;
+                        break;
+                    case "D":
+                        truck.EnergyClass = Vehicle.EnergyClassEnum.D;
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid energy class");
+                }
+            }
+            connection.Close();
+            return truck;
         }
 
         public List<Truck> DatabaseGet()
         {
-            throw new NotImplementedException();
+            List<Truck> trucks = new List<Truck>();
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            SqlConnection connection = databaseConnection.SetSqlConnection();
+            SqlCommand cmd = new SqlCommand("dbo.GetTrucks", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Truck truck = new Truck("1", 2, "3", 4, 5, false, 6, 7, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(8, 9, 10), Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, 11);
+                truck.SetId(Convert.ToUInt16(reader.GetValue(0)));
+                truck.LoadCapacity = Convert.ToUInt16(reader.GetValue(1));
+                truck.VehicleDimensions = new HeavyVehicle.VehicleDimensionsStruct(
+                    Convert.ToDouble(reader.GetValue(2)), Convert.ToDouble(reader.GetValue(3)),
+                    Convert.ToDouble(reader.GetValue(4)));
+                truck.Name = Convert.ToString(reader.GetValue(5));
+                truck.Km = Convert.ToDouble(reader.GetValue(6));
+                truck.RegistrationNumber = Convert.ToString(reader.GetValue(7));
+                truck.Year = Convert.ToInt32(reader.GetValue(8));
+                truck.NewPrice = Convert.ToDecimal(reader.GetValue(9));
+                truck.HasTowbar = Convert.ToBoolean(reader.GetValue(10));
+                truck.EngineSize = Convert.ToDouble(reader.GetValue(11));
+                truck.KmPerLiter = Convert.ToDouble(reader.GetValue(12));
+
+                string driversLicense = Convert.ToString(reader.GetValue(13));
+                switch (driversLicense)
+                {
+                    case "A":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.A;
+                        break;
+                    case "B":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.B;
+                        break;
+                    case "BE":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.BE;
+                        break;
+                    case "C":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.C;
+                        break;
+                    case "CE":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.CE;
+                        break;
+                    case "D":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.D;
+                        break;
+                    case "DE":
+                        truck.DriversLisence = Vehicle.DriversLisenceEnum.DE;
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid driver license");
+                }
+
+                string fuelType = Convert.ToString(reader.GetValue(14));
+                switch (fuelType)
+                {
+                    case "Diesel":
+                        truck.FuelType = Vehicle.FuelTypeEnum.Diesel;
+                        break;
+                    case "Petrol":
+                        truck.FuelType = Vehicle.FuelTypeEnum.Petrol;
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid fuel type");
+                }
+
+                string energyClass = Convert.ToString(reader.GetValue(15));
+                switch(energyClass)
+                {
+                    case "A":
+                        truck.EnergyClass = Vehicle.EnergyClassEnum.A;
+                        break;
+                    case "B":
+                        truck.EnergyClass = Vehicle.EnergyClassEnum.B;
+                        break;
+                    case "C":
+                        truck.EnergyClass = Vehicle.EnergyClassEnum.C;
+                        break;
+                    case "D":
+                        truck.EnergyClass = Vehicle.EnergyClassEnum.D;
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid energy class");
+                }
+                trucks.Add(truck);
+            }
+            connection.Close();
+            return trucks;
         }
 
-        public Truck DatabaseUpdate()
+        public Truck DatabaseUpdate(Truck updatedTruck)
         {
             throw new NotImplementedException();
         }
 
-        public Truck DatabaseDelete()
+        public void DatabaseDelete(ushort Id)
         {
-            throw new NotImplementedException();
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            SqlConnection connection = databaseConnection.SetSqlConnection();
+            SqlCommand cmd = new SqlCommand("dbo.DeleteTruck", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ID",SqlDbType.Int).Value = Id;
+            try
+            {
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (SqlException)
+            {
+                Console.WriteLine("SQL ERROR!!!");
+            }
         }
     }
 }

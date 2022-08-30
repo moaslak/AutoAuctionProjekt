@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE SelectTruck @ID INT
+﻿CREATE PROCEDURE GetTruck @ID INT
 as
 SELECT truck.ID, truck.LoadCapacity, HeavyVehicle.VehicleHeight, HeavyVehicle.VehicleWeight, 
 	HeavyVehicle.VehicleLength, Vehicle.Name, Vehicle.Km, Vehicle.RegistrationNumber,
@@ -6,4 +6,3 @@ SELECT truck.ID, truck.LoadCapacity, HeavyVehicle.VehicleHeight, HeavyVehicle.Ve
 	Vehicle.DriversLicense, Vehicle.FuelType, Vehicle.EnergyClass FROM [dbo].[truck]
 	join HeavyVehicle on Truck.HeavyVehicleID = HeavyVehicle.ID
 	join Vehicle on HeavyVehicle.VehicleID = Vehicle.ID
-	WHERE truck.ID = @ID;
