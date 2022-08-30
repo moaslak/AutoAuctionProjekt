@@ -21,13 +21,14 @@ namespace AutoAuctionProjekt.Classes
             cmd.Parameters.Add("@HasTowbar", SqlDbType.Bit).Value = truck.HasTowbar;
             cmd.Parameters.Add("@EngineSize", SqlDbType.Decimal).Value = truck.EngineSize;
             cmd.Parameters.Add("@KmPrLiter", SqlDbType.Decimal).Value = truck.KmPerLiter;
-            cmd.Parameters.Add("@DriverLicense", SqlDbType.VarChar).Value = truck.DriversLisence;
+            cmd.Parameters.Add("@DriversLicense", SqlDbType.VarChar).Value = truck.DriversLisence;
             cmd.Parameters.Add("@FuelType", SqlDbType.VarChar).Value = truck.FuelType;
-            cmd.Parameters.Add("@EngergyClass", SqlDbType.VarChar).Value = truck.EnergyClass;
+            cmd.Parameters.Add("@EnergyClass", SqlDbType.VarChar).Value = truck.EnergyClass;
             cmd.Parameters.Add("@Height", SqlDbType.Decimal).Value = truck.VehicleDimensions.Height;
             cmd.Parameters.Add("@Length", SqlDbType.Decimal).Value = truck.VehicleDimensions.Length;
             cmd.Parameters.Add("@Weight", SqlDbType.Decimal).Value = truck.VehicleDimensions.Weight;
             cmd.Parameters.Add("@LoadCapacity", SqlDbType.Decimal).Value = truck.LoadCapacity;
+            cmd.Parameters.Add("@NewPrice", SqlDbType.Decimal).Value = truck.NewPrice;
 
             connection.Open();
             cmd.ExecuteNonQuery();

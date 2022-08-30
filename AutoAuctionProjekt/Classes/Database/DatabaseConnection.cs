@@ -35,7 +35,7 @@ namespace AutoAuctionProjekt.Classes
             SqlConnectionStringBuilder.Password = "fhq3CCN626";
             //string database = File.ReadAllText("..\\Data\\CONFIG.txt"); //TODO: relative path
             //database = database.Replace("Database=", "");
-            string database = "mort40f43.SKOLE";
+            string database = "";
             SqlConnectionStringBuilder.InitialCatalog = database;
             SqlConnection SqlConnection = new SqlConnection(SqlConnectionStringBuilder.ConnectionString);
             return SqlConnection;

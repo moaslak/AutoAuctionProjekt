@@ -108,7 +108,9 @@ namespace AutoAuctionProjekt.Classes
         /// <summary>
         /// Engery class Enum, field and proberty
         /// </summary>
-        public EnergyClassEnum EnergyClass { get { return EnergyClass; } set => GetEnergyClass(); }
+
+        private EnergyClassEnum energyClass;
+        public EnergyClassEnum EnergyClass { get { return energyClass; } set => GetEnergyClass(); }
         public enum EnergyClassEnum
         {
             A,
