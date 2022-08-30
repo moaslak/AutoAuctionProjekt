@@ -21,7 +21,7 @@ namespace AutoAuctionProjekt.Classes
          DriversLisenceEnum driversLisence) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, driversLisence, energyClass)
         {
             this.VehicleDimensions = vehicleDimentions;
-            this.Name = name;
+            /*this.Name = name;
             this.Km = km;
             this.RegistrationNumber = registrationNumber;
             this.Year = year;
@@ -31,7 +31,7 @@ namespace AutoAuctionProjekt.Classes
             this.KmPerLiter = kmPerLiter;
             this.FuelType = fuelType;
             this.DriversLisence = driversLisence;
-            this.EnergyClass = energyClass;
+            this.EnergyClass = energyClass;*/
         }
         /// <summary>
         /// Vehicle dimentions proberty and struct

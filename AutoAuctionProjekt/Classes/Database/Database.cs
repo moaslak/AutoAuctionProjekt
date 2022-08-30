@@ -8,7 +8,7 @@ using System.Net;
 
 namespace AutoAuctionProjekt.Classes
 {
-    public partial class Database
+    internal partial class Database
     {
         public static Database Instance { get; private set; }
 
