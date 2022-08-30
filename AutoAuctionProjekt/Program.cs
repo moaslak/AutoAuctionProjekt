@@ -30,7 +30,9 @@ namespace AutoAuctionProjekt.Classes
             foreach(Truck t in trucks)
                 Console.WriteLine(t.ToString());
 
-            Truck newTruck = database.DatabaseSelect(5);
+            Truck newTruck = database.DatabaseSelect(9);
+            newTruck.Name = "hest";
+            newTruck = database.DatabaseUpdate(newTruck);
             Console.ReadKey();
             /*
             //AuctionHouse objects init

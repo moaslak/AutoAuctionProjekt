@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Text;
 using AutoAuctionProjekt.Interfaces;
 
@@ -38,7 +39,6 @@ namespace AutoAuctionProjekt.Classes
 
         public Truck DatabaseSelect(ushort Id)
         {
-            List<Truck> trucks = new List<Truck>();
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
             SqlCommand cmd = new SqlCommand("dbo.SelectTruck", connection);
@@ -220,7 +220,30 @@ namespace AutoAuctionProjekt.Classes
 
         public Truck DatabaseUpdate(Truck updatedTruck)
         {
-            throw new NotImplementedException();
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            SqlConnection connection = databaseConnection.SetSqlConnection();
+            SqlCommand cmd = new SqlCommand("dbo.UpdateTruck", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = updatedTruck.Name;
+            cmd.Parameters.Add("@Km", SqlDbType.Decimal).Value = updatedTruck.Km;
+            cmd.Parameters.Add("@RegistrationNumber", SqlDbType.VarChar).Value = updatedTruck.RegistrationNumber;
+            cmd.Parameters.Add("@Year", SqlDbType.Int).Value = updatedTruck.Year;
+            cmd.Parameters.Add("@HasTowbar", SqlDbType.Bit).Value = updatedTruck.HasTowbar;
+            cmd.Parameters.Add("@EngineSize", SqlDbType.Decimal).Value = updatedTruck.EngineSize;
+            cmd.Parameters.Add("@KmPrLiter", SqlDbType.Decimal).Value = updatedTruck.KmPerLiter;
+            cmd.Parameters.Add("@DriversLicense", SqlDbType.VarChar).Value = updatedTruck.DriversLisence;
+            cmd.Parameters.Add("@FuelType", SqlDbType.VarChar).Value = updatedTruck.FuelType;
+            cmd.Parameters.Add("@EnergyClass", SqlDbType.VarChar).Value = updatedTruck.EnergyClass;
+            cmd.Parameters.Add("@Height", SqlDbType.Decimal).Value = updatedTruck.VehicleDimensions.Height;
+            cmd.Parameters.Add("@Length", SqlDbType.Decimal).Value = updatedTruck.VehicleDimensions.Length;
+            cmd.Parameters.Add("@Weight", SqlDbType.Decimal).Value = updatedTruck.VehicleDimensions.Weight;
+            cmd.Parameters.Add("@LoadCapacity", SqlDbType.Decimal).Value = updatedTruck.LoadCapacity;
+            cmd.Parameters.Add("@NewPrice", SqlDbType.Decimal).Value = updatedTruck.NewPrice;
+            cmd.Parameters.Add("@VehicleID", SqlDbType.Int).Value = updatedTruck.ID;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            return DatabaseSelect(Convert.ToUInt16(updatedTruck.ID));
         }
 
         public void DatabaseDelete(ushort Id)
