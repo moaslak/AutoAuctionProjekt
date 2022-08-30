@@ -32,10 +32,10 @@ namespace AutoAuctionProjekt.Classes
             SqlConnectionStringBuilder.DataSource = "docker.data.techcollege.dk,20001";
             SqlConnectionStringBuilder.ConnectTimeout = 5;
             SqlConnectionStringBuilder.UserID = "sa"; //TODO: indlæses fra GUI
-            SqlConnectionStringBuilder.Password = "H2PD081122_Gruppe1"; //TODO: indlæses fra GUI
+            SqlConnectionStringBuilder.Password = "Test1234!"; //TODO: indlæses fra GUI
             //string database = File.ReadAllText("..\\Data\\CONFIG.txt"); //TODO: relative path
             //database = database.Replace("Database=", "");
-            string database = "mort40f43.SKOLE";
+            string database = "AutoAuctionDB";
             SqlConnectionStringBuilder.InitialCatalog = database;
             SqlConnection SqlConnection = new SqlConnection(SqlConnectionStringBuilder.ConnectionString);
             return SqlConnection;
