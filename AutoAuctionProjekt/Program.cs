@@ -4,17 +4,40 @@ using System.Data.SqlClient;
 using System.Text;
 using AutoAuctionProjekt.Classes;
 
-namespace AutoAuctionProjekt
+namespace AutoAuctionProjekt.Classes
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Truck truck = new Truck("1",
+                                    2,
+                                    "3",
+                                    4,
+                                    5,
+                                    true,
+                                    6,
+                                    7,
+                                    Vehicle.FuelTypeEnum.Diesel,
+                                    new HeavyVehicle.VehicleDimensionsStruct(8, 9, 10),
+                                    Vehicle.EnergyClassEnum.C,
+                                    Vehicle.DriversLisenceEnum.C,
+                                    11);
+            Database database = new Database();
+            database.DatabaseCreate(truck);
+            database.DatabaseDelete(2);
+            List<Truck> trucks = database.DatabaseGet();
+            foreach(Truck t in trucks)
+                Console.WriteLine(t.ToString());
+
+            Truck newTruck = database.DatabaseSelect(5);
+            Console.ReadKey();
+            /*
             //AuctionHouse objects init
             #region init car objects
             PersonalCar.TrunkDimentionsStruct td = new PersonalCar.TrunkDimentionsStruct(14.0, 10.0, 16.0);
             HeavyVehicle.VehicleDimensionsStruct vd = new HeavyVehicle.VehicleDimensionsStruct(214.0, 2.59, 12.9);
-
+            
             PrivatePersonalCar privateCar1 = new PrivatePersonalCar("Some car brand", 300.0, "DF12745", 2009, 10000M, false, 10.0, 20.0, Vehicle.FuelTypeEnum.Diesel, 3, td, true);
             PrivatePersonalCar privateCar2 = new PrivatePersonalCar("Another car brand", 300.0, "DF12345", 2020, 12000M, true, 10.0, 20.0, Vehicle.FuelTypeEnum.Benzin, 5, td, false);
             ProfessionalPersonalCar professionalCar = new ProfessionalPersonalCar("Suzuki Swift", 500.0, "XY12345", 2012, 10000M, 10.0, 20.0, Vehicle.FuelTypeEnum.Benzin, 2, td, true, 400.0);
@@ -51,7 +74,9 @@ namespace AutoAuctionProjekt
             PrintVehicleList(AuctionHouse.FindVehiclesByKmAndPrice(310.0, 12000M).Result);
             Console.WriteLine("________ Search Sellers by range of zipcode _________");
             PrintISellerList(AuctionHouse.FindSellersByZipcodeRange(7000, 500).Result);
+         */
         }
+
         /// <summary>
         /// Makes a string of vehicles from a list.
         /// </summary>
