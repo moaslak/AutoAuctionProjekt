@@ -103,7 +103,7 @@ namespace AutoAuctionProjekt.Classes
         public enum FuelTypeEnum
         {
             Diesel,
-            Benzin
+            Petrol
         }
         /// <summary>
         /// Engery class Enum, field and proberty
@@ -152,7 +152,7 @@ namespace AutoAuctionProjekt.Classes
                     else
                         return EnergyClassEnum.D;
                 }
-                else if (this.FuelType == FuelTypeEnum.Benzin)
+                else if (this.FuelType == FuelTypeEnum.Petrol)
                 {
                     if (this.KmPerLiter >= aClassOldPetrol)
                         return EnergyClassEnum.A;
@@ -177,7 +177,7 @@ namespace AutoAuctionProjekt.Classes
                     else
                         return EnergyClassEnum.D;
                 }
-                else if (this.FuelType == FuelTypeEnum.Benzin)
+                else if (this.FuelType == FuelTypeEnum.Petrol)
                 {
                     if (this.KmPerLiter >= aClassNewPetrol)
                         return EnergyClassEnum.A;

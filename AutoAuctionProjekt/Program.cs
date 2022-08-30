@@ -10,11 +10,16 @@ namespace AutoAuctionProjekt
     {
         static void Main(string[] args)
         {
+            Truck truck = new Truck("Man", 55, "1337", 1377, 5, true, 5.0, 5, Vehicle.FuelTypeEnum.Petrol, new HeavyVehicle.VehicleDimensionsStruct(1,1,1), Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, 5);
+            Database database = new Database();
+            database.CreateTruck(truck);
+
+            /*
             //AuctionHouse objects init
             #region init car objects
             PersonalCar.TrunkDimentionsStruct td = new PersonalCar.TrunkDimentionsStruct(14.0, 10.0, 16.0);
             HeavyVehicle.VehicleDimensionsStruct vd = new HeavyVehicle.VehicleDimensionsStruct(214.0, 2.59, 12.9);
-
+            
             PrivatePersonalCar privateCar1 = new PrivatePersonalCar("Some car brand", 300.0, "DF12745", 2009, 10000M, false, 10.0, 20.0, Vehicle.FuelTypeEnum.Diesel, 3, td, true);
             PrivatePersonalCar privateCar2 = new PrivatePersonalCar("Another car brand", 300.0, "DF12345", 2020, 12000M, true, 10.0, 20.0, Vehicle.FuelTypeEnum.Benzin, 5, td, false);
             ProfessionalPersonalCar professionalCar = new ProfessionalPersonalCar("Suzuki Swift", 500.0, "XY12345", 2012, 10000M, 10.0, 20.0, Vehicle.FuelTypeEnum.Benzin, 2, td, true, 400.0);
@@ -51,7 +56,9 @@ namespace AutoAuctionProjekt
             PrintVehicleList(AuctionHouse.FindVehiclesByKmAndPrice(310.0, 12000M).Result);
             Console.WriteLine("________ Search Sellers by range of zipcode _________");
             PrintISellerList(AuctionHouse.FindSellersByZipcodeRange(7000, 500).Result);
+         */
         }
+
         /// <summary>
         /// Makes a string of vehicles from a list.
         /// </summary>

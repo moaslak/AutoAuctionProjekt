@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AutoAuctionProjekt.Classes
 {
-    class Truck : HeavyVehicle
+    public class Truck : HeavyVehicle
     {
         public Truck(
             string name,
@@ -26,7 +26,6 @@ namespace AutoAuctionProjekt.Classes
             else
                 this.DriversLisence = DriversLisenceEnum.C;
             //TODO: V11 - Add to database and set ID
-            throw new NotImplementedException();
         }
         /// <summary>
         /// Engine size proberty
@@ -38,10 +37,10 @@ namespace AutoAuctionProjekt.Classes
             get { return EngineSize; }
             set
             {
-                if (value > 15 || value < 4.2)
+                if (value < 4.2 || value > 15)
                     throw new ArgumentOutOfRangeException();
 
-                EngineSize = value;
+                 EngineSize = value;
             }
         }
         /// <summary>
@@ -53,7 +52,8 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-                return base.ToString() + ", Engine size: " + this.EngineSize + ", Load capacity: " + this.LoadCapacity; ;
+            throw new NotImplementedException();
+                //return base.ToString() + ", Engine size: " + this.EngineSize + ", Load capacity: " + this.LoadCapacity;
         }
     }
 }
