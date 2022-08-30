@@ -1,6 +1,6 @@
 ﻿{
-  "Host": "sql.itcn.dk\TCAA",
-  "Brugernavn": "mort40f4.SKOLE",
-  "Password": "fhq3CCN626",
-  "database": "mort40f43.SKOLE"
+  "Host": "docker.data.techcollege.dk,20001",
+  "Brugernavn": "sa",
+  "Password": "Test1234!",
+  "database": "AutoAuctionDB"
 }
