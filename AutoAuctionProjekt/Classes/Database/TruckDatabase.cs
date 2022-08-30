@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using AutoAuctionProjekt.Interfaces;
 
 namespace AutoAuctionProjekt.Classes
 {
-    partial class Database
+    partial class Database : IDatabase
     {
-        public void CreateTruck()
+        public void DatabaseCreate()
         {
             SqlConnection connection = new SqlConnection();
             SqlCommand cmd = new SqlCommand("sp_Add_contact", connection);
@@ -22,25 +23,24 @@ namespace AutoAuctionProjekt.Classes
             connection.Close();
         }
 
-        public Truck SelectTruck(UInt32 TruckID)
+        public Truck DatabaseSelect()
         {
-            new NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public List<Truck> GetTrucks()
+        public List<Truck> DatabaseGet()
         {
-            new NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public Truck UpdateTruck(Truck truck)
+        public Truck DatabaseUpdate()
         {
-            new NotImplementedException();
-            return truck;
+            throw new NotImplementedException();
         }
-    
-        public Truck DeleteTruck(UInt32 TruckID)
+
+        public Truck DatabaseDelete()
         {
-            new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
