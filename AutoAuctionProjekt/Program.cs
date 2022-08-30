@@ -10,7 +10,7 @@ namespace AutoAuctionProjekt
     {
         static void Main(string[] args)
         {
-            Truck truck = new Truck("Man", 55, "1337", 1377, 5, true, 5.0, 5, Vehicle.FuelTypeEnum.Petrol, new HeavyVehicle.VehicleDimensionsStruct(1,1,1), Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, 5);
+            Truck truck = new Truck("1", 2, "3", 4, 5, true, 6, 7, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(8, 9, 10), Vehicle.EnergyClassEnum.C, Vehicle.DriversLisenceEnum.C, 11);
             Database database = new Database();
             database.CreateTruck(truck);
 

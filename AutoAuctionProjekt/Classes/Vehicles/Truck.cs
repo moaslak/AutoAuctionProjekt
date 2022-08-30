@@ -19,12 +19,14 @@ namespace AutoAuctionProjekt.Classes
             VehicleDimensionsStruct vehicleDimentions,
             EnergyClassEnum energyClass,
             DriversLisenceEnum driversLisence,
-            double LoadCapacity) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, vehicleDimentions, energyClass, driversLisence)
+            double loadCapacity) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, vehicleDimentions, energyClass, driversLisence)
         {
             if (this.HasTowbar == true)
                 this.DriversLisence = DriversLisenceEnum.CE;
             else
                 this.DriversLisence = DriversLisenceEnum.C;
+            
+            this.LoadCapacity = loadCapacity;
             //TODO: V11 - Add to database and set ID
         }
         /// <summary>
