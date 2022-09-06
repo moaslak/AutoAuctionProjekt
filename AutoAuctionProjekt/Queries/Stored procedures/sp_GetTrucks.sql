@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE GetTruck @ID INT
+﻿CREATE PROCEDURE GetTrucks
 as
 SELECT truck.ID, truck.LoadCapacity, HeavyVehicle.VehicleHeight, HeavyVehicle.VehicleWeight, 
 	HeavyVehicle.VehicleLength, Vehicle.Name, Vehicle.Km, Vehicle.RegistrationNumber,

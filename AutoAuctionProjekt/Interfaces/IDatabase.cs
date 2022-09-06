@@ -6,9 +6,9 @@ namespace AutoAuctionProjekt.Interfaces
     public interface IDatabase<T>
     {
         void DatabaseCreate(T type);
-        void DatabaseDelete(ushort i);
-        List<T> DatabaseGet();
-        T DatabaseSelect(ushort i);
+        void DatabaseDelete(uint i, T type);
+        List<T> DatabaseGet(T type);
+        T DatabaseSelect(uint i, T type);
         T DatabaseUpdate(T type);
     }
 }

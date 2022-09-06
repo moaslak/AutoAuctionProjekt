@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AutoAuctionProjekt.Classes
 {
-    class Bus : HeavyVehicle
+    public class Bus : HeavyVehicle
     {
         double minEngineSize = 4.2;
         double maxEngineSize = 15;
@@ -33,23 +33,23 @@ namespace AutoAuctionProjekt.Classes
             else
                 this.DriversLisence = DriversLisenceEnum.D;
             //TODO: V8 - Add to database and set ID
-            throw new NotImplementedException();
         }
         /// <summary>
         /// Engine size proberty
         /// must be between 4.2 and 15.0 L or cast an out of range exection.
         /// </summary>
+        private double engineSize;
         public override double EngineSize
         {
             
-            get { return EngineSize; }
+            get { return engineSize; }
             set
             {
                 //V7 - TODO value must be between 4.2 and 15.0 L or cast an out of range exection.
-                if (EngineSize >= maxEngineSize || EngineSize <= minEngineSize)
+                if (value >= maxEngineSize || value <= minEngineSize)
                     throw new ArgumentOutOfRangeException();
                 else
-                    EngineSize = value;
+                    engineSize = value;
             }
         }
         /// <summary>

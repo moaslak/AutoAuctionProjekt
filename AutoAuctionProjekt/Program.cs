@@ -23,14 +23,19 @@ namespace AutoAuctionProjekt.Classes
                                     Vehicle.EnergyClassEnum.C,
                                     Vehicle.DriversLisenceEnum.C,
                                     11);
+            Bus bus = new Bus("1",
+                2,"3",4,5,false,7,8,Vehicle.FuelTypeEnum.Diesel,new HeavyVehicle.VehicleDimensionsStruct(9,10,11),12,13,Vehicle.EnergyClassEnum.A,Vehicle.DriversLisenceEnum.A,false);
             Database database = new Database();
-            database.DatabaseCreate(truck);
-            database.DatabaseDelete(2);
-            List<Truck> trucks = database.DatabaseGet();
-            foreach(Truck t in trucks)
+            bus = database.DatabaseSelect(5, bus);
+            bus.Name = "hest";
+            database.DatabaseUpdate(bus);
+            //database.DatabaseCreate(bus);
+            //database.DatabaseDelete(2,bus);
+            List<Bus> buses = database.DatabaseGet(bus);
+            foreach(Bus t in buses)
                 Console.WriteLine(t.ToString());
-
-            Truck newTruck = database.DatabaseSelect(9);
+            Truck nt = null;
+            Truck newTruck = database.DatabaseSelect(10, nt);
             newTruck.Name = "hest";
             newTruck = database.DatabaseUpdate(newTruck);
             Console.ReadKey();
