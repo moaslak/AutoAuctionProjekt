@@ -4,16 +4,36 @@ using System.Data.SqlClient;
 using System.Text;
 using AutoAuctionProjekt.Classes;
 
-namespace AutoAuctionProjekt
+namespace AutoAuctionProjekt.Classes
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Truck truck = new Truck("1", 2, "3", 4, 5, true, 6, 7, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(8, 9, 10), Vehicle.EnergyClassEnum.C, Vehicle.DriversLisenceEnum.C, 11);
+            Truck truck = new Truck("1",
+                                    2,
+                                    "3",
+                                    4,
+                                    5,
+                                    true,
+                                    6,
+                                    7,
+                                    Vehicle.FuelTypeEnum.Diesel,
+                                    new HeavyVehicle.VehicleDimensionsStruct(8, 9, 10),
+                                    Vehicle.EnergyClassEnum.C,
+                                    Vehicle.DriversLisenceEnum.C,
+                                    11);
             Database database = new Database();
-            database.CreateTruck(truck);
+            database.DatabaseCreate(truck);
+            database.DatabaseDelete(2);
+            List<Truck> trucks = database.DatabaseGet();
+            foreach(Truck t in trucks)
+                Console.WriteLine(t.ToString());
 
+            Truck newTruck = database.DatabaseSelect(9);
+            newTruck.Name = "hest";
+            newTruck = database.DatabaseUpdate(newTruck);
+            Console.ReadKey();
             /*
             //AuctionHouse objects init
             #region init car objects

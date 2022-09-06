@@ -50,6 +50,12 @@ namespace AutoAuctionProjekt.Classes
         /// ID field and proberty
         /// </summary>
         public uint ID { get; private set; }
+        
+        public void SetId(ushort Id)
+        {
+            this.ID = Id;
+        }
+
         /// <summary>
         /// Name field and proberty
         /// </summary>
@@ -205,7 +211,7 @@ namespace AutoAuctionProjekt.Classes
                    ", Registration number: " + RegistrationNumber +
                    ", Year: " + Year +
                    ", New price: " + NewPrice +
-                   ", Tow bar : " + HasTowbar +
+                   ", Tow bar: " + HasTowbar +
                    ", Engine size: " + EngineSize +
                    ", Km/l: " + KmPerLiter +
                    ", Fuel type: " + FuelType);

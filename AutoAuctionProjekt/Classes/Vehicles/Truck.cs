@@ -55,8 +55,7 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         public override string ToString()
         {
-            throw new NotImplementedException();
-                //return base.ToString() + ", Engine size: " + this.EngineSize + ", Load capacity: " + this.LoadCapacity;
+            return base.ToString() + ", Engine size: " + this.EngineSize + ", Load capacity: " + this.LoadCapacity;
         }
     }
 }
