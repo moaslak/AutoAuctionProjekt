@@ -155,18 +155,18 @@ namespace AutoAuctionProjekt.Classes
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
-            SqlCommand cmd = new SqlCommand("dbo.SelectBus", connection);
+            SqlCommand cmd = new SqlCommand("dbo.SelectTruck", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = Id;
-            Bus bus = new Bus("0", 1, "2", 3, 4, false, 5, 6, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(7, 8, 9), 10, 11, Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, false);
+            Bus bus = new Bus("1",2,"3",4,5,true,6,7,Vehicle.FuelTypeEnum.Diesel,new HeavyVehicle.VehicleDimensionsStruct(8,9,10),11,12,Vehicle.EnergyClassEnum.A,Vehicle.DriversLisenceEnum.A,false);
             connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 bus.SetId(Convert.ToUInt16(reader.GetValue(0)));
-                bus.NumberOfSeats = (Convert.ToUInt16(reader.GetValue(1)));
-                bus.NumberOfSleepingSpaces = (Convert.ToUInt16(reader.GetValue(2)));
-                bus.HasToilet = (Convert.ToBoolean(reader.GetValue(3)));
+                bus.NumberOfSeats = Convert.ToUInt16(reader.GetValue(1));
+                bus.NumberOfSleepingSpaces = Convert.ToUInt16(reader.GetValue(2));
+                bus.HasToilet = Convert.ToBoolean(reader.GetValue(3));
                 bus.VehicleDimensions = new HeavyVehicle.VehicleDimensionsStruct(
                     Convert.ToDouble(reader.GetValue(4)), Convert.ToDouble(reader.GetValue(5)),
                     Convert.ToDouble(reader.GetValue(6)));
