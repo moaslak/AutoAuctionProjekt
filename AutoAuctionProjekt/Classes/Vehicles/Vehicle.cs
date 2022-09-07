@@ -29,8 +29,6 @@ namespace AutoAuctionProjekt.Classes
             this.FuelType = fuelType;
             this.EnergyClass = energyClass;
             this.DriversLisence = driversLisence;
-            //TODO: V1 - Constructor for Vehicle
-            //TODO: V2 - Add to database and set ID
         }
 
         protected Vehicle(string name, double km, string registrationNumber, ushort year, decimal newPrice, bool hasTowbar, double engineSize, double kmPerLiter, FuelTypeEnum fuelType)
