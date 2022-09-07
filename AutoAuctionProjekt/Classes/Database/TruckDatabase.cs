@@ -37,7 +37,7 @@ namespace AutoAuctionProjekt.Classes
             connection.Close();
         }
 
-        public Truck DatabaseSelect(ushort Id)
+        public Truck DatabaseSelect(uint Id, Truck t)
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
@@ -127,7 +127,7 @@ namespace AutoAuctionProjekt.Classes
             return truck;
         }
 
-        public List<Truck> DatabaseGet()
+        public List<Truck> DatabaseGet(Truck t)
         {
             List<Truck> trucks = new List<Truck>();
             DatabaseConnection databaseConnection = new DatabaseConnection();
@@ -243,10 +243,10 @@ namespace AutoAuctionProjekt.Classes
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
-            return DatabaseSelect(Convert.ToUInt16(updatedTruck.ID));
+            return DatabaseSelect(Convert.ToUInt16(updatedTruck.ID), updatedTruck);
         }
 
-        public void DatabaseDelete(ushort Id)
+        public void DatabaseDelete(uint Id, Truck truck)
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();

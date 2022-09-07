@@ -27,7 +27,6 @@ namespace AutoAuctionProjekt.Classes
                 this.DriversLisence = DriversLisenceEnum.C;
             
             this.LoadCapacity = loadCapacity;
-            //TODO: V11 - Add to database and set ID
         }
         /// <summary>
         /// Engine size proberty

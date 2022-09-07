@@ -45,13 +45,12 @@ namespace AutoAuctionProjekt.Classes
             KmPerLiter = kmPerLiter;
             FuelType = fuelType;
         }
-
         /// <summary>
         /// ID field and proberty
         /// </summary>
         public uint ID { get; private set; }
         
-        public void SetId(ushort Id)
+        public void SetId(uint Id)
         {
             this.ID = Id;
         }
@@ -206,7 +205,7 @@ namespace AutoAuctionProjekt.Classes
         public new virtual string ToString()
         {
             return("ID: " + ID +
-                   ", Name" + Name +
+                   ", Name: " + Name +
                    ", Number of km: " + Km +
                    ", Registration number: " + RegistrationNumber +
                    ", Year: " + Year +

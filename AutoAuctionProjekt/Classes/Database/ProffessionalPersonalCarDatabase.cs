@@ -5,24 +5,24 @@ using System.Text;
 
 namespace AutoAuctionProjekt.Classes
 {
-    public class ProffessionalPersonalCarDatabase : IDatabase<ProfessionalPersonalCar>
+    partial class Database : IDatabase<ProfessionalPersonalCar>
     {
         public void DatabaseCreate(ProfessionalPersonalCar type)
         {
             throw new NotImplementedException();
         }
 
-        public void DatabaseDelete(ushort i)
+        public void DatabaseDelete(uint i, ProfessionalPersonalCar type)
         {
             throw new NotImplementedException();
         }
 
-        public List<ProfessionalPersonalCar> DatabaseGet()
+        public List<ProfessionalPersonalCar> DatabaseGet(ProfessionalPersonalCar type)
         {
             throw new NotImplementedException();
         }
 
-        public ProfessionalPersonalCar DatabaseSelect(ushort i)
+        public ProfessionalPersonalCar DatabaseSelect(uint i, ProfessionalPersonalCar type)
         {
             throw new NotImplementedException();
         }

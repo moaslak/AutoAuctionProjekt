@@ -23,16 +23,32 @@ namespace AutoAuctionProjekt.Classes
                                     Vehicle.EnergyClassEnum.C,
                                     Vehicle.DriversLisenceEnum.C,
                                     11);
+            Bus bus = new Bus("1",
+                2,"3",4,5,false,7,8,Vehicle.FuelTypeEnum.Diesel,new HeavyVehicle.VehicleDimensionsStruct(9,10,11),12,13,Vehicle.EnergyClassEnum.A,Vehicle.DriversLisenceEnum.A,false);
             Database database = new Database();
-            database.DatabaseCreate(truck);
-            database.DatabaseDelete(2);
-            List<Truck> trucks = database.DatabaseGet();
+            //database.DatabaseCreate(truck);
+            //bus = database.DatabaseSelect(62, bus);
+            bus.Name = "test";
+            bus.EngineSize = 5;
+            bus.SetId(62);
+            database.DatabaseUpdate(bus);
+            //database.DatabaseCreate(bus);
+            //database.DatabaseDelete(2,bus);
+            List<Truck> trucks = database.DatabaseGet(truck);
+            Console.WriteLine("Trucks");
             foreach(Truck t in trucks)
+            {
                 Console.WriteLine(t.ToString());
+            }
+            Console.WriteLine();
+            Console.WriteLine("Buses");
+            List<Bus> buses = database.DatabaseGet(bus);
+            foreach(Bus b in buses)
+            {
+                Console.WriteLine(b.ToString());
+            }
 
-            Truck newTruck = database.DatabaseSelect(9);
-            newTruck.Name = "hest";
-            newTruck = database.DatabaseUpdate(newTruck);
+            Truck nt = null;
             Console.ReadKey();
             /*
             //AuctionHouse objects init
