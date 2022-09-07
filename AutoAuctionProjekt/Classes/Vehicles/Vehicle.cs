@@ -45,7 +45,6 @@ namespace AutoAuctionProjekt.Classes
             KmPerLiter = kmPerLiter;
             FuelType = fuelType;
         }
-
         /// <summary>
         /// ID field and proberty
         /// </summary>

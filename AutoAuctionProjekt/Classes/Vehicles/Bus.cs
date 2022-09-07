@@ -32,7 +32,6 @@ namespace AutoAuctionProjekt.Classes
                 this.DriversLisence = DriversLisenceEnum.DE;
             else
                 this.DriversLisence = DriversLisenceEnum.D;
-            //TODO: V8 - Add to database and set ID
         }
         /// <summary>
         /// Engine size proberty
