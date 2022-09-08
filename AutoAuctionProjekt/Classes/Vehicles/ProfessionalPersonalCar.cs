@@ -27,8 +27,6 @@ namespace AutoAuctionProjekt.Classes
                 this.DriversLisence = DriversLisenceEnum.BE;
             else
                 this.DriversLisence = DriversLisenceEnum.B;
-            //TODO: V17 - Add to database and set ID
-            throw new NotImplementedException();
         }
         /// <summary>
         /// Safety Bar proberty

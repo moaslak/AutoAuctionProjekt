@@ -10,45 +10,18 @@ namespace AutoAuctionProjekt.Classes
     {
         static void Main(string[] args)
         {
-            Truck truck = new Truck("1",
-                                    2,
-                                    "3",
-                                    4,
-                                    5,
-                                    true,
-                                    6,
-                                    7,
-                                    Vehicle.FuelTypeEnum.Diesel,
-                                    new HeavyVehicle.VehicleDimensionsStruct(8, 9, 10),
-                                    Vehicle.EnergyClassEnum.C,
-                                    Vehicle.DriversLisenceEnum.C,
-                                    11);
-            Bus bus = new Bus("1",
-                2,"3",4,5,false,7,8,Vehicle.FuelTypeEnum.Diesel,new HeavyVehicle.VehicleDimensionsStruct(9,10,11),12,13,Vehicle.EnergyClassEnum.A,Vehicle.DriversLisenceEnum.A,false);
-            Database database = new Database();
-            //database.DatabaseCreate(truck);
-            //bus = database.DatabaseSelect(62, bus);
-            bus.Name = "test";
-            bus.EngineSize = 5;
-            bus.SetId(62);
-            database.DatabaseUpdate(bus);
-            //database.DatabaseCreate(bus);
-            //database.DatabaseDelete(2,bus);
-            List<Truck> trucks = database.DatabaseGet(truck);
-            Console.WriteLine("Trucks");
-            foreach(Truck t in trucks)
-            {
-                Console.WriteLine(t.ToString());
-            }
-            Console.WriteLine();
-            Console.WriteLine("Buses");
-            List<Bus> buses = database.DatabaseGet(bus);
-            foreach(Bus b in buses)
-            {
-                Console.WriteLine(b.ToString());
-            }
 
-            Truck nt = null;
+            Database database = new Database();
+            ProfessionalPersonalCar professionalPersonalCar = new ProfessionalPersonalCar("1", 2, "3", 4, 5, 6, 7, Vehicle.FuelTypeEnum.Petrol,
+                8, new PersonalCar.TrunkDimentionsStruct(9, 10, 11), false, 12, Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
+            List<Vehicle> vehicles = new List<Vehicle>();
+            database.DatabaseCreate(professionalPersonalCar);
+            Console.WriteLine(PrintVehicleList(vehicles));
+            professionalPersonalCar.Name = "test";
+            professionalPersonalCar.SetId(72);
+            database.DatabaseDelete(74, professionalPersonalCar);
+            database.DatabaseUpdate(professionalPersonalCar);
+            Console.WriteLine(PrintVehicleList(vehicles));
             Console.ReadKey();
             /*
             //AuctionHouse objects init
@@ -102,8 +75,36 @@ namespace AutoAuctionProjekt.Classes
         /// <returns> A string of vehicle information </returns>
         public static string PrintVehicleList(List<Vehicle> vehicles)
         {
+            vehicles.Clear();
+            Database database = new Database();
+            Truck t = null;
+            Bus b = null;
+            ProfessionalPersonalCar ppc = null;
+            string outputString = "";
+            List<Truck> trucks = database.DatabaseGet(t);
+            List<Bus> buses = database.DatabaseGet(b);
+            List<ProfessionalPersonalCar> professionalPersonalCars = database.DatabaseGet(ppc);
+            
+            Console.Write("Number of trucks: " + trucks.Count);
+            Console.WriteLine();
+            foreach (Truck truck in trucks)
+                vehicles.Add(truck);
+            
+            Console.Write("Number of buses: " + buses.Count);
+            Console.WriteLine();
+            foreach (Bus bus in buses)
+                vehicles.Add(bus);
+            
+            Console.Write("Number of professional personal cars: " + professionalPersonalCars.Count);
+            Console.WriteLine();
+            foreach (ProfessionalPersonalCar professionalPersonalCar in professionalPersonalCars)
+                vehicles.Add(professionalPersonalCar);
+
+            foreach(Vehicle vehicle in vehicles)
+                outputString = outputString + vehicle.ToString() + "\n";
+
+            return outputString;
             //TODO: return formatted string with vehicles from list
-            throw new NotImplementedException();
         }
         /// <summary>
         /// Makes a string of ISellers from a list.
