@@ -61,15 +61,16 @@ namespace AutoAuctionProjekt.Classes
         /// Engine size proberty
         /// must be between 0.7 and 10.0 L or cast an out of range exection.
         /// </summary>
+        private double engineSize;
         public override double EngineSize
         {
-            get { return EngineSize; }
+            get { return engineSize; }
             set
             {
-                if(EngineSize < 0.7 || EngineSize > 10.0)
+                if(value < 0.7 || value > 10.0)
                     throw new ArgumentOutOfRangeException();
                 else
-                    EngineSize = value;
+                    engineSize = value;
 
             }
         }
