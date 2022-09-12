@@ -12,15 +12,11 @@ namespace AutoAuctionProjekt.Classes
         {
 
             Database database = new Database();
-            ProfessionalPersonalCar professionalPersonalCar = new ProfessionalPersonalCar("1", 2, "3", 4, 5, 6, 7, Vehicle.FuelTypeEnum.Petrol,
-                8, new PersonalCar.TrunkDimentionsStruct(9, 10, 11), false, 12, Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
+            PrivatePersonalCar privatePersonalCar = new PrivatePersonalCar("john", 1336, "hest", 1337, 1337, true, 5, 6, Vehicle.FuelTypeEnum.Petrol, 15, new PersonalCar.TrunkDimentionsStruct(1, 2, 3), true, Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
+            database.DatabaseCreate(privatePersonalCar);
+            database.DatabaseDelete(81, privatePersonalCar);
             List<Vehicle> vehicles = new List<Vehicle>();
-            database.DatabaseCreate(professionalPersonalCar);
-            Console.WriteLine(PrintVehicleList(vehicles));
-            professionalPersonalCar.Name = "test";
-            professionalPersonalCar.SetId(72);
-            database.DatabaseDelete(74, professionalPersonalCar);
-            database.DatabaseUpdate(professionalPersonalCar);
+            
             Console.WriteLine(PrintVehicleList(vehicles));
             Console.ReadKey();
             /*
@@ -80,10 +76,12 @@ namespace AutoAuctionProjekt.Classes
             Truck t = null;
             Bus b = null;
             ProfessionalPersonalCar ppc = null;
+            PrivatePersonalCar privateCar = null;
             string outputString = "";
             List<Truck> trucks = database.DatabaseGet(t);
             List<Bus> buses = database.DatabaseGet(b);
             List<ProfessionalPersonalCar> professionalPersonalCars = database.DatabaseGet(ppc);
+            List<PrivatePersonalCar> privatePersonalCars = database.DatabaseGet(privateCar);
             
             Console.Write("Number of trucks: " + trucks.Count);
             Console.WriteLine();
@@ -99,6 +97,11 @@ namespace AutoAuctionProjekt.Classes
             Console.WriteLine();
             foreach (ProfessionalPersonalCar professionalPersonalCar in professionalPersonalCars)
                 vehicles.Add(professionalPersonalCar);
+
+            Console.Write("Number of private personal cars : " + privatePersonalCars.Count);
+            Console.WriteLine();
+            foreach (PrivatePersonalCar privatePersonalCar in privatePersonalCars)
+                vehicles.Add(privatePersonalCar);
 
             foreach(Vehicle vehicle in vehicles)
                 outputString = outputString + vehicle.ToString() + "\n";

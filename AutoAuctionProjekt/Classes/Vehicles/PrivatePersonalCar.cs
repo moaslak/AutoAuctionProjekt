@@ -24,8 +24,6 @@ namespace AutoAuctionProjekt.Classes
             : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions, driversLisence, energyClass)
         {
             this.DriversLisence = DriversLisenceEnum.B;
-            //TODO: V20 - Add to database and set ID
-            throw new NotImplementedException();
         }
         /// <summary>
         /// Isofix Fittings proberty

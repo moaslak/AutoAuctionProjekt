@@ -1,14 +1,11 @@
 ﻿CREATE PROCEDURE DeletePrivatePersonalCar @ID INT 
 	as
 		DECLARE @PersonalCarID INT
-		SET @PersonalCarID = (SELECT PrivatePersonalCar.PersonalCarID FROM PrivatePersonalCar WHERE PrivatePersonalCar.ID = @ID)
+		SET @PersonalCarID = (SELECT PersonalCar.ID FROM PersonalCar WHERE VehicleID = @ID)
 		
-		DECLARE @VehicleID INT
-		SET @VehicleID = (SELECT PersonalCar.VehicleID FROM PersonalCar WHERE PersonalCar.ID = @PersonalCarID)
-
 		DELETE FROM [dbo].[PrivatePersonalCar]
-			WHERE PrivatePersonalCar.ID = @ID
+			WHERE PrivatePersonalCar.PersonalCarID = @PersonalCarID
 		DELETE FROM [dbo].[PersonalCar]
-			WHERE PersonalCar.ID = @PersonalCarID
+			WHERE PersonalCar.VehicleID = @ID
 		DELETE FROM [dbo].[Vehicle]
-			WHERE Vehicle.ID = @VehicleID
+			WHERE Vehicle.ID = @ID
