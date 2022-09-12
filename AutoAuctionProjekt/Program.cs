@@ -13,8 +13,10 @@ namespace AutoAuctionProjekt.Classes
 
             Database database = new Database();
             PrivatePersonalCar privatePersonalCar = new PrivatePersonalCar("john", 1336, "hest", 1337, 1337, true, 5, 6, Vehicle.FuelTypeEnum.Petrol, 15, new PersonalCar.TrunkDimentionsStruct(1, 2, 3), true, Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
-            database.DatabaseCreate(privatePersonalCar);
-            database.DatabaseDelete(81, privatePersonalCar);
+            //database.DatabaseCreate(privatePersonalCar);
+            privatePersonalCar.SetId(82);
+            privatePersonalCar.Name = "Test";
+            database.DatabaseUpdate(privatePersonalCar);
             List<Vehicle> vehicles = new List<Vehicle>();
             
             Console.WriteLine(PrintVehicleList(vehicles));

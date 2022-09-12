@@ -27,6 +27,6 @@
 		WHERE PersonalCar.VehicleID = @VehicleID
 		SET @PersonalCarID = (SELECT PersonalCar.ID FROM PersonalCar WHERE PersonalCar.VehicleID = @vehicleID)  
 		UPDATE [dbo].[PrivatePersonalCar]
-		SET [HasSaftyBar] = @hasISOFix
+		SET [HasISOFittings] = @hasISOFix
 		WHERE PrivatePersonalCar.PersonalCarID = @PersonalCarID
 GO

@@ -260,7 +260,7 @@ namespace AutoAuctionProjekt.Classes
             cmd.Parameters.Add("@TrunkHeight", SqlDbType.Decimal).Value = updatedPrivatelPersonalCar.TrunkDimentions.Height;
             cmd.Parameters.Add("@TrunkWidth", SqlDbType.Decimal).Value = updatedPrivatelPersonalCar.TrunkDimentions.Width;
             cmd.Parameters.Add("@TrunkDepth", SqlDbType.Decimal).Value = updatedPrivatelPersonalCar.TrunkDimentions.Depth;
-            cmd.Parameters.Add("@hasSaftyBar", SqlDbType.Bit).Value = updatedPrivatelPersonalCar.HasTowbar;
+            cmd.Parameters.Add("@hasISOFix", SqlDbType.Bit).Value = updatedPrivatelPersonalCar.HasIsofixFittings;
             cmd.Parameters.Add("@vehicleID", SqlDbType.Int).Value = updatedPrivatelPersonalCar.ID;
             connection.Open();
             cmd.ExecuteNonQuery();
