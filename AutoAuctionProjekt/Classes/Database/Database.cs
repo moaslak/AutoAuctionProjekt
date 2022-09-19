@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace AutoAuctionProjekt.Classes
 {
-    internal partial class Database
+    public partial class Database
     {
         public static Database Instance { get; private set; }
 
