@@ -15,13 +15,13 @@ køber og sælger som interfaces
 privat og company som klasser
  */
 
-    public abstract class User //TODO: U4 - Implement interfaces
+    public abstract class User : ISeller, IBuyer
     {
         protected User(string userName, string password, uint zipCode)
         {
             this.UserName = userName;
             this.Password = password;
-            this.ZipCode = zipCode;
+            this.UserZipCode = zipCode;
             HashAlgorithm sha = SHA256.Create();
             byte[] result = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
             this.PasswordHash = result;
@@ -29,7 +29,7 @@ privat og company som klasser
 
         public string UserName { get; set; }
         public string Password { get; set; }
-        public uint ZipCode { get; set; }
+        public uint UserZipCode { get; set; }
         /// <summary>
         /// ID proberty
         /// </summary>
@@ -43,6 +43,9 @@ privat og company som klasser
         /// PasswordHash proberty
         /// </summary>
         private byte[] PasswordHash { get; set; }
+        public decimal Balance { get; set; }
+        public uint Zipcode { get; set; }
+
         /// <summary>
         /// A method that ...
         /// </summary>
@@ -59,7 +62,7 @@ privat og company som klasser
             throw new NotImplementedException();
         }
 
-        //TODO: U4 - Implement interface proberties and methods.
+        
 
         /// <summary>
         /// Returns the User in a string with relivant information.
@@ -71,7 +74,14 @@ privat og company som klasser
                 + "PasswordHash: " + PasswordHash
                 + "User name: " + UserName
                 + "Password: " + Password
-                + "Zip code: " + ZipCode;
+                + "Zip code: " + UserZipCode;
+        }
+
+        //TODO: U4 - Implement interface proberties and methods.
+        public string ReceiveBidNodification(string message)
+        {
+            //TODO: expand this. 
+            return message;
         }
     }
 }
