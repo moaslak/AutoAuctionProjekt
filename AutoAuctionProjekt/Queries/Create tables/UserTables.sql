@@ -1,5 +1,6 @@
 ﻿use [AutoAuctionDB]
 CREATE TABLE Users(
+ID INT IDENTITY(1,1),
 Username VARCHAR(64),
 Password VARCHAR(64) NOT NULL,
 PRIMARY KEY(Username)
