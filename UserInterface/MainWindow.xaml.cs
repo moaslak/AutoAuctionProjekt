@@ -51,7 +51,7 @@ namespace UserInterface
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void creditListBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
