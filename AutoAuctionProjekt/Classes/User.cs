@@ -19,18 +19,26 @@ privat og company som klasser
     {
         protected User(string userName, string password, uint zipCode)
         {
-            //TODO: U1 - Set constructor and field
-
+            this.UserName = userName;
+            this.Password = password;
+            this.ZipCode = zipCode;
             HashAlgorithm sha = SHA256.Create();
             byte[] result = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
-            PasswordHash = result;
-
-            throw new NotImplementedException();
+            this.PasswordHash = result;
         }
+
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public uint ZipCode { get; set; }
         /// <summary>
         /// ID proberty
         /// </summary>
         public uint ID { get; private set; }
+
+        public void SetID(uint ID)
+        {
+            this.ID = ID;
+        }
         /// <summary>
         /// PasswordHash proberty
         /// </summary>
@@ -59,8 +67,8 @@ privat og company som klasser
         /// <returns>...</returns>
         public override string ToString()
         {
-            //TODO: U3 - ToString for User
-            throw new NotImplementedException();
+            return "ID: " + ID
+                + "PasswordHash: " + PasswordHash;
         }
     }
 }
