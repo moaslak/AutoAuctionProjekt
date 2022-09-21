@@ -68,7 +68,7 @@ privat og company som klasser
         public override string ToString()
         {
             return "ID: " + ID
-                + "PasswordHash: " + PasswordHash;
+                + ", PasswordHash: " + PasswordHash;
         }
     }
 }
