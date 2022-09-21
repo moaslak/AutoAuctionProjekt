@@ -142,7 +142,7 @@ namespace AutoAuctionProjekt.Classes
             cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = updatedType.Password; //TODO: ENCRYPT PASSWORD !!!
             cmd.Parameters.Add("@UserZipCode", SqlDbType.VarChar).Value = updatedType.UserZipCode;
             cmd.Parameters.Add("@Balance", SqlDbType.Decimal).Value = updatedType.Balance;
-            cmd.Parameters.Add("@ZipcodeSeller", SqlDbType.VarChar).Value = updatedType.Zipcode;
+            cmd.Parameters.Add("@ZipcodeSeller", SqlDbType.VarChar).Value = updatedType.Zipcode; //TODO: FIX THIS!!!
             cmd.Parameters.Add("@CPRNumber", SqlDbType.VarChar).Value = updatedType.CPRNumber;
             
             connection.Open();

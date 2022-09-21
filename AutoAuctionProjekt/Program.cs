@@ -26,9 +26,9 @@ namespace AutoAuctionProjekt.Classes
             foreach (PrivateUser user in privateUsers)
                 Console.WriteLine(user + "\n");
             privateUser = database.DatabaseSelect("joh", privateUser);
-            privateUser.Zipcode = "1337";
+            
             Console.WriteLine(privateUser.ToString());
-
+            privateUser.Zipcode = "5000";
             privateUser = database.DatabaseUpdate(privateUser);
             Console.WriteLine(privateUser.ToString());
             Console.ReadKey();
