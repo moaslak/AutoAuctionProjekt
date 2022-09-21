@@ -13,7 +13,7 @@ namespace AutoAuctionProjekt.Classes
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
-            string query = "SELECT * VEHICLE"
+            string query = "SELECT * VEHICLE";
 
             Vehicle vehicle = null;
 
