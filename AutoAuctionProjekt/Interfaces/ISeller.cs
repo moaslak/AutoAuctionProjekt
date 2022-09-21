@@ -18,7 +18,7 @@ namespace AutoAuctionProjekt
         /// <summary>
         /// Zipcode proberty
         /// </summary>
-        uint Zipcode { get; set; }
+        string Zipcode { get; set; }
         /// <summary>
         /// Receives a message for the user
         /// </summary>

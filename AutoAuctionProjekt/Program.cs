@@ -12,14 +12,25 @@ namespace AutoAuctionProjekt.Classes
         {
 
             Database database = new Database();
-            PrivatePersonalCar privatePersonalCar = new PrivatePersonalCar("john", 1336, "hest", 1337, 1337, true, 5, 6, Vehicle.FuelTypeEnum.Petrol, 15, new PersonalCar.TrunkDimentionsStruct(1, 2, 3), true, Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
+            /*PrivatePersonalCar privatePersonalCar = new PrivatePersonalCar("john", 1336, "hest", 1337, 1337, true, 5, 6, Vehicle.FuelTypeEnum.Petrol, 15, new PersonalCar.TrunkDimentionsStruct(1, 2, 3), true, Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
             //database.DatabaseCreate(privatePersonalCar);
             privatePersonalCar.SetId(82);
             privatePersonalCar.Name = "Test";
             database.DatabaseUpdate(privatePersonalCar);
             List<Vehicle> vehicles = new List<Vehicle>();
             
-            Console.WriteLine(PrintVehicleList(vehicles));
+            Console.WriteLine(PrintVehicleList(vehicles));*/
+            PrivateUser privateUser = new PrivateUser("joh", "123456", "123456", "123456");
+            database.DatabaseCreate(privateUser);
+            List<PrivateUser> privateUsers = database.DatabaseGet(privateUser);
+            foreach (PrivateUser user in privateUsers)
+                Console.WriteLine(user + "\n");
+            privateUser = database.DatabaseSelect("joh", privateUser);
+            privateUser.Zipcode = "1337";
+            Console.WriteLine(privateUser.ToString());
+
+            privateUser = database.DatabaseUpdate(privateUser);
+            Console.WriteLine(privateUser.ToString());
             Console.ReadKey();
             /*
             //AuctionHouse objects init
