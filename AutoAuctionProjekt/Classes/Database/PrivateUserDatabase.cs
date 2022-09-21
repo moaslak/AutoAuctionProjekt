@@ -94,7 +94,7 @@ namespace AutoAuctionProjekt.Classes
             PrivateUser privateUser = new PrivateUser("", "", "", "");
             while (reader.Read())
             {
-                privateUser.SetID(Convert.ToUInt16(reader.GetValue(0)));
+                privateUser.SetID(Convert.ToUInt16(reader.GetValue(1)));
                 privateUser.UserName = reader.GetString(2);
                 privateUser.CPRNumber = reader.GetString(3);
                 //TODO: VALIDATE PASSWORD
@@ -118,7 +118,7 @@ namespace AutoAuctionProjekt.Classes
             PrivateUser privateUser = new PrivateUser("", "", "", "");
             while (reader.Read())
             {
-                privateUser.SetID(Convert.ToUInt16(reader.GetValue(0)));
+                privateUser.SetID(Convert.ToUInt16(reader.GetValue(1)));
                 privateUser.UserName = reader.GetString(2);
                 privateUser.CPRNumber = reader.GetString(3);
                 //TODO: VALIDATE PASSWORD
@@ -132,7 +132,6 @@ namespace AutoAuctionProjekt.Classes
 
         public PrivateUser DatabaseUpdate(PrivateUser updatedType)
         {
-            //TODO: verify this
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
             SqlCommand cmd = new SqlCommand("dbo.UpdatePrivateUser", connection);
@@ -142,7 +141,7 @@ namespace AutoAuctionProjekt.Classes
             cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = updatedType.Password; //TODO: ENCRYPT PASSWORD !!!
             cmd.Parameters.Add("@UserZipCode", SqlDbType.VarChar).Value = updatedType.UserZipCode;
             cmd.Parameters.Add("@Balance", SqlDbType.Decimal).Value = updatedType.Balance;
-            cmd.Parameters.Add("@ZipcodeSeller", SqlDbType.VarChar).Value = updatedType.Zipcode; //TODO: FIX THIS!!!
+            cmd.Parameters.Add("@ZipcodeSeller", SqlDbType.VarChar).Value = updatedType.Zipcode;
             cmd.Parameters.Add("@CPRNumber", SqlDbType.VarChar).Value = updatedType.CPRNumber;
             
             connection.Open();
