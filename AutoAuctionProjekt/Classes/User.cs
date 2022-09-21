@@ -72,9 +72,11 @@ privat og company som klasser
         {
             return "ID: " + ID
                 + "PasswordHash: " + PasswordHash
-                + "User name: " + UserName
-                + "Password: " + Password
-                + "Zip code: " + UserZipCode;
+                + ", User name: " + UserName
+                + ", Password: " + Password
+                + ", Zip code: " + UserZipCode
+                + ", Seller zip code: " + Zipcode
+                + ", Balance: " + Balance;
         }
 
         //TODO: U4 - Implement interface proberties and methods.
