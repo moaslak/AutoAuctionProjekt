@@ -23,5 +23,40 @@ namespace UserInterface
         {
             InitializeComponent();
         }
+
+        private void auctionBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void infoBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void searchBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void auctionListBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void createBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void exitBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void creditListBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
