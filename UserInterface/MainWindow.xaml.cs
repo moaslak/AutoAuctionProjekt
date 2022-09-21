@@ -46,7 +46,9 @@ namespace UserInterface
 
         private void createBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateAuction createAuction = new CreateAuction();
+            this.Hide();
+            createAuction.Show();
         }
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
