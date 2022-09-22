@@ -21,14 +21,14 @@ namespace AutoAuctionProjekt.Classes
             
             Console.WriteLine(PrintVehicleList(vehicles));*/
             PrivateUser privateUser = new PrivateUser("joh", "123456", "123456", "123456");
-            database.DatabaseCreate(privateUser);
+            //database.DatabaseCreate(privateUser);
             List<PrivateUser> privateUsers = database.DatabaseGet(privateUser);
             foreach (PrivateUser user in privateUsers)
                 Console.WriteLine(user + "\n");
             privateUser = database.DatabaseSelect("joh", privateUser);
             
             Console.WriteLine(privateUser.ToString());
-            privateUser.Zipcode = "5000";
+            privateUser.Zipcode = "67675";
             privateUser = database.DatabaseUpdate(privateUser);
             Console.WriteLine(privateUser.ToString());
             Console.ReadKey();
