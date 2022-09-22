@@ -46,12 +46,14 @@ namespace UserInterface
 
         private void createBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateAuction createAuction = new CreateAuction();
+            this.Hide();
+            createAuction.Show();
         }
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Environment.Exit(0);
         }
 
         private void creditListBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
