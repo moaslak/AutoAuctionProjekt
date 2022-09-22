@@ -15,7 +15,9 @@ namespace AutoAuctionProjekt.Classes
         /// <param name="minimumPrice"></param>
         public Auction(Vehicle vehicle, ISeller seller, decimal minimumPrice)
         {
-            //TODO: A1 - Set constructor
+            this.Vehicle = vehicle;
+            this.Seller = seller;
+            this.MinimumPrice = minimumPrice;
             //TODO: A2 - Add to database and set ID
             throw new NotImplementedException();
         }
@@ -23,6 +25,11 @@ namespace AutoAuctionProjekt.Classes
         /// ID of the auction
         /// </summary>
         public uint ID { get; private set; }
+
+        private void SetID(uint Id)
+        {
+            this.ID = Id;
+        }
         /// <summary>
         /// The minimum price of the auction
         /// </summary>
@@ -62,7 +69,12 @@ namespace AutoAuctionProjekt.Classes
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return "ID: " + this.ID
+                + ", Vehicle ID: " + this.Vehicle.ID
+                + ", Seller: " + this.Seller.UserName
+                + ", Minimum price: " + this.MinimumPrice
+                + ", Starting bid: " + this.StandingBid
+                + ", Buyer: " + this.Buyer.UserName;
         }
     }
 }

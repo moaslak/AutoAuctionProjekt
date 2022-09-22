@@ -20,16 +20,17 @@ namespace AutoAuctionProjekt.Classes
             List<Vehicle> vehicles = new List<Vehicle>();
             
             Console.WriteLine(PrintVehicleList(vehicles));*/
-            PrivateUser privateUser = new PrivateUser("joh", "123456", "123456", "123456");
+            //PrivateUser privateUser = new PrivateUser("testhest", "testhest", "hesttest", "123456");
             //database.DatabaseCreate(privateUser);
-            List<PrivateUser> privateUsers = database.DatabaseGet(privateUser);
+            /*List<PrivateUser> privateUsers = database.DatabaseGet(privateUser);
             foreach (PrivateUser user in privateUsers)
-                Console.WriteLine(user + "\n");
-            privateUser = database.DatabaseSelect("joh", privateUser);
-            
+                Console.WriteLine(user + "\n");*/
+            PrivateUser type = null;
+            PrivateUser privateUser = database.DatabaseSelect("testhest", type);
+            privateUser.Password = "1";
+            database.DatabaseUpdate(privateUser);
             Console.WriteLine(privateUser.ToString());
-            privateUser.Zipcode = "67675";
-            privateUser = database.DatabaseUpdate(privateUser);
+            bool test = privateUser.LoginOK(privateUser.UserName, privateUser.Password);
             Console.WriteLine(privateUser.ToString());
             Console.ReadKey();
             /*
