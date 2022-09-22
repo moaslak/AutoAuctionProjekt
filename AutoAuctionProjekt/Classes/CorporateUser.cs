@@ -10,8 +10,6 @@ namespace AutoAuctionProjekt.Classes
         {
             this.CVRNumber = cvrNumber;
             this.Credit = credit;
-            //TODO: U8 - Add to database and set ID
-            throw new NotImplementedException();
         }
         public string CVRNumber { get; set; }
         public decimal Credit { get; set; }
