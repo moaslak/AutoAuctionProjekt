@@ -17,7 +17,7 @@ privat og company som klasser
 
     public abstract class User : ISeller, IBuyer
     {
-        protected User(string userName, string password, uint zipCode)
+        protected User(string userName, string password, string zipCode)
         {
             this.UserName = userName;
             this.Password = password;
@@ -29,7 +29,7 @@ privat og company som klasser
 
         public string UserName { get; set; }
         public string Password { get; set; }
-        public uint UserZipCode { get; set; }
+        public string UserZipCode { get; set; }
         /// <summary>
         /// ID proberty
         /// </summary>
@@ -42,9 +42,9 @@ privat og company som klasser
         /// <summary>
         /// PasswordHash proberty
         /// </summary>
-        private byte[] PasswordHash { get; set; }
+        public byte[] PasswordHash { get; set; }
         public decimal Balance { get; set; }
-        public uint Zipcode { get; set; }
+        public string Zipcode { get; set; }
 
         /// <summary>
         /// A method that ...
@@ -72,9 +72,11 @@ privat og company som klasser
         {
             return "ID: " + ID
                 + "PasswordHash: " + PasswordHash
-                + "User name: " + UserName
-                + "Password: " + Password
-                + "Zip code: " + UserZipCode;
+                + ", User name: " + UserName
+                + ", Password: " + Password
+                + ", Zip code: " + UserZipCode
+                + ", Seller zip code: " + Zipcode
+                + ", Balance: " + Balance;
         }
 
         //TODO: U4 - Implement interface proberties and methods.

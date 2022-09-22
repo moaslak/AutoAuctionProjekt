@@ -9,11 +9,13 @@ namespace AutoAuctionProjekt.Classes
 {
     partial class Database
     {
+        /*
         public Vehicle FindVehicle(string registrationNumber)
         {
+            
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
-            string query = "SELECT * VEHICLE"
+            string query = "SELECT * VEHICLE";
 
             Vehicle vehicle = null;
 
@@ -26,6 +28,7 @@ namespace AutoAuctionProjekt.Classes
 
             return vehicle;
         }
+        */
     }
 }
 
