@@ -18,7 +18,7 @@ namespace TestAutoAuctionProject
         List<CorporateUser> corporateUsers = new List<CorporateUser>();
 
         [Fact]
-        private void GetUsers()
+        private void TestGetUsers()
         {
             bool success = false;
             try
@@ -35,7 +35,7 @@ namespace TestAutoAuctionProject
         }
 
         [Fact]
-        private void TestCreateSelectDeleteUsers()
+        private void TestCreateSelectUpdateDeleteUsers()
         {
             int countPrivateUsers = database.DatabaseGet(privateUser).Count;
             int countCorporateUsers = database.DatabaseGet(corporateUser).Count;
@@ -63,6 +63,19 @@ namespace TestAutoAuctionProject
             Assert.Equal(privateUser.UserName, deletePrivateUser.UserName);
             Assert.Equal(corporateUser.UserName, deleteCorporateUser.UserName);
 
+            string oldPrivateName = deletePrivateUser.UserName;
+            string oldCorporateName = deleteCorporateUser.UserName;
+            string newPrivateUsername = "NewPrivateUserName";
+            string newCorporateUsername = "NewCorporateUserName";
+            deletePrivateUser.UserName = newPrivateUsername;
+            deleteCorporateUser.UserName = newCorporateUsername;
+
+            deletePrivateUser = database.DatabaseUpdate(deletePrivateUser);
+            deleteCorporateUser = database.DatabaseUpdate(deleteCorporateUser);
+
+            Assert.Equal(newPrivateUsername, deletePrivateUser.UserName);
+            Assert.Equal(newCorporateUsername, deleteCorporateUser.UserName);
+
             database.DatabaseDelete(deletePrivateUser.ID, deletePrivateUser);
             database.DatabaseDelete(deleteCorporateUser.ID, deleteCorporateUser);
 
@@ -72,6 +85,5 @@ namespace TestAutoAuctionProject
             Assert.Equal(countPrivateUsers, database.DatabaseGet(privateUser).Count);
             Assert.Equal(countCorporateUsers, database.DatabaseGet(corporateUser).Count);
         }
-        //TODO: UpdateUser unit test
     }
 }

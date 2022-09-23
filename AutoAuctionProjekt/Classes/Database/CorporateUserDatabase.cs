@@ -118,7 +118,7 @@ namespace AutoAuctionProjekt.Classes
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
-            SqlCommand cmd = new SqlCommand("dbo.SelectcorporateUserByUserName", connection);
+            SqlCommand cmd = new SqlCommand("dbo.SelectCorporateUserByUserName", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@Username", SqlDbType.VarChar).Value = userName;
             connection.Open();
@@ -137,13 +137,14 @@ namespace AutoAuctionProjekt.Classes
                 corporateUser.Zipcode = reader.GetString(8);
             }
             return corporateUser;
+            throw new NotImplementedException();
         }
 
         public CorporateUser DatabaseUpdate(CorporateUser updatedType)
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
-            SqlCommand cmd = new SqlCommand("dbo.UpdatecorporateUser", connection);
+            SqlCommand cmd = new SqlCommand("dbo.UpdateCorporateUser", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = updatedType.ID;
             cmd.Parameters.Add("@Username", SqlDbType.VarChar).Value = updatedType.UserName;
@@ -162,8 +163,7 @@ namespace AutoAuctionProjekt.Classes
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
-            return DatabaseSelect(updatedType.UserName, updatedType);
-
+            return DatabaseSelect(updatedType.ID, updatedType);
         }
     }
 }
