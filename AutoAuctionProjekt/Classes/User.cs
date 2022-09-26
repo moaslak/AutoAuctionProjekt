@@ -28,7 +28,8 @@ privat og company som klasser
         }
 
         public string UserName { get; set; }
-        public string Password { get; set; }
+        public string Password { get; set; } 
+
         public string UserZipCode { get; set; }
         /// <summary>
         /// ID proberty
@@ -56,12 +57,16 @@ privat og company som klasser
 
             HashAlgorithm sha = SHA256.Create(); //Make a HashAlgorithm object for makeing hash computations.
             byte[] result = sha.ComputeHash(Encoding.ASCII.GetBytes(loginPassword)); //Encodes the password into a hash in a Byte array.
-
             return PasswordHash == result;
-
-            throw new NotImplementedException();
         }
 
+        public bool LoginOK(string loginName, string loginPassword)
+        {
+            if (loginName != this.UserName)
+                return false;
+
+            return ValidateLogin(loginName, loginPassword);
+        }
         
 
         /// <summary>
@@ -71,7 +76,7 @@ privat og company som klasser
         public override string ToString()
         {
             return "ID: " + ID
-                + "PasswordHash: " + PasswordHash
+                + ", PasswordHash: " + PasswordHash
                 + ", User name: " + UserName
                 + ", Password: " + Password
                 + ", Zip code: " + UserZipCode
