@@ -27,9 +27,10 @@ namespace AutoAuctionProjekt.Classes
                 Console.WriteLine(user + "\n");*/
             PrivateUser type = null;
             PrivateUser privateUser = database.DatabaseSelect("testhest", type);
-            privateUser.Password = "1";
-            database.DatabaseUpdate(privateUser);
-            Console.WriteLine(privateUser.ToString());
+
+            CorporateUser corporateUser = new CorporateUser("Testesen", "12345", "1234", "1234", 124);
+            database.DatabaseCreate(corporateUser);
+
             bool test = privateUser.LoginOK(privateUser.UserName, privateUser.Password);
             Console.WriteLine(privateUser.ToString());
             Console.ReadKey();
