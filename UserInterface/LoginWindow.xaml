@@ -21,7 +21,7 @@
         <Label Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">User:</Label>
         <TextBox Name="UserTxtbox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="225" TextChanged="UserTxtbox_TextChanged"></TextBox>
         <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Password:</Label>
-        <TextBox Name="PasswordTxtbox" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="225" TextChanged="PasswordTxtbox_TextChanged"></TextBox>
+        <PasswordBox Name="PasswordTxtbox" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="225"></PasswordBox>
         <Button Name="LoginBtn" Grid.Column="1" Grid.Row="3" Width="100" Height="Auto" HorizontalAlignment="Left" Click="LoginBtn_Click">Login</Button>
         <Button Name="CreateUserBtn" Grid.Column="1" Grid.Row="3" Width="100" Height="Auto" HorizontalAlignment="Right" Click="CreateUserBtn_Click">Create user</Button>
     </Grid>

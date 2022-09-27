@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UserInterface"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontSize="20">
+        Title="MainWindow" Height="600" Width="800" FontSize="20">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -21,12 +21,45 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"> Welcome</TextBlock>
         <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"> My Auctions</TextBlock>
-        <Button x:Name="auctionBtn" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" Margin="10,0,0,0" Click="auctionBtn_Click">Auction</Button>
-        <Button x:Name="infoBtn" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="100" Click="infoBtn_Click">Info</Button>
-        <Button x:Name="searchBtn" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="100" Margin="0,0,10,0" Click="searchBtn_Click">Search</Button>
-        <ListBox x:Name="auctionListBx" Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" SelectionChanged="auctionListBx_SelectionChanged"></ListBox>
-        <TextBlock x:Name="creditTextBx" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="152,36,0,10" Visibility="Hidden">My Credit</TextBlock>
-        <ListBox x:Name="creditListBx" Grid.Row="2" Grid.Column="1" Grid.RowSpan="1" SelectionChanged="creditListBx_SelectionChanged" Visibility="Hidden"></ListBox>
+        <ListView x:Name="auctionListBx" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,0" ItemsSource="{Binding auction}" SelectionChanged="auctionListBx_SelectionChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Name}"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Bid}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBlock Text="All Auctions" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <ListView x:Name="allAuctionListBx" Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,10" SelectionChanged="allAuctionListBx_SelectionChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Name}"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Bid}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button x:Name="createBtn" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" MinWidth="150" Margin="0,0,15,10" Click="createBtn_Click" >Create Auction</Button>
         <Button x:Name="exitBtn" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,15,0" MinWidth="150" Click="exitBtn_Click">Close</Button>
     </Grid>
