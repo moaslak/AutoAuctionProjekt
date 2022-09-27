@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoAuctionProjekt.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,9 +57,12 @@ namespace UserInterface
             Environment.Exit(0);
         }
 
-        private void creditListBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void allAuctionListBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Database database = new Database();
+            Auction auction = database.DatabaseGet();
 
+            auctionListBx.ItemsSource = auction.ToString();
         }
     }
 }
