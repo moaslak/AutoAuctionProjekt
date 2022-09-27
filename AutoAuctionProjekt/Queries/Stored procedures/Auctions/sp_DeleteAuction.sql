@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE DeleteAuction @ID INT
+AS
+DELETE FROM Auctions
+WHERE ID = @ID
