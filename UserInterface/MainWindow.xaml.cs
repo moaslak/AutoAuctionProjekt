@@ -60,9 +60,16 @@ namespace UserInterface
         private void allAuctionListBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Database database = new Database();
-            Auction auction = database.DatabaseGet();
+        }
 
-            auctionListBx.ItemsSource = auction.ToString();
+        private void bidHistoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void profileBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

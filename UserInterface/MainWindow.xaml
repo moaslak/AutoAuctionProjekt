@@ -33,9 +33,11 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Name}"></TextBlock>
-                        <TextBlock Grid.Column="1" Text="{Binding Bid}"></TextBlock>
+                        <TextBlock Grid.Column="0" Text="{Binding Name}">Name</TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Bid}">Bid</TextBlock>
+                        <TextBlock Grid.Column="2" Text="{Binding Bid}"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -53,13 +55,17 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{Binding Name}"></TextBlock>
-                        <TextBlock Grid.Column="1" Text="{Binding Bid}"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Year}"></TextBlock>
+                        <TextBlock Grid.Column="2" Text="{Binding Bid}"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button x:Name="profileBtn" Grid.Column="1" Grid.Row="2" MinWidth="150" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,15,10" Click="profileBtn_Click">Profile</Button>
+        <Button x:Name="bidHistoryBtn" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" MinWidth="150" Margin="0,0,15,10" Click="bidHistoryBtn_Click">Bid History</Button>
         <Button x:Name="createBtn" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" MinWidth="150" Margin="0,0,15,10" Click="createBtn_Click" >Create Auction</Button>
         <Button x:Name="exitBtn" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,15,0" MinWidth="150" Click="exitBtn_Click">Close</Button>
     </Grid>
