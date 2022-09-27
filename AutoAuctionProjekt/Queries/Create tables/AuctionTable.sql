@@ -8,3 +8,8 @@ CREATE TABLE Auctions(
 	StandingBid DECIMAL(12,2),
 	PRIMARY KEY(ID)
 )
+ALTER TABLE Auctions
+ADD ClosingDate Date
+
+ALTER TABLE Auctions
+ADD Closed BIT

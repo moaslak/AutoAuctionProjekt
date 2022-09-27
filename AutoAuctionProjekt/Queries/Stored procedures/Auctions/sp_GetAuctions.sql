@@ -1,0 +1,3 @@
+﻿CREATE PROCEDURE GetAuctions
+AS
+SELECT * FROM Auctions

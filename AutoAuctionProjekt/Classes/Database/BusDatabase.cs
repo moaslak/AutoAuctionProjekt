@@ -155,7 +155,7 @@ namespace AutoAuctionProjekt.Classes
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
-            SqlCommand cmd = new SqlCommand("dbo.SelectTruck", connection);
+            SqlCommand cmd = new SqlCommand("dbo.SelectBus", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = Id;
             //Bus bus = new Bus("1",2,"3",4,5,true,6,7,Vehicle.FuelTypeEnum.Diesel,new HeavyVehicle.VehicleDimensionsStruct(8,9,10),11,12,Vehicle.EnergyClassEnum.A,Vehicle.DriversLisenceEnum.A,false);
