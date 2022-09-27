@@ -13,11 +13,12 @@ namespace AutoAuctionProjekt.Classes
         /// <param name="vehicle"></param>
         /// <param name="seller"></param>
         /// <param name="minimumPrice"></param>
-        public Auction(Vehicle vehicle, ISeller seller, decimal minimumPrice)
+        public Auction(Vehicle vehicle, ISeller seller, decimal minimumPrice, DateTime closingDate)
         {
             this.Vehicle = vehicle;
             this.Seller = seller;
             this.MinimumPrice = minimumPrice;
+            this.ClosingDate = closingDate;
             //TODO: A2 - Add to database and set ID
             throw new NotImplementedException();
         }
@@ -42,6 +43,19 @@ namespace AutoAuctionProjekt.Classes
         /// The vehicle of the auction
         /// </summary>
         internal Vehicle Vehicle { get; set; }
+
+        public DateTime ClosingDate { get; set; }
+
+        public bool Closed { get; private set; }
+
+        public void CloseAuction()
+        {
+            this.Closed = true;
+        }
+        public void OpenAuction()
+        {
+            this.Closed = false;
+        }
         /// <summary>
         /// The seller of the auction
         /// </summary>
@@ -66,6 +80,8 @@ namespace AutoAuctionProjekt.Classes
             {
             }
         }
+
+
 
         public override string ToString()
         {
