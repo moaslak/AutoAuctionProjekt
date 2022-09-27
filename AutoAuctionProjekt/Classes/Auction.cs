@@ -19,15 +19,13 @@ namespace AutoAuctionProjekt.Classes
             this.Seller = seller;
             this.MinimumPrice = minimumPrice;
             this.ClosingDate = closingDate;
-            //TODO: A2 - Add to database and set ID
-            throw new NotImplementedException();
         }
         /// <summary>
         /// ID of the auction
         /// </summary>
         public uint ID { get; private set; }
 
-        private void SetID(uint Id)
+        public void SetID(uint Id)
         {
             this.ID = Id;
         }
@@ -59,11 +57,11 @@ namespace AutoAuctionProjekt.Classes
         /// <summary>
         /// The seller of the auction
         /// </summary>
-        internal ISeller Seller { get; set; }
+        public ISeller Seller { get; set; }
         /// <summary>
         /// The buyer or potential buyer of the auction
         /// </summary>
-        internal IBuyer Buyer { get; set; }
+        public IBuyer Buyer { get; set; }
 
         public IBuyer IBuyer
         {
