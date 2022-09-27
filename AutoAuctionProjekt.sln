@@ -7,7 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoAuctionProjekt", "AutoA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAutoAuctionProject", "TestAutoAuctionProject\TestAutoAuctionProject.csproj", "{AA46E5DA-1DFB-4549-998E-252F371F5588}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{272FFB22-5041-4682-9884-17F404B42D3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserInterface", "UserInterface\UserInterface.csproj", "{272FFB22-5041-4682-9884-17F404B42D3B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7B96187C-DEBB-44F7-B775-3C1F98F965C9} = {7B96187C-DEBB-44F7-B775-3C1F98F965C9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
