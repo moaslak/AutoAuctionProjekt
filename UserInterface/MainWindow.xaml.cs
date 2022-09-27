@@ -60,9 +60,9 @@ namespace UserInterface
         private void allAuctionListBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Database database = new Database();
-            Auction auction = database.DatabaseGet();
+            //Auction auction = database.DatabaseGet();
 
-            auctionListBx.ItemsSource = auction.ToString();
+            //auctionListBx.ItemsSource = auction.ToString();
         }
     }
 }
