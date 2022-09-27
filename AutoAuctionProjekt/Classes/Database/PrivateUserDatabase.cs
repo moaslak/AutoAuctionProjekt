@@ -41,6 +41,23 @@ namespace AutoAuctionProjekt.Classes
             }
             
             connection.Close();
+
+            cmd = new SqlCommand("dbo.CreateUser", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            string formatUsername = type.UserName.Replace(" ", "_");
+            formatUsername = formatUsername.Replace(".", "");
+            cmd.Parameters.Add("@Username", SqlDbType.VarChar).Value = formatUsername;
+            connection.Open();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (System.Data.SqlClient.SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            connection.Close();
         }
 
         public void DatabaseDelete(uint Id, PrivateUser type)
