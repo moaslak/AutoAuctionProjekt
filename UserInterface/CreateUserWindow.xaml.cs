@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoAuctionProjekt.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,9 +27,40 @@ namespace UserInterface
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Show();
-            this.Close();
+            Database database = new Database();
+            PrivateUser privateUser = new PrivateUser("", "", "", "");
+            CorporateUser corporateUser = new CorporateUser("", "", "", "", 0);
+            
+            if( privateUser != null)
+            {
+                try
+                {
+                    database.DatabaseCreate(privateUser);
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.Show();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+
+                    throw new ArgumentException("Wrong", ex);
+                }
+            }
+            else if(corporateUser != null)
+            {
+                try
+                {
+                    database.DatabaseCreate(corporateUser);
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.Show();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+
+                    throw new ArgumentException("Wrong", ex);
+                }
+            }
         }
 
         private void CancelNewUserBtn_Click(object sender, RoutedEventArgs e)
@@ -39,17 +71,12 @@ namespace UserInterface
 
         }
 
-        private void RepeatPasswordTxtBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void CreatePasswordTxtbox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void UserNameTxtbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void RepeatPasswordTxtBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
