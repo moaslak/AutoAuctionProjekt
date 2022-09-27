@@ -12,7 +12,7 @@ namespace TestAutoAuctionProject
     {
         DatabaseConnection connection = new DatabaseConnection();
         Database database = new AutoAuctionProjekt.Classes.Database();
-        PrivateUser privateUser = new PrivateUser("John R. Deathclaw", "31337", "1337", "12345567");
+        PrivateUser privateUser = new PrivateUser("John R Deathclaw", "31337", "1337", "12345567");
         CorporateUser corporateUser = new CorporateUser("John C. Kiwi", "1337", "123467", "876543", 500);
         List<PrivateUser> privateUsers = new List<PrivateUser>();
         List<CorporateUser> corporateUsers = new List<CorporateUser>();
