@@ -20,13 +20,6 @@ namespace AutoAuctionProjekt.Classes
 
         public Auction Auction { get; set; }
         public User Bidder { get; set; }
-        public DateTime BidDate
-        {
-            get => default;
-            set
-            {
-                BidDate = DateTime.Now;
-            } 
-        }
+        public DateTime BidDate {get; set;} = DateTime.Now;
     }
 }

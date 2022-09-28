@@ -106,6 +106,11 @@ namespace TestAutoAuctionProject
             privateUser.SetID(privateUsers[privateUsers.Count - 1].ID);
             Auction auction = new Auction(bus, privateUser, 0, DateTime.Now);
             auction.Buyer = privateUser;
+            auction.Seller = privateUser;
+            database.DatabaseCreate(auction);
+            List<Auction> auctions = database.DatabaseGet(auction);
+            auction.SetID(auctions[auctions.Count - 1].ID);
+            auction.Buyer = privateUser;
             auction.Buyer.UserName = privateUser.UserName;
 
             AuctionBid auctionBid = new AuctionBid(auction, privateUser);
@@ -122,8 +127,9 @@ namespace TestAutoAuctionProject
             List<AuctionBid> auctionBids = database.GetAuctionBidHistory();
             Assert.True(auctionBids.Count > 0);
             Assert.True(success);
-            
 
+            database.DatabaseDelete(bus.ID, bus);
+            database.DatabaseDelete(privateUser.ID, privateUser);
 
         }
     }
