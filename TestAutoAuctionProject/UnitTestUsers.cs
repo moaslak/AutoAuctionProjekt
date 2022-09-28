@@ -11,7 +11,7 @@ namespace TestAutoAuctionProject
     public class UnitTestUsers
     {
         DatabaseConnection connection = new DatabaseConnection();
-        Database database = new AutoAuctionProjekt.Classes.Database();
+        Database database = new Database();
         PrivateUser privateUser = new PrivateUser("John R Deathclaw", "31337", "1337", "12345567");
         CorporateUser corporateUser = new CorporateUser("John C. Kiwi", "1337", "123467", "876543", 500);
         List<PrivateUser> privateUsers = new List<PrivateUser>();
@@ -37,6 +37,8 @@ namespace TestAutoAuctionProject
         [Fact]
         private void TestCreateSelectUpdateDeleteUsers()
         {
+            //FAILS IF CANNOT CREATE USER IN DB. USER MIGHT EXIST
+            //TODO: FIX THIS
             int countPrivateUsers = database.DatabaseGet(privateUser).Count;
             int countCorporateUsers = database.DatabaseGet(corporateUser).Count;
             try

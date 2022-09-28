@@ -9,7 +9,7 @@ CREATE TABLE Auctions(
 	PRIMARY KEY(ID)
 )
 ALTER TABLE Auctions
-ADD ClosingDate Date
+ADD ClosingDate DateTime
 
 ALTER TABLE Auctions
 ADD Closed BIT

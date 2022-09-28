@@ -7,9 +7,9 @@ using System.Text;
 
 namespace AutoAuctionProjekt.Classes
 {
-    partial class Database
+    /*partial class Database
     {
-        /*
+    
         public Vehicle FindVehicle(string registrationNumber)
         {
             
@@ -28,8 +28,8 @@ namespace AutoAuctionProjekt.Classes
 
             return vehicle;
         }
-        */
-    }
+        
+    }*/
 }
 
 

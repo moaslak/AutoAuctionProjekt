@@ -26,6 +26,5 @@ namespace AutoAuctionProjekt.Classes
             return null;
 
         }
-        
     }
 }

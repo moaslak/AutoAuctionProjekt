@@ -24,7 +24,7 @@ namespace AutoAuctionProjekt.Classes
             cmd.Parameters.Add("@Buyer", SqlDbType.VarChar).Value = type.Buyer.UserName;
             cmd.Parameters.Add("@MinimumPrice", SqlDbType.Decimal).Value = type.MinimumPrice;
             cmd.Parameters.Add("@StandingBid", SqlDbType.Decimal).Value = type.StandingBid;
-            cmd.Parameters.Add("@ClosingDate", SqlDbType.Date).Value = type.ClosingDate;
+            cmd.Parameters.Add("@ClosingDate", SqlDbType.DateTime).Value = type.ClosingDate;
             cmd.Parameters.Add("Closed", SqlDbType.Bit).Value = type.Closed;
 
             connection.Open();
@@ -138,7 +138,7 @@ namespace AutoAuctionProjekt.Classes
             cmd.Parameters.Add("@Buyer", SqlDbType.VarChar).Value = updatedType.Buyer.UserName;
             cmd.Parameters.Add("@MinimumPrice", SqlDbType.Decimal).Value = updatedType.MinimumPrice;
             cmd.Parameters.Add("@StandingBid", SqlDbType.Decimal).Value = updatedType.StandingBid;
-            cmd.Parameters.Add("@ClosingDate", SqlDbType.Date).Value = updatedType.ClosingDate;
+            cmd.Parameters.Add("@ClosingDate", SqlDbType.DateTime).Value = updatedType.ClosingDate;
             cmd.Parameters.Add("Closed", SqlDbType.Bit).Value = updatedType.Closed;
 
             connection.Open();

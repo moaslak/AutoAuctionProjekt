@@ -92,5 +92,24 @@ namespace TestAutoAuctionProject
             database.DatabaseDelete(busList[busList.Count - 1].ID, bus);
             database.DatabaseDelete(privateUsers[privateUsers.Count - 1].ID, privateUser);
         }
+
+        [Fact]
+        public void TestAddBidToBidHistory()
+        {
+            PrivateUser privateUser = new PrivateUser("John C. Kiwi", "1234", "1234", "124");
+            Bus bus = new Bus("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, EnergyClassEnum.A, DriversLisenceEnum.A, false);
+            database.DatabaseCreate(bus);
+            database.DatabaseCreate(privateUser);
+            List<Bus> busList = database.DatabaseGet(bus);
+            List<PrivateUser> privateUsers = database.DatabaseGet(privateUser);
+            bus.SetId(busList[busList.Count - 1].ID);
+            privateUser.SetID(privateUsers[privateUsers.Count - 1].ID);
+            Auction auction = new Auction(bus, privateUser, 0, DateTime.Now);
+            auction.Buyer = privateUser;
+            auction.Buyer.UserName = privateUser.UserName;
+            
+            
+
+        }
     }
 }

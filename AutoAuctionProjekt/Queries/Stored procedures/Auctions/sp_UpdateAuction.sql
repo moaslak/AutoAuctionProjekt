@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE UpdateAuction @ID INT, @VehicleID INT, @Seller VARCHAR(64), @Buyer VARCHAR(64), @MinimumPrice DECIMAL(12,2), @StandingBid DECIMAL(12,2), @ClosingDate DATE, @Closed BIT
+﻿CREATE PROCEDURE UpdateAuction @ID INT, @VehicleID INT, @Seller VARCHAR(64), @Buyer VARCHAR(64), @MinimumPrice DECIMAL(12,2), @StandingBid DECIMAL(12,2), @ClosingDate DateTime, @Closed BIT
 AS
 UPDATE [dbo].[Auctions]
    SET [VehicleID] = @VehicleID

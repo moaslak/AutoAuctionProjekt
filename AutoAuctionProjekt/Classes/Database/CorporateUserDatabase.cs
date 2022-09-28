@@ -48,16 +48,18 @@ namespace AutoAuctionProjekt.Classes
             string formatUsername = type.UserName.Replace(" ", "_");
             formatUsername = formatUsername.Replace(".", "");
             cmd.Parameters.Add("@Username", SqlDbType.VarChar).Value = formatUsername;
+            bool succes = false;
             connection.Open();
             try
             {
                 cmd.ExecuteNonQuery();
+                succes = true;
             }
             catch (System.Data.SqlClient.SqlException e)
             {
+                //TODO: FIX FAILING UNIT TEST
                 Console.WriteLine(e.Message);
             }
-
             connection.Close();
         }
 
