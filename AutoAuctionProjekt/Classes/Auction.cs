@@ -79,15 +79,13 @@ namespace AutoAuctionProjekt.Classes
             }
         }
 
-
-
         public override string ToString()
         {
             return "ID: " + this.ID
                 + ", Vehicle ID: " + this.Vehicle.ID
                 + ", Seller: " + this.Seller.UserName
                 + ", Minimum price: " + this.MinimumPrice
-                + ", Starting bid: " + this.StandingBid
+                + ", Standing bid: " + this.StandingBid
                 + ", Buyer: " + this.Buyer.UserName;
         }
     }

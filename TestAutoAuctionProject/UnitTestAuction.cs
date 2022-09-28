@@ -12,13 +12,15 @@ namespace TestAutoAuctionProject
     public class UnitTestAuction
     {
         DatabaseConnection connection = new DatabaseConnection();
-        Database database = new AutoAuctionProjekt.Classes.Database();     
+        Database database = new AutoAuctionProjekt.Classes.Database();
+
+        PrivateUser privateUser = new PrivateUser("John C. Kiwi", "1234", "1234", "124");
+        Bus bus = new Bus("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, EnergyClassEnum.A, DriversLisenceEnum.A, false);
+
 
         [Fact]
         public void TestCreateAuction()
         {
-            PrivateUser privateUser = new PrivateUser("John C. Kiwi", "1234", "1234", "124");
-            Bus bus = new Bus("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, EnergyClassEnum.A, DriversLisenceEnum.A, false);
             database.DatabaseCreate(bus);
             database.DatabaseCreate(privateUser);
             List<Bus> busList = database.DatabaseGet(bus);
@@ -65,8 +67,6 @@ namespace TestAutoAuctionProject
         [Fact]
         public void TestUpdateAuction()
         {
-            PrivateUser privateUser = new PrivateUser("John C. Kiwi", "1234", "1234", "124");
-            Bus bus = new Bus("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, EnergyClassEnum.A, DriversLisenceEnum.A, false);
             database.DatabaseCreate(bus);
             database.DatabaseCreate(privateUser);
             List<Bus> busList = database.DatabaseGet(bus);
@@ -96,8 +96,6 @@ namespace TestAutoAuctionProject
         [Fact]
         public void TestAddBidToBidHistory()
         {
-            PrivateUser privateUser = new PrivateUser("John C. Kiwi", "1234", "1234", "124");
-            Bus bus = new Bus("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, EnergyClassEnum.A, DriversLisenceEnum.A, false);
             database.DatabaseCreate(bus);
             database.DatabaseCreate(privateUser);
             List<Bus> busList = database.DatabaseGet(bus);
@@ -130,7 +128,45 @@ namespace TestAutoAuctionProject
 
             database.DatabaseDelete(bus.ID, bus);
             database.DatabaseDelete(privateUser.ID, privateUser);
+        }
 
+        [Fact]
+        public void TestBid()
+        {
+            //TODO: generate test auctions
+            Auction auction = new Auction(bus, privateUser, 500, new DateTime(2023, 10, 10, 10, 10, 10));
+            auction.Buyer = privateUser;
+            database.DatabaseCreate(bus);
+            database.DatabaseCreate(privateUser);
+            List<Bus> busList = database.DatabaseGet(bus);
+            List<PrivateUser> privateUsers = database.DatabaseGet(privateUser);
+            bus.SetId(busList[busList.Count - 1].ID);
+            privateUser.SetID(privateUsers[privateUsers.Count - 1].ID);
+
+            //database.DatabaseCreate(auction);
+            List<Auction> auctions = database.DatabaseGet(auction);
+            auction = auctions[auctions.Count-1];
+
+            auction = database.DatabaseSelect(14, auction);
+
+            AuctionBid auctionBid = new AuctionBid(auction, privateUser);
+            Decimal newBid = auction.StandingBid;
+            auctionBid.Bid(auction, newBid);
+            Assert.True(auction.StandingBid >= newBid);
+
+            auction = database.DatabaseSelect(13, auction);
+            newBid = auction.StandingBid+1;
+            auctionBid.Auction = auction;
+            auctionBid.Bid(auction, newBid);
+            Assert.True(auctionBid.Auction.StandingBid == newBid);
+
+            auction.ClosingDate = new DateTime(2000, 10, 10, 10, 10, 10, 10);
+            auctionBid.Bid(auction, newBid);
+            Assert.True(auctionBid.Auction == auction);
+
+
+            database.DatabaseDelete(bus.ID, bus);
+            database.DatabaseDelete(privateUser.ID, privateUser);
         }
     }
 }
