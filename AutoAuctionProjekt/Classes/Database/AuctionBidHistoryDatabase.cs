@@ -13,16 +13,16 @@ namespace AutoAuctionProjekt.Classes
         /// </summary>
         /// <param name="auction"></param>
         /// <param name="bidder"></param>
-        public void AddBidToHistory(Auction auction, User bidder, DateTime bidTime)
+        public void AddBidToHistory(AuctionBid auctionBid)
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
             SqlCommand cmd = new SqlCommand("dbo.AddBid", connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@AuctionID", SqlDbType.Int).Value = auction.ID;
-            cmd.Parameters.Add("@CurrentHighestBidder", SqlDbType.VarChar).Value = bidder.UserName;
-            cmd.Parameters.Add("@StandingBid", SqlDbType.Decimal).Value = auction.StandingBid;
-            cmd.Parameters.Add("@BidDate", SqlDbType.DateTime).Value = bidTime;
+            cmd.Parameters.Add("@AuctionID", SqlDbType.Int).Value = auctionBid.Auction.ID;
+            cmd.Parameters.Add("@CurrentHighestBidder", SqlDbType.VarChar).Value = auctionBid.Bidder.UserName;
+            cmd.Parameters.Add("@StandingBid", SqlDbType.Decimal).Value = auctionBid.Auction.StandingBid;
+            cmd.Parameters.Add("@BidDate", SqlDbType.DateTime).Value = auctionBid.BidDate;
 
             connection.Open();
             try

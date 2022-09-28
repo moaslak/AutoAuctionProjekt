@@ -5,7 +5,7 @@ using System.Text;
 using Xunit;
 using static AutoAuctionProjekt.Classes.Vehicle;
 using AutoAuctionProjekt.Classes;
-
+using System.Data.SqlClient;
 
 namespace TestAutoAuctionProject
 {
@@ -107,8 +107,23 @@ namespace TestAutoAuctionProject
             Auction auction = new Auction(bus, privateUser, 0, DateTime.Now);
             auction.Buyer = privateUser;
             auction.Buyer.UserName = privateUser.UserName;
+
+            AuctionBid auctionBid = new AuctionBid(auction, privateUser);
+            bool success = false;
+            try
+            {
+                database.AddBidToHistory(auctionBid);
+                success = true;
+            }
+            catch(SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            List<AuctionBid> auctionBids = database.GetAuctionBidHistory();
+            Assert.True(auctionBids.Count > 0);
+            Assert.True(success);
             
-            
+
 
         }
     }
