@@ -21,5 +21,26 @@ namespace AutoAuctionProjekt.Classes
         public Auction Auction { get; set; }
         public User Bidder { get; set; }
         public DateTime BidDate {get; set;} = DateTime.Now;
+
+        public void Bid(Auction auction, Decimal newBid)
+        {
+            try
+            {
+                if (BidDate > auction.ClosingDate && auction.Closed==false && newBid > auction.StandingBid)
+                {
+                    auction.StandingBid = newBid;
+                    auction.Buyer = Bidder;
+
+                    Database database = new Database();
+
+                    database.DatabaseUpdate(auction);
+                    database.AddBidToHistory(this);
+                }
+
+            } catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            } 
+        }
     }
 }
