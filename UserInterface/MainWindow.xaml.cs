@@ -47,9 +47,10 @@ namespace UserInterface
 
         private void createBtn_Click(object sender, RoutedEventArgs e)
         {
-            CreateAuction createAuction = new CreateAuction();
+            //CreateAuction createAuction = new CreateAuction();
+            SetForSaleWindow setForSaleWindow = new SetForSaleWindow(this);
             this.Hide();
-            createAuction.Show();
+            setForSaleWindow.Show();
         }
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
@@ -63,6 +64,13 @@ namespace UserInterface
 
         }
 
+        private void bidHistoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void profileBtn_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

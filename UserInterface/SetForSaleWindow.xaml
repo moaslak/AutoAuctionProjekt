@@ -1,0 +1,98 @@
+﻿<Window x:Class="UserInterface.SetForSaleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserInterface"
+        mc:Ignorable="d"
+        Title="SetForSaleWindow" Height="800" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!-- COLUMN 0 -->
+        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">General info</TextBlock>
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Name</Label>
+        <TextBox x:Name="NameTxtBox" Grid.Row="1" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="top">Has tow bar</Label>
+        <CheckBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"></CheckBox>
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Km</Label>
+        <TextBox x:Name="MilageTxtBox" Grid.Row="2" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top">Fuel type</Label>
+        <ComboBox x:Name="FuelTypeComboBox" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" Margin="10" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem x:Name="PetrolSelection">Petrol</ComboBoxItem>
+            <ComboBoxItem x:Name="DieselSelection">Diesel</ComboBoxItem>
+        </ComboBox>
+        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Registration number</Label>
+        <TextBox Name="RegNumTxtBox" Grid.Row="3" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Year</Label>
+        <TextBox x:Name="YearTxtBox" Grid.Row="4" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Minumum price</Label>
+        <TextBox x:Name="MinPriceTxtBox" Grid.Row="5" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Closing date (yyyy-mm-dd hh:mm:ss.xxx)</Label>
+        <TextBox x:Name="ClosingDateTxtBox" Grid.Row="6" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Grid Grid.Row="7" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">Private Personal car</Label>
+            <RadioButton x:Name="PrivatePersonalCarRdBtn" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" Checked="PrivatePersonalCarRdBtn_Checked" Margin="10,0,0,0"></RadioButton>
+            <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Top">Professional Personal car</Label>
+            <RadioButton x:Name="ProfefssionalPersonalCarRdBtn" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" Checked="ProfefssionalPersonalCarRdBtn_Checked" Margin="10,0,0,0"></RadioButton>
+            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top">Truck</Label>
+            <RadioButton x:Name="TruckRdBtn" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Checked="TruckRdBtn_Checked" Margin="10,0,0,0"></RadioButton>
+            <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">Bus</Label>
+            <RadioButton x:Name="BusRdBtn" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Checked="BusRdBtn_Checked" Margin="10,0,0,0"></RadioButton>
+        </Grid>
+        <Button x:Name="CreateAuctionBtn" Grid.Row="8" Grid.Column="0" Margin="10" Width="120" Height="50" HorizontalAlignment="Left">Create auction</Button>
+        <Button x:Name="CancelBtn" Grid.Row="9" Grid.Column="0" Margin="10" Width="120" Height="50" HorizontalAlignment="Left" Click="CancelBtn_Click">Cancel</Button>
+        <!-- COLUMN 1 -->
+        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">Specific info</TextBlock>
+        <Label x:Name="VehicleDimensionLbl" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center">Vehicle dimensions</Label>
+        <Label x:Name="TrunkDimensionLbl" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center">Trunk dimensions</Label>
+        <Label x:Name="HeightTxtBoxLbl" Grid.Row="2" Grid.Column="1">Vehicle Height</Label>
+        <TextBox x:Name="HeightTxtBox" Grid.Row="2" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label x:Name="LengthTxtBoxLbl" Grid.Row="3" Grid.Column="1">Vehicle Length</Label>
+        <TextBox x:Name="LengthTxtBox" Grid.Row="3" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label x:Name="WeightTxtBoxLbl" Grid.Row="4" Grid.Column="1">Vehicle weight</Label>
+        <TextBox x:Name="WeightTxtBox" Grid.Row="4" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label x:Name="TrunkHeightTxtBoxLbl" Grid.Row="2" Grid.Column="1">Trunk Height</Label>
+        <TextBox x:Name="TrunkHeightTxtBox" Grid.Row="2" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label x:Name="TrunkWidthTxtBoxLbl" Grid.Row="3" Grid.Column="1">Trunk width</Label>
+        <TextBox x:Name="TrunkWidthTxtBox" Grid.Row="3" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label x:Name="TrunkDepthTxtBoxLbl" Grid.Row="4" Grid.Column="1">Trunk depth</Label>
+        <TextBox x:Name="TrunkDepthTxtBox" Grid.Row="4" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label x:Name="EngineSizeLabel" Grid.Row="5" Grid.Column="1">Engine size</Label>
+        <TextBox x:Name="EngineSizeTxtBox" Grid.Row="5" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label x:Name="HasISOFittingsLbl" Grid.Row="6" Grid.Column="1">Has ISO fittings</Label>
+        <Label x:Name="LoadCapacityLbl" Grid.Row="6" Grid.Column="1">Load capacity</Label>
+        <TextBox x:Name="LoadCapacityTxtBox" Grid.Row="6" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <CheckBox x:Name="HasISOFittingCheckBox" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"></CheckBox>
+        <Label x:Name="NumberOfSeatsLbl" Grid.Row="7" Grid.Column="1">Number of seats</Label>
+        <TextBox x:Name="NumberOfSeatsTxtBox" Grid.Row="7" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label x:Name="NumberOfSleepingSpacesLbl" Grid.Row="8" Grid.Column="1">Number of sleeping spaces</Label>
+        <Label x:Name="HasSaftyBarLbl" Grid.Row="8" Grid.Column="1">Has safty bar</Label>
+        <CheckBox x:Name="HasSaftyBarCheckBox" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center"></CheckBox>
+        <TextBox x:Name="NumberOfSleepingSpacesTxtbox" Grid.Row="8" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label x:Name="HasToiletlbl" Grid.Row="9" Grid.Column="1">Has toilet</Label>
+        <CheckBox x:Name="HasToiletCheckBox" Grid.Row="9" Grid.Column="1" VerticalAlignment="Center"></CheckBox>
+    </Grid>
+</Window>
