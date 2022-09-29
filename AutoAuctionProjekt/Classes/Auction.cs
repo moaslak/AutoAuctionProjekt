@@ -40,7 +40,7 @@ namespace AutoAuctionProjekt.Classes
         /// <summary>
         /// The vehicle of the auction
         /// </summary>
-        internal Vehicle Vehicle { get; set; }
+        public Vehicle Vehicle { get; set; }
 
         public DateTime ClosingDate { get; set; }
 
@@ -61,7 +61,7 @@ namespace AutoAuctionProjekt.Classes
         /// <summary>
         /// The buyer or potential buyer of the auction
         /// </summary>
-        public IBuyer Buyer { get; set; }
+        public IBuyer? Buyer { get; set; }
 
         public IBuyer IBuyer
         {

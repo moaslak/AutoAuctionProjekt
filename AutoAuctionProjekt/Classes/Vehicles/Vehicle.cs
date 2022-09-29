@@ -72,7 +72,7 @@ namespace AutoAuctionProjekt.Classes
         /// <summary>
         /// New price field and proberty
         /// </summary>
-        public decimal NewPrice { get; set; }
+        public decimal NewPrice { get; set; } //TODO: minimum price???
         /// <summary>
         /// Towbar field and proberty
         /// </summary>

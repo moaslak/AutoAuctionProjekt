@@ -26,9 +26,9 @@ namespace UserInterface
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            /*MainWindow mainWindow = new MainWindow();
             this.Hide();
-            mainWindow.Show();
+            mainWindow.Show();*/
             
         }
     }

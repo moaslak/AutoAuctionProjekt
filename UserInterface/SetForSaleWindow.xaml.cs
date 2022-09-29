@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoAuctionProjekt.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
@@ -20,14 +21,18 @@ namespace UserInterface
     /// </summary>
     public partial class SetForSaleWindow : Window
     {
-        public SetForSaleWindow(MainWindow mainWindow)
+        //TODO: SET KM PR L, drivers license, energy class
+        public SetForSaleWindow(User user)
         {
             InitializeComponent();
             PrivatePersonalCarRdBtn.IsChecked = true;
-            this.MainWindow = mainWindow;
+            this.User = user;
         }
 
-        MainWindow MainWindow { get; set; }
+        private User User { get; set; }
+        
+        private List<Auction> Auctions { get; set; }
+        private Auction Auction { get; set; }
 
         private void HeavyVehicleSelected()
         {
@@ -180,12 +185,86 @@ namespace UserInterface
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            MainWindow.Show();
+            MainWindow mainWindow = new MainWindow(User, Auctions);
+            mainWindow.Show();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
+        }
+
+        private void CreateAuctionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Database database = new Database();
+            bool hasTowBar = false;
+            if (TowBarCheckBox.IsChecked == true)
+                hasTowBar = true;
+            bool hasISOFittings = false;
+            if (HasISOFittingCheckBox.IsChecked == true)
+                hasISOFittings = true;
+            bool hasToilet = false;
+            if (HasToiletCheckBox.IsChecked == true)
+                hasToilet = true;
+            bool hasSaftyBar = false;
+            if (HasSaftyBarCheckBox.IsChecked == true)
+                hasSaftyBar = true;
+
+            PrivatePersonalCar.FuelTypeEnum fuelType = new Vehicle.FuelTypeEnum();
+            if (FuelTypeComboBox.Text == "Diesel")
+                fuelType = Vehicle.FuelTypeEnum.Diesel;
+            if (FuelTypeComboBox.Text == "Petrol")
+                fuelType = Vehicle.FuelTypeEnum.Petrol;
+
+            if (PrivatePersonalCarRdBtn.IsChecked == true)
+            {
+                if(!(NameTxtBox.Text == "" || MilageTxtBox.Text == "" || RegNumTxtBox.Text == "" || YearTxtBox.Text == "" || MinPriceTxtBox.Text == ""
+                    || ClosingDateTxtBox.Text == "" || TrunkHeightTxtBox.Text == "" || TrunkWidthTxtBox.Text == "" || TrunkDepthTxtBox.Text == ""
+                    || EngineSizeTxtBox.Text == "" || NumberOfSeatsTxtBox.Text == ""))
+                {
+                    PrivatePersonalCar privatePersonalCar = new PrivatePersonalCar(NameTxtBox.Text, Convert.ToDouble(MilageTxtBox.Text), RegNumTxtBox.Text, Convert.ToUInt16(YearTxtBox.Text),
+                        Convert.ToDecimal(MinPriceTxtBox.Text), hasTowBar, Convert.ToDouble(EngineSizeTxtBox.Text), 0, fuelType, Convert.ToUInt16(NumberOfSeatsTxtBox.Text),
+                        new PersonalCar.TrunkDimentionsStruct(Convert.ToDouble(TrunkHeightTxtBox.Text), Convert.ToDouble(TrunkWidthTxtBox.Text), Convert.ToDouble(TrunkDepthTxtBox.Text)),
+                        hasISOFittings, Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
+                    database.DatabaseCreate(privatePersonalCar);
+                    List<PrivatePersonalCar> privatePersonalCars = database.DatabaseGet(privatePersonalCar);
+                    privatePersonalCar = privatePersonalCars[privatePersonalCars.Count - 1];
+                    Auction newAuction = new Auction(privatePersonalCar, User, privatePersonalCar.NewPrice,Convert.ToDateTime(ClosingDateTxtBox.Text));
+                    //newAuction.Buyer = User;
+                    database.DatabaseCreate(newAuction);
+                }
+
+            }
+            if(ProfefssionalPersonalCarRdBtn.IsChecked == true)
+            {
+                if (!(NameTxtBox.Text == "" || MilageTxtBox.Text == "" || RegNumTxtBox.Text == "" || YearTxtBox.Text == "" || MinPriceTxtBox.Text == ""
+                    || ClosingDateTxtBox.Text == "" || TrunkHeightTxtBox.Text == "" || TrunkWidthTxtBox.Text == "" || TrunkDepthTxtBox.Text == ""
+                    || EngineSizeTxtBox.Text == "" || NumberOfSeatsTxtBox.Text == "" || LoadCapacityTxtBox.Text == ""))
+                {
+
+                }
+
+            }
+            if(TruckRdBtn.IsChecked == true)
+            {
+                if (!(NameTxtBox.Text == "" || MilageTxtBox.Text == "" || RegNumTxtBox.Text == "" || YearTxtBox.Text == "" || MinPriceTxtBox.Text == ""
+                   || ClosingDateTxtBox.Text == "" || HeightTxtBox.Text == "" || LengthTxtBox.Text == "" || WeightTxtBox.Text == "" || EngineSizeTxtBox.Text == ""
+                   || LoadCapacityTxtBox.Text == ""))
+                {
+
+                }
+            }
+            if(BusRdBtn.IsChecked == true)
+            {
+                if (!(NameTxtBox.Text == "" || MilageTxtBox.Text == "" || RegNumTxtBox.Text == "" || YearTxtBox.Text == "" || MinPriceTxtBox.Text == ""
+                   || ClosingDateTxtBox.Text == "" || HeightTxtBox.Text == "" || LengthTxtBox.Text == "" || WeightTxtBox.Text == "" || EngineSizeTxtBox.Text == ""
+                   || NumberOfSeatsTxtBox.Text == "" || NumberOfSleepingSpacesTxtbox.Text == ""))
+                {
+
+                }
+            }
+
+            Auctions = database.DatabaseGet(Auction);
         }
     }
 }

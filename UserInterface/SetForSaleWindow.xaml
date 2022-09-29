@@ -28,7 +28,7 @@
         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Name</Label>
         <TextBox x:Name="NameTxtBox" Grid.Row="1" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="top">Has tow bar</Label>
-        <CheckBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"></CheckBox>
+        <CheckBox x:Name="TowBarCheckBox" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"></CheckBox>
         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Km</Label>
         <TextBox x:Name="MilageTxtBox" Grid.Row="2" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top">Fuel type</Label>
@@ -62,7 +62,7 @@
             <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">Bus</Label>
             <RadioButton x:Name="BusRdBtn" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Checked="BusRdBtn_Checked" Margin="10,0,0,0"></RadioButton>
         </Grid>
-        <Button x:Name="CreateAuctionBtn" Grid.Row="8" Grid.Column="0" Margin="10" Width="120" Height="50" HorizontalAlignment="Left">Create auction</Button>
+        <Button x:Name="CreateAuctionBtn" Grid.Row="8" Grid.Column="0" Margin="10" Width="120" Height="50" HorizontalAlignment="Left" Click="CreateAuctionBtn_Click">Create auction</Button>
         <Button x:Name="CancelBtn" Grid.Row="9" Grid.Column="0" Margin="10" Width="120" Height="50" HorizontalAlignment="Left" Click="CancelBtn_Click">Cancel</Button>
         <!-- COLUMN 1 -->
         <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">Specific info</TextBlock>
