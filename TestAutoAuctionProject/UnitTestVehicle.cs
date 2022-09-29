@@ -11,7 +11,7 @@ namespace TestAutoAuctionProject
     public class UnitTestVehicle
     {
         DatabaseConnection connection = new DatabaseConnection();
-        Database database = new AutoAuctionProjekt.Classes.Database();
+        Database database = new Database();
         Bus newBus = new Bus("NT", 50000, "ab12345", 2020, 2000000, false, 6.2, 11.2, Vehicle.FuelTypeEnum.Diesel,
                 new HeavyVehicle.VehicleDimensionsStruct(4, 10000, 9), 70, 0, Vehicle.EnergyClassEnum.D,
                 Vehicle.DriversLisenceEnum.D, false);
