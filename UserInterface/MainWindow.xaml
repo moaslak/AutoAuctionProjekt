@@ -35,9 +35,9 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Name}">Name</TextBlock>
-                        <TextBlock Grid.Column="1" Text="{Binding Year}">Year</TextBlock>
-                        <TextBlock Grid.Column="2" Text="{Binding Bid}">Bid</TextBlock>
+                        <TextBlock Grid.Column="0" Text="{Binding Vehicle.Name}"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Vehicle.Year}"></TextBlock>
+                        <TextBlock Grid.Column="2" Text="{Binding StandingBid}"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
