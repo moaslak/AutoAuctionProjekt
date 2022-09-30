@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"> Welcome</TextBlock>
         <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"> My Auctions</TextBlock>
-        <ListView x:Name="auctionListBx" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,0" ItemsSource="{Binding auction}" SelectionChanged="auctionListBx_SelectionChanged">
+        <ListView x:Name="auctionListBx" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,0" ItemsSource="{Binding Auctions}" SelectionChanged="auctionListBx_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -36,14 +36,14 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{Binding Name}">Name</TextBlock>
-                        <TextBlock Grid.Column="1" Text="{Binding Bid}">Bid</TextBlock>
-                        <TextBlock Grid.Column="2" Text="{Binding Bid}"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Year}">Year</TextBlock>
+                        <TextBlock Grid.Column="2" Text="{Binding Bid}">Bid</TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <TextBlock Text="All Auctions" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-        <ListView x:Name="allAuctionListBx" Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,10" SelectionChanged="allAuctionListBx_SelectionChanged">
+        <ListView x:Name="allAuctionListBx" Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,10" Background="White" SelectionChanged="allAuctionListBx_SelectionChanged" ItemsSource="{Binding Auctions}" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -57,9 +57,9 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Name}"></TextBlock>
-                        <TextBlock Grid.Column="1" Text="{Binding Year}"></TextBlock>
-                        <TextBlock Grid.Column="2" Text="{Binding Bid}"></TextBlock>
+                        <TextBlock Grid.Column="0" Text="{Binding Vehicle.Name}"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Vehicle.Year}"></TextBlock>
+                        <TextBlock Grid.Column="2" Text="{Binding StandingBid}"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

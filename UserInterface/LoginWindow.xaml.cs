@@ -36,7 +36,7 @@ namespace UserInterface
                     privateUser.LoginOK(privateUser.UserName, privateUser.Password);
                     privateUser.ToString();
 
-                    MainWindow mainWindow = new MainWindow();
+                    MainWindow mainWindow = new MainWindow(privateUser);
                     this.Hide();
                     mainWindow.Show();
                 }
@@ -52,7 +52,7 @@ namespace UserInterface
                 {
                     corporateUser.LoginOK(corporateUser.UserName, corporateUser.Password);
                     corporateUser.ToString();
-                    MainWindow mainWindow = new MainWindow();
+                    MainWindow mainWindow = new MainWindow(corporateUser);
                     this.Hide();
                     mainWindow.Show();
                 }

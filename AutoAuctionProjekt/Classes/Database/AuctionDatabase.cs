@@ -21,7 +21,10 @@ namespace AutoAuctionProjekt.Classes
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@VehicleID", SqlDbType.Int).Value = type.Vehicle.ID;
             cmd.Parameters.Add("@Seller", SqlDbType.VarChar).Value = type.Seller.UserName;
-            cmd.Parameters.Add("@Buyer", SqlDbType.VarChar).Value = type.Buyer.UserName;
+            if (type.Buyer == null)
+                cmd.Parameters.Add("@Buyer", SqlDbType.VarChar).Value = "";
+            else
+                cmd.Parameters.Add("@Buyer", SqlDbType.VarChar).Value = type.Buyer.UserName;
             cmd.Parameters.Add("@MinimumPrice", SqlDbType.Decimal).Value = type.MinimumPrice;
             cmd.Parameters.Add("@StandingBid", SqlDbType.Decimal).Value = type.StandingBid;
             cmd.Parameters.Add("@ClosingDate", SqlDbType.DateTime).Value = type.ClosingDate;
@@ -70,9 +73,9 @@ namespace AutoAuctionProjekt.Classes
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                Bus bus = new Bus("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, EnergyClassEnum.A, DriversLisenceEnum.A, false);
+                Bus b = new Bus("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, EnergyClassEnum.A, DriversLisenceEnum.A, false);
                 PrivateUser privateUser = new PrivateUser("", "", "", "");
-                Auction auction = new Auction(bus, privateUser, 0, DateTime.Now);
+                Auction auction = new Auction(b, privateUser, 0, DateTime.Now);
                 auction.Buyer = privateUser;
                 auction.SetID(Convert.ToUInt16(reader.GetValue(0)));
                 auction.Vehicle.SetId(Convert.ToUInt16(reader.GetValue(1)));
@@ -90,6 +93,49 @@ namespace AutoAuctionProjekt.Classes
                 auctions.Add(auction);
             }
             connection.Close();
+            Bus bus = new Bus("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, EnergyClassEnum.A, DriversLisenceEnum.A, false);
+            Truck truck = new Truck("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), EnergyClassEnum.A, DriversLisenceEnum.A, 0);
+            PrivatePersonalCar privatePersonalCar = new PrivatePersonalCar("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, 0, new PersonalCar.TrunkDimentionsStruct(0, 0, 0), false, DriversLisenceEnum.A, EnergyClassEnum.A);
+            ProfessionalPersonalCar professionalPersonalCar = new ProfessionalPersonalCar("", 0, "", 0, 5, 5, 5, FuelTypeEnum.Diesel, 0, new PersonalCar.TrunkDimentionsStruct(0, 0, 0), false, 0, DriversLisenceEnum.A, EnergyClassEnum.A);
+            List<Bus> buses = DatabaseGet(bus);
+            List<Truck> trucks = DatabaseGet(truck);
+            List<PrivatePersonalCar> privatePersonalCars = DatabaseGet(privatePersonalCar);
+            List<ProfessionalPersonalCar> professionalPersonalCars = DatabaseGet(professionalPersonalCar);
+
+            List<uint> busIDs = new List<uint>();
+            List<uint> truckIDs = new List<uint>();
+            List<uint> privateCarIDs = new List<uint>();
+            List<uint> profCarIDs = new List<uint>();
+            
+            foreach(Bus b in buses)
+                busIDs.Add(b.ID);
+            foreach(Truck t in trucks)
+                truckIDs.Add(t.ID);
+            foreach(PrivatePersonalCar p in privatePersonalCars)
+                privateCarIDs.Add(p.ID);
+            foreach (ProfessionalPersonalCar professional in professionalPersonalCars)
+                profCarIDs.Add(professional.ID);
+
+            foreach(Auction a in auctions)
+            {
+                if (busIDs.Contains(a.Vehicle.ID))
+                {
+                    a.Vehicle = DatabaseSelect(a.Vehicle.ID, bus);
+                }
+                if (truckIDs.Contains(a.Vehicle.ID))
+                {
+                    a.Vehicle = DatabaseSelect(a.Vehicle.ID, truck);
+                }
+                if (privateCarIDs.Contains(a.Vehicle.ID))
+                {
+                    a.Vehicle = DatabaseSelect(a.Vehicle.ID, privatePersonalCar);
+                }
+                if (profCarIDs.Contains(a.Vehicle.ID))
+                {
+                    a.Vehicle = DatabaseSelect(a.Vehicle.ID, professionalPersonalCar);
+                }
+            }
+
             return auctions;
         }
 
