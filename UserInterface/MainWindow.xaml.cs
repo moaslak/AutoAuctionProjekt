@@ -91,6 +91,5 @@ namespace UserInterface
         private void profileBtn_Click(object sender, RoutedEventArgs e)
         {
 
-        }
     }
 }

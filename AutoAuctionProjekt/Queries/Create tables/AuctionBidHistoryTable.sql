@@ -7,3 +7,5 @@ CREATE TABLE AuctionBidHistory(
 	BidDate DateTime,
 	PRIMARY KEY(ID)
 )
+ALTER TABLE AuctionBidHistory
+  ADD Status BIT
