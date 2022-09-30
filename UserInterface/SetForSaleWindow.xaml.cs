@@ -185,7 +185,7 @@ namespace UserInterface
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            MainWindow mainWindow = new MainWindow(User, Auctions);
+            MainWindow mainWindow = new MainWindow(User);
             mainWindow.Show();
         }
 
@@ -265,6 +265,10 @@ namespace UserInterface
             }
 
             Auctions = database.DatabaseGet(Auction);
+            MessageBox.Show("Auction created");
+            this.Close();
+            MainWindow mainWindow = new MainWindow(User,Auctions);
+            mainWindow.Show();
         }
     }
 }
