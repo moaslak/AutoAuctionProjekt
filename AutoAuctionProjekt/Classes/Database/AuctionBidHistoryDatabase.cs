@@ -23,6 +23,7 @@ namespace AutoAuctionProjekt.Classes
             cmd.Parameters.Add("@CurrentHighestBidder", SqlDbType.VarChar).Value = auctionBid.Bidder.UserName;
             cmd.Parameters.Add("@StandingBid", SqlDbType.Decimal).Value = auctionBid.Auction.StandingBid;
             cmd.Parameters.Add("@BidDate", SqlDbType.DateTime).Value = auctionBid.BidDate;
+            cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = auctionBid.Auction.Closed;
 
             connection.Open();
             try
@@ -58,6 +59,11 @@ namespace AutoAuctionProjekt.Classes
                 auctionBid.Bidder.UserName = reader.GetValue(2).ToString();
                 auctionBid.Auction.StandingBid = Convert.ToDecimal(reader.GetValue(3));
                 auctionBid.BidDate = Convert.ToDateTime(reader.GetValue(4));
+                bool status = Convert.ToBoolean(reader.GetValue(5));
+                if (status)
+                    auctionBid.Auction.CloseAuction();              
+                else
+                    auctionBid.Auction.OpenAuction();
                 list.Add(auctionBid);
             }
             connection.Close();
@@ -85,6 +91,11 @@ namespace AutoAuctionProjekt.Classes
                 auctionBid.Bidder.UserName = reader.GetValue(2).ToString();
                 auctionBid.Auction.StandingBid = Convert.ToDecimal(reader.GetValue(3));
                 auctionBid.BidDate = Convert.ToDateTime(reader.GetValue(4));
+                bool status = Convert.ToBoolean(reader.GetValue(5));
+                if (status)
+                    auctionBid.Auction.CloseAuction();
+                else
+                    auctionBid.Auction.OpenAuction();
                 list.Add(auctionBid);
             }
             connection.Close();
