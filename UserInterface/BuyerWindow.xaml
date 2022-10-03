@@ -95,6 +95,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <Button x:Name="BidBtn" Grid.Column="1" Grid.Row="1" Height="35" Width="120" HorizontalAlignment="Right" Margin="0,0,10,0" Background="Red" Click="BidBtn_Click">BID</Button>
+        <Button x:Name="SellBtn" Grid.Column="1" Grid.Row="1" Height="35" Width="120" HorizontalAlignment="Left" Margin="10,0,0,0" Background="Green" Click="SellBtn_Click">Sell now</Button>
         <TextBlock x:Name="CurrentHighBidderTextblock" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top">You are the current highest bidder</TextBlock> 
     </Grid>
 </Window>
