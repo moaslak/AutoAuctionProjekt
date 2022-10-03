@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"> Welcome</TextBlock>
         <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"> My Auctions</TextBlock>
-        <ListView x:Name="auctionListBx" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,0" ItemsSource="{Binding Auctions}" SelectionChanged="auctionListBx_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView x:Name="auctionListBx" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,0" ItemsSource="{Binding MyAuctions}" SelectionChanged="auctionListBx_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>

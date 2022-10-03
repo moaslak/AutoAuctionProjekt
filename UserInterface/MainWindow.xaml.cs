@@ -1,6 +1,8 @@
 ﻿using AutoAuctionProjekt.Classes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,24 +28,46 @@ namespace UserInterface
             this.User = user;
         }
 
-        public MainWindow(User user, List<Auction> auctions)
+        public MainWindow(User user, List<Auction> auctions, List<Auction> myAuctions)
         {
             InitializeComponent();
             this.User = user;
             this.Auctions = auctions;
-                
-            foreach (Auction auction in Auctions)
-            {
-                allAuctionListBx.Items.Add(auction);  
-            }
+            this.MyAuctions = myAuctions;
 
-                
-                    
+            Database database = new Database();
+            /*Bus b = new Bus("4", 4, "4", 4, 4, false, 5, 5, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(4, 4, 4), 4, 4, Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, false);
+            Bus b1 = new Bus("5", 5, "5", 5000, 5, false, 5, 5, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(4, 4, 4), 4, 4, Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, false);
+
+            Bus b2 = database.DatabaseSelect(Auctions[0].Vehicle.ID,b);
+
+            Auction a = new Auction(b, User, 500, DateTime.Now);
+            Auction a1 = new Auction(b1, User, 500, DateTime.Now);
+            Auction a2 = new Auction(b2, User, 500, DateTime.Now);
+            List<Auction> list = new List<Auction>();
+            list.Add(a1);
+            list.Add(a);
+            list.Add(a2);
+            foreach(Auction auc in list)
+            {
+                allAuctionListBx.Items.Add(auc);
+            }*/
+            //auctionListBx.Items.Add(MyAuctions[0]);
+            foreach(Auction a in MyAuctions)
+            {
+                auctionListBx.Items.Add(a);
+            }
+            foreach(Auction a in Auctions)
+            {
+                allAuctionListBx.Items.Add(a);
+            }
         }
 
         public User User { get; set; }
         public List<Auction> Auctions { get; set; }
-        private Auction auction { get; set; } 
+        public List<Auction> MyAuctions { get; set; }
+        private Auction auction { get; set; }
+        public object ItemsSource { get; }
 
         private void auctionBtn_Click(object sender, RoutedEventArgs e)
         {

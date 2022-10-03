@@ -32,7 +32,10 @@ namespace UserInterface
         private User User { get; set; }
         
         private List<Auction> Auctions { get; set; }
+        private List<Auction> MyAuctions { get; set; }
         private Auction Auction { get; set; }
+
+        Database database = new Database();
 
         private void HeavyVehicleSelected()
         {
@@ -185,7 +188,9 @@ namespace UserInterface
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            MainWindow mainWindow = new MainWindow(User);
+            MyAuctions = database.DatabaseGetForUser(Auction, User);
+            Auctions = database.DatabaseGet(Auction);
+            MainWindow mainWindow = new MainWindow(User, Auctions, MyAuctions);
             mainWindow.Show();
         }
 
@@ -196,7 +201,7 @@ namespace UserInterface
 
         private void CreateAuctionBtn_Click(object sender, RoutedEventArgs e)
         {
-            Database database = new Database();
+            
             bool hasTowBar = false;
             if (TowBarCheckBox.IsChecked == true)
                 hasTowBar = true;
@@ -230,7 +235,6 @@ namespace UserInterface
                     List<PrivatePersonalCar> privatePersonalCars = database.DatabaseGet(privatePersonalCar);
                     privatePersonalCar = privatePersonalCars[privatePersonalCars.Count - 1];
                     Auction newAuction = new Auction(privatePersonalCar, User, privatePersonalCar.NewPrice,Convert.ToDateTime(ClosingDateTxtBox.Text));
-                    //newAuction.Buyer = User;
                     database.DatabaseCreate(newAuction);
                 }
 
@@ -241,7 +245,15 @@ namespace UserInterface
                     || ClosingDateTxtBox.Text == "" || TrunkHeightTxtBox.Text == "" || TrunkWidthTxtBox.Text == "" || TrunkDepthTxtBox.Text == ""
                     || EngineSizeTxtBox.Text == "" || NumberOfSeatsTxtBox.Text == "" || LoadCapacityTxtBox.Text == ""))
                 {
-
+                    ProfessionalPersonalCar professionalPersonalCar = new ProfessionalPersonalCar(NameTxtBox.Text, Convert.ToDouble(MilageTxtBox.Text), RegNumTxtBox.Text, Convert.ToUInt16(YearTxtBox.Text),
+                        Convert.ToDecimal(MinPriceTxtBox.Text), Convert.ToDouble(EngineSizeTxtBox.Text), 0, fuelType, Convert.ToUInt16(NumberOfSeatsTxtBox.Text),
+                        new PersonalCar.TrunkDimentionsStruct(Convert.ToDouble(TrunkHeightTxtBox.Text), Convert.ToDouble(TrunkWidthTxtBox.Text), Convert.ToDouble(TrunkDepthTxtBox.Text)), hasSaftyBar,
+                        Convert.ToDouble(LoadCapacityTxtBox.Text), Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
+                    database.DatabaseCreate(professionalPersonalCar);
+                    List<ProfessionalPersonalCar> professionalPersonalCars = database.DatabaseGet(professionalPersonalCar);
+                    professionalPersonalCar = professionalPersonalCars[professionalPersonalCars.Count - 1];
+                    Auction newAuction = new Auction(professionalPersonalCar, User, professionalPersonalCar.NewPrice, Convert.ToDateTime(ClosingDateTxtBox.Text));
+                    database.DatabaseCreate(newAuction);
                 }
 
             }
@@ -251,7 +263,14 @@ namespace UserInterface
                    || ClosingDateTxtBox.Text == "" || HeightTxtBox.Text == "" || LengthTxtBox.Text == "" || WeightTxtBox.Text == "" || EngineSizeTxtBox.Text == ""
                    || LoadCapacityTxtBox.Text == ""))
                 {
-
+                    Truck truck = new Truck(NameTxtBox.Text, Convert.ToDouble(MilageTxtBox.Text), RegNumTxtBox.Text, Convert.ToUInt16(YearTxtBox.Text), Convert.ToDecimal(MinPriceTxtBox.Text), hasTowBar,
+                        Convert.ToDouble(EngineSizeTxtBox.Text), 0, fuelType, new HeavyVehicle.VehicleDimensionsStruct(Convert.ToDouble(HeightTxtBox.Text), Convert.ToDouble(WeightTxtBox.Text), Convert.ToDouble(LengthTxtBox.Text)),
+                        Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, Convert.ToDouble(LoadCapacityTxtBox.Text));
+                    database.DatabaseCreate(truck);
+                    List<Truck> trucks = database.DatabaseGet(truck);
+                    truck = trucks[trucks.Count - 1];
+                    Auction newAuction = new Auction(truck, User, truck.NewPrice, Convert.ToDateTime(ClosingDateTxtBox.Text));
+                    database.DatabaseCreate(newAuction);
                 }
             }
             if(BusRdBtn.IsChecked == true)
@@ -260,14 +279,24 @@ namespace UserInterface
                    || ClosingDateTxtBox.Text == "" || HeightTxtBox.Text == "" || LengthTxtBox.Text == "" || WeightTxtBox.Text == "" || EngineSizeTxtBox.Text == ""
                    || NumberOfSeatsTxtBox.Text == "" || NumberOfSleepingSpacesTxtbox.Text == ""))
                 {
-
+                    Bus bus = new Bus(NameTxtBox.Text, Convert.ToDouble(MilageTxtBox.Text), RegNumTxtBox.Text, Convert.ToUInt16(YearTxtBox.Text), Convert.ToDecimal(MinPriceTxtBox.Text),
+                        hasTowBar, Convert.ToDouble(EngineSizeTxtBox.Text), 0, fuelType, new HeavyVehicle.VehicleDimensionsStruct(Convert.ToDouble(HeightTxtBox.Text), Convert.ToDouble(WeightTxtBox.Text), Convert.ToDouble(LengthTxtBox.Text)),
+                        Convert.ToUInt16(NumberOfSeatsTxtBox.Text), Convert.ToUInt16(NumberOfSleepingSpacesTxtbox.Text), Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, hasToilet);
+                    database.DatabaseCreate(bus);
+                    List<Bus> buses = database.DatabaseGet(bus);
+                    bus = buses[buses.Count - 1];
+                    Auction newAuction = new Auction(bus, User, bus.NewPrice, Convert.ToDateTime(ClosingDateTxtBox.Text));
+                    database.DatabaseCreate(newAuction);
                 }
             }
 
             Auctions = database.DatabaseGet(Auction);
+
             MessageBox.Show("Auction created");
             this.Close();
-            MainWindow mainWindow = new MainWindow(User,Auctions);
+            MyAuctions = database.DatabaseGetForUser(Auction, User);
+            Auctions = database.DatabaseGet(Auction);
+            MainWindow mainWindow = new MainWindow(User,Auctions, MyAuctions);
             mainWindow.Show();
         }
     }

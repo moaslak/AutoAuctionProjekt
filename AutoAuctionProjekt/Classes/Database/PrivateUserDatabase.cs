@@ -138,6 +138,7 @@ namespace AutoAuctionProjekt.Classes
             connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             PrivateUser privateUser = new PrivateUser("", "", "", "");
+            bool userFound = false;
             while (reader.Read())
             {
                 privateUser.SetID(Convert.ToUInt16(reader.GetValue(1)));
@@ -148,8 +149,12 @@ namespace AutoAuctionProjekt.Classes
                 privateUser.UserZipCode = reader.GetString(5);
                 privateUser.Balance = Convert.ToDecimal(reader.GetValue(6));
                 privateUser.Zipcode = reader.GetString(7);
+                userFound = true;
             }
-            return privateUser;
+            if (userFound)
+                return privateUser;
+            else
+                return null;
         }
 
         public PrivateUser DatabaseUpdate(PrivateUser updatedType)

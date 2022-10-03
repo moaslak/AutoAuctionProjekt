@@ -143,6 +143,7 @@ namespace AutoAuctionProjekt.Classes
             connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             CorporateUser corporateUser = new CorporateUser("", "", "", "",0);
+            bool userFound = false;
             while (reader.Read())
             {
                 corporateUser.SetID(Convert.ToUInt16(reader.GetValue(1)));
@@ -154,9 +155,12 @@ namespace AutoAuctionProjekt.Classes
                 corporateUser.UserZipCode = reader.GetString(6);
                 corporateUser.Balance = Convert.ToDecimal(reader.GetValue(7));
                 corporateUser.Zipcode = reader.GetString(8);
+                userFound = true;
             }
-            return corporateUser;
-            throw new NotImplementedException();
+            if(userFound)
+                return corporateUser;
+            else
+                return null;
         }
 
         public CorporateUser DatabaseUpdate(CorporateUser updatedType)

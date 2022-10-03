@@ -118,6 +118,7 @@ namespace AutoAuctionProjekt.Classes
 
             foreach(Auction a in auctions)
             {
+                bus = DatabaseSelect(62,bus);
                 if (busIDs.Contains(a.Vehicle.ID))
                 {
                     a.Vehicle = DatabaseSelect(a.Vehicle.ID, bus);

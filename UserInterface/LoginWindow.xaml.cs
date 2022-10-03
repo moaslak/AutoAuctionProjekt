@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
 using AutoAuctionProjekt.Classes;
+using System.Collections.Generic;
 
 namespace UserInterface
 {
@@ -26,42 +27,50 @@ namespace UserInterface
         {
             DatabaseConnection databaseConnection = new();
             Database database = new Database();
-            PrivateUser privateUser = database.DatabaseSelect(UserTxtbox.Text, new PrivateUser("", "", "", ""));
-            CorporateUser corporateUser = database.DatabaseSelect(UserTxtbox.Text, new CorporateUser("", "", "", "", 0));
-
-            if (privateUser != null)
+            try
             {
-                try
+                PrivateUser privateUser = database.DatabaseSelect(UserTxtbox.Text, new PrivateUser("", "", "", ""));
+                CorporateUser corporateUser = database.DatabaseSelect(UserTxtbox.Text, new CorporateUser("", "", "", "", 0));
+                Auction auction = null;
+                List<Auction> auctions = database.DatabaseGet(auction);
+                if (privateUser != null)
                 {
-                    privateUser.LoginOK(privateUser.UserName, privateUser.Password);
-                    privateUser.ToString();
+                    try
+                    {
+                        privateUser.LoginOK(privateUser.UserName, privateUser.Password);
+                        privateUser.ToString();
+                        List<Auction> myAuctions = database.DatabaseGetForUser(auction, privateUser);
+                        MainWindow mainWindow = new MainWindow(privateUser, auctions, myAuctions);
+                        this.Hide();
+                        mainWindow.Show();
+                    }
+                    catch (Exception ex)
+                    {
 
-                    MainWindow mainWindow = new MainWindow(privateUser);
-                    this.Hide();
-                    mainWindow.Show();
+                        throw new ArgumentException("Wrong login", ex);
+                    }
                 }
-                catch (Exception ex)
+                else if (corporateUser != null)
                 {
+                    try
+                    {
+                        corporateUser.LoginOK(corporateUser.UserName, corporateUser.Password);
+                        corporateUser.ToString();
+                        MainWindow mainWindow = new MainWindow(corporateUser);
+                        this.Hide();
+                        mainWindow.Show();
+                    }
+                    catch (Exception ex)
+                    {
 
-                    throw new ArgumentException("Wrong login", ex);
+                        throw new ArgumentException("Wrong login", ex);
+                    }
                 }
-            }
-            else if(corporateUser != null)
+            } catch(Exception ex)
             {
-                try
-                {
-                    corporateUser.LoginOK(corporateUser.UserName, corporateUser.Password);
-                    corporateUser.ToString();
-                    MainWindow mainWindow = new MainWindow(corporateUser);
-                    this.Hide();
-                    mainWindow.Show();
-                }
-                catch (Exception ex)
-                {
-
-                    throw new ArgumentException("Wrong login", ex);
-                }
+                Console.WriteLine(ex.Message);
             }
+            
         }
 
         private void CreateUserBtn_Click(object sender, RoutedEventArgs e)
