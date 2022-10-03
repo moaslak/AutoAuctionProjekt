@@ -1,0 +1,41 @@
+﻿<Window x:Class="UserInterface.BidHistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserInterface"
+        mc:Ignorable="d"
+        Title="BidHistoryWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30">Your bid history</TextBlock>
+        <ListView x:Name="auctionBidsListBx" Grid.Row="1" Grid.RowSpan="1" Margin="10,0,10,0" ItemsSource="{Binding auctionBids}" SelectionChanged="auctionListBx_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="NameField" Grid.Column="0" Text="{Binding Auction.Vehicle.Name}"></TextBlock>
+                        <TextBlock x:Name="YearField" Grid.Column="1" Text="{Binding Auction.Vehicle.Year}"></TextBlock>
+                        <TextBlock x:Name="BidField" Grid.Column="2" Text="{Binding Auction.StandingBid}"></TextBlock>
+                        <TextBlock x:Name="FinalField" Grid.Column="3" Text=""></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="BackBtn" Grid.Row="2" Height="40" Width="80" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="BackBtn_Click">Back</Button>
+    </Grid>
+</Window>

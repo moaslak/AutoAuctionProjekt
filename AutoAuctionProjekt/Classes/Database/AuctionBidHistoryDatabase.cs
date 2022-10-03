@@ -80,7 +80,41 @@ namespace AutoAuctionProjekt.Classes
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
             SqlCommand cmd = new SqlCommand("dbo.SelectAuctionBidHistoryByAuctionID", connection);
+            cmd.Parameters.Add("@AuctionID", SqlDbType.Int).Value = AuctionID;
             cmd.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                AuctionBid auctionBid = new AuctionBid(auction, privateUser);
+                auctionBid.SetID(Convert.ToUInt16(reader.GetValue(0)));
+                auctionBid.Auction.SetID(Convert.ToUInt16(reader.GetValue(1)));
+                auctionBid.Bidder.UserName = reader.GetValue(2).ToString();
+                auctionBid.Auction.StandingBid = Convert.ToDecimal(reader.GetValue(3));
+                auctionBid.BidDate = Convert.ToDateTime(reader.GetValue(4));
+                bool status = Convert.ToBoolean(reader.GetValue(5));
+                if (status)
+                    auctionBid.Auction.CloseAuction();
+                else
+                    auctionBid.Auction.OpenAuction();
+                list.Add(auctionBid);
+            }
+            connection.Close();
+            return list;
+        }
+
+        public List<AuctionBid> SelectAuctionBidHistory(string username)
+        {
+            List<AuctionBid> list = new List<AuctionBid>();
+            Bus bus = new Bus("", 0, "", 0, 0, false, 5, 5, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, false);
+            PrivateUser privateUser = new PrivateUser("", "", "", "");
+            DateTime dateTime = Convert.ToDateTime("2022-10-10 00:00:00.000");
+            Auction auction = new Auction(bus, privateUser, 0, dateTime);
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            SqlConnection connection = databaseConnection.SetSqlConnection();
+            SqlCommand cmd = new SqlCommand("dbo.SelectAuctionBidHistoryByUsername", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Username", SqlDbType.VarChar).Value = username;
             connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())

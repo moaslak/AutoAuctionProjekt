@@ -108,7 +108,9 @@ namespace UserInterface
 
         private void bidHistoryBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
+            BidHistoryWindow bidHistoryWindow = new BidHistoryWindow(User);
+            bidHistoryWindow.Show();
         }
 
         private void profileBtn_Click(object sender, RoutedEventArgs e)
