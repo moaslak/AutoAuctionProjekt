@@ -22,10 +22,22 @@ namespace UserInterface
     /// </summary>
     public partial class MainWindow : Window
     {
+        Database database = new Database();
         public MainWindow(User user)
         {
             InitializeComponent();
             this.User = user;
+            this.Auctions = database.DatabaseGet(auction);
+            this.MyAuctions = database.DatabaseGetForUser(auction, User);
+            
+            foreach (Auction a in MyAuctions)
+            {
+                auctionListBx.Items.Add(a);
+            }
+            foreach (Auction a in Auctions)
+            {
+                allAuctionListBx.Items.Add(a);
+            }
         }
 
         public MainWindow(User user, List<Auction> auctions, List<Auction> myAuctions)
@@ -35,29 +47,11 @@ namespace UserInterface
             this.Auctions = auctions;
             this.MyAuctions = myAuctions;
 
-            Database database = new Database();
-            /*Bus b = new Bus("4", 4, "4", 4, 4, false, 5, 5, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(4, 4, 4), 4, 4, Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, false);
-            Bus b1 = new Bus("5", 5, "5", 5000, 5, false, 5, 5, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(4, 4, 4), 4, 4, Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, false);
-
-            Bus b2 = database.DatabaseSelect(Auctions[0].Vehicle.ID,b);
-
-            Auction a = new Auction(b, User, 500, DateTime.Now);
-            Auction a1 = new Auction(b1, User, 500, DateTime.Now);
-            Auction a2 = new Auction(b2, User, 500, DateTime.Now);
-            List<Auction> list = new List<Auction>();
-            list.Add(a1);
-            list.Add(a);
-            list.Add(a2);
-            foreach(Auction auc in list)
-            {
-                allAuctionListBx.Items.Add(auc);
-            }*/
-            //auctionListBx.Items.Add(MyAuctions[0]);
-            foreach(Auction a in MyAuctions)
+            foreach (Auction a in MyAuctions)
             {
                 auctionListBx.Items.Add(a);
             }
-            foreach(Auction a in Auctions)
+            foreach (Auction a in Auctions)
             {
                 allAuctionListBx.Items.Add(a);
             }
@@ -86,14 +80,16 @@ namespace UserInterface
 
         private void auctionListBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            Object selectedAuction = auctionListBx.SelectedItem;
+            BuyerWindow buyerWindow = new BuyerWindow((Auction)selectedAuction, User);
+            this.Close();
+            buyerWindow.Show();
         }
 
         private void createBtn_Click(object sender, RoutedEventArgs e)
         {
-            //CreateAuction createAuction = new CreateAuction();
             SetForSaleWindow setForSaleWindow = new SetForSaleWindow(User);
-            this.Hide();
+            this.Close();
             setForSaleWindow.Show();
         }
 
@@ -104,7 +100,10 @@ namespace UserInterface
 
         private void allAuctionListBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            Object selectedAuction = allAuctionListBx.SelectedItem;
+            BuyerWindow buyerWindow = new BuyerWindow((Auction)selectedAuction, User);
+            this.Hide();
+            buyerWindow.Show();
         }
 
         private void bidHistoryBtn_Click(object sender, RoutedEventArgs e)
@@ -115,5 +114,6 @@ namespace UserInterface
         private void profileBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
     }
 }

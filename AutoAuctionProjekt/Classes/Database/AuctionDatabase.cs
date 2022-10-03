@@ -65,6 +65,8 @@ namespace AutoAuctionProjekt.Classes
         public List<Auction> DatabaseGet(Auction type)
         {
             List<Auction> auctions = new List<Auction>();
+            List<string> sellers = new List<string>();
+            List<string> buyers = new List<string>();
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
             SqlCommand cmd = new SqlCommand("dbo.GetAuctions", connection);
@@ -79,8 +81,12 @@ namespace AutoAuctionProjekt.Classes
                 auction.Buyer = privateUser;
                 auction.SetID(Convert.ToUInt16(reader.GetValue(0)));
                 auction.Vehicle.SetId(Convert.ToUInt16(reader.GetValue(1)));
-                auction.Seller.UserName = reader.GetValue(2).ToString();
-                auction.Buyer.UserName = reader.GetValue(3).ToString();
+                sellers.Add(reader.GetValue(2).ToString());
+                buyers.Add(reader.GetValue(3).ToString());
+                //auction.Seller.UserName = reader.GetValue(2).ToString();
+                //auction.Buyer.UserName = reader.GetValue(3).ToString();
+                auction.SellerName = reader.GetValue(2).ToString();
+                auction.BuyerName = reader.GetValue(3).ToString();
                 auction.MinimumPrice = Convert.ToDecimal(reader.GetValue(4));
                 auction.StandingBid = Convert.ToDecimal(reader.GetValue(5));
                 auction.ClosingDate = Convert.ToDateTime(reader.GetValue(6));
@@ -116,9 +122,22 @@ namespace AutoAuctionProjekt.Classes
             foreach (ProfessionalPersonalCar professional in professionalPersonalCars)
                 profCarIDs.Add(professional.ID);
 
-            foreach(Auction a in auctions)
+            PrivateUser pUser = new PrivateUser("", "", "", "");
+            CorporateUser cUser = new CorporateUser("", "", "", "", 0);
+
+            List<PrivateUser> privateUsers = DatabaseGet(pUser);
+            List<CorporateUser> corporateUsers = DatabaseGet(cUser);
+
+            List<string> privateIDs = new List<string>();
+            List<string> corporateIDs = new List<string>();
+
+            foreach (PrivateUser p in privateUsers)
+                privateIDs.Add(p.UserName);
+            foreach (CorporateUser c in corporateUsers)
+                corporateIDs.Add(c.UserName);
+
+            foreach (Auction a in auctions)
             {
-                bus = DatabaseSelect(62,bus);
                 if (busIDs.Contains(a.Vehicle.ID))
                 {
                     a.Vehicle = DatabaseSelect(a.Vehicle.ID, bus);
@@ -135,6 +154,23 @@ namespace AutoAuctionProjekt.Classes
                 {
                     a.Vehicle = DatabaseSelect(a.Vehicle.ID, professionalPersonalCar);
                 }
+                if (privateIDs.Contains(a.SellerName))
+                {
+                    a.Seller = DatabaseSelect(a.SellerName, pUser);
+                }
+                if (corporateIDs.Contains(a.SellerName))
+                {
+                    a.Seller = DatabaseSelect(a.SellerName, cUser);
+                }
+                if (privateIDs.Contains(a.BuyerName))
+                {
+                    a.Buyer = DatabaseSelect(a.BuyerName, pUser);
+                }
+                if (corporateIDs.Contains(a.BuyerName))
+                {
+                    a.Buyer = DatabaseSelect(a.BuyerName, cUser);
+                }
+
             }
 
             return auctions;
@@ -143,6 +179,8 @@ namespace AutoAuctionProjekt.Classes
         public List<Auction> DatabaseGetForUser(Auction type, User user)
         {
             List<Auction> auctions = new List<Auction>();
+            List<string> sellers = new List<string>();
+            List<string> buyers = new List<string>();
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
             SqlCommand cmd = new SqlCommand("dbo.SelectAuctionsForUser", connection);
@@ -158,8 +196,12 @@ namespace AutoAuctionProjekt.Classes
                 auction.Buyer = privateUser;
                 auction.SetID(Convert.ToUInt16(reader.GetValue(0)));
                 auction.Vehicle.SetId(Convert.ToUInt16(reader.GetValue(1)));
-                auction.Seller.UserName = reader.GetValue(2).ToString();
-                auction.Buyer.UserName = reader.GetValue(3).ToString();
+                sellers.Add(reader.GetValue(2).ToString());
+                buyers.Add(reader.GetValue(3).ToString());
+                //auction.Seller.UserName = reader.GetValue(2).ToString();
+                //auction.Buyer.UserName = reader.GetValue(3).ToString();
+                auction.SellerName = reader.GetValue(2).ToString();
+                auction.BuyerName = reader.GetValue(3).ToString();
                 auction.MinimumPrice = Convert.ToDecimal(reader.GetValue(4));
                 auction.StandingBid = Convert.ToDecimal(reader.GetValue(5));
                 auction.ClosingDate = Convert.ToDateTime(reader.GetValue(6));
@@ -172,6 +214,7 @@ namespace AutoAuctionProjekt.Classes
                 auctions.Add(auction);
             }
             connection.Close();
+
             Bus bus = new Bus("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, EnergyClassEnum.A, DriversLisenceEnum.A, false);
             Truck truck = new Truck("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), EnergyClassEnum.A, DriversLisenceEnum.A, 0);
             PrivatePersonalCar privatePersonalCar = new PrivatePersonalCar("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, 0, new PersonalCar.TrunkDimentionsStruct(0, 0, 0), false, DriversLisenceEnum.A, EnergyClassEnum.A);
@@ -195,6 +238,20 @@ namespace AutoAuctionProjekt.Classes
             foreach (ProfessionalPersonalCar professional in professionalPersonalCars)
                 profCarIDs.Add(professional.ID);
 
+            PrivateUser pUser = new PrivateUser("", "", "", "");
+            CorporateUser cUser = new CorporateUser("", "", "", "", 0);
+
+            List<PrivateUser> privateUsers = DatabaseGet(pUser);
+            List<CorporateUser> corporateUsers = DatabaseGet(cUser);
+
+            List<string> privateIDs = new List<string>();
+            List<string> corporateIDs = new List<string>();
+
+            foreach (PrivateUser p in privateUsers)
+                privateIDs.Add(p.UserName);
+            foreach (CorporateUser c in corporateUsers)
+                corporateIDs.Add(c.UserName);
+
             foreach (Auction a in auctions)
             {
                 if (busIDs.Contains(a.Vehicle.ID))
@@ -213,6 +270,23 @@ namespace AutoAuctionProjekt.Classes
                 {
                     a.Vehicle = DatabaseSelect(a.Vehicle.ID, professionalPersonalCar);
                 }
+                if (privateIDs.Contains(a.SellerName))
+                {
+                    a.Seller = DatabaseSelect(a.SellerName, pUser);
+                }
+                if (corporateIDs.Contains(a.SellerName))
+                {
+                    a.Seller = DatabaseSelect(a.SellerName, cUser);
+                }
+                if (privateIDs.Contains(a.BuyerName))
+                {
+                    a.Buyer = DatabaseSelect(a.BuyerName, pUser);
+                }
+                if (corporateIDs.Contains(a.BuyerName))
+                {
+                    a.Buyer = DatabaseSelect(a.BuyerName, cUser);
+                }
+
             }
 
             return auctions;

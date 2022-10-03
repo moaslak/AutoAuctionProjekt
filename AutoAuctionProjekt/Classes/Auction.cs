@@ -54,6 +54,10 @@ namespace AutoAuctionProjekt.Classes
         {
             this.Closed = false;
         }
+
+        public string SellerName { get; set; }
+        public string BuyerName { get; set; }
+
         /// <summary>
         /// The seller of the auction
         /// </summary>
