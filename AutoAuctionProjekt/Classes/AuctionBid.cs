@@ -26,7 +26,7 @@ namespace AutoAuctionProjekt.Classes
         {
             try
             {
-                if (BidDate > auction.ClosingDate && auction.Closed==false && newBid > auction.StandingBid)
+                if (BidDate.CompareTo(auction.ClosingDate) < 0 && auction.Closed==false && newBid > auction.StandingBid)
                 {
                     auction.StandingBid = newBid;
                     auction.Buyer = Bidder;

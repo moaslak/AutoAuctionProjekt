@@ -235,7 +235,9 @@ namespace UserInterface
                     List<PrivatePersonalCar> privatePersonalCars = database.DatabaseGet(privatePersonalCar);
                     privatePersonalCar = privatePersonalCars[privatePersonalCars.Count - 1];
                     Auction newAuction = new Auction(privatePersonalCar, User, privatePersonalCar.NewPrice,Convert.ToDateTime(ClosingDateTxtBox.Text));
+                    newAuction.Seller.UserName = User.UserName;
                     database.DatabaseCreate(newAuction);
+                    MessageBox.Show("Auction created");
                 }
 
             }
@@ -253,7 +255,9 @@ namespace UserInterface
                     List<ProfessionalPersonalCar> professionalPersonalCars = database.DatabaseGet(professionalPersonalCar);
                     professionalPersonalCar = professionalPersonalCars[professionalPersonalCars.Count - 1];
                     Auction newAuction = new Auction(professionalPersonalCar, User, professionalPersonalCar.NewPrice, Convert.ToDateTime(ClosingDateTxtBox.Text));
+                    newAuction.Seller.UserName = User.UserName;
                     database.DatabaseCreate(newAuction);
+                    MessageBox.Show("Auction created");
                 }
 
             }
@@ -270,7 +274,9 @@ namespace UserInterface
                     List<Truck> trucks = database.DatabaseGet(truck);
                     truck = trucks[trucks.Count - 1];
                     Auction newAuction = new Auction(truck, User, truck.NewPrice, Convert.ToDateTime(ClosingDateTxtBox.Text));
+                    newAuction.Seller.UserName = User.UserName;
                     database.DatabaseCreate(newAuction);
+                    MessageBox.Show("Auction created");
                 }
             }
             if(BusRdBtn.IsChecked == true)
@@ -286,13 +292,15 @@ namespace UserInterface
                     List<Bus> buses = database.DatabaseGet(bus);
                     bus = buses[buses.Count - 1];
                     Auction newAuction = new Auction(bus, User, bus.NewPrice, Convert.ToDateTime(ClosingDateTxtBox.Text));
+                    newAuction.Seller.UserName = User.UserName;
                     database.DatabaseCreate(newAuction);
+                    MessageBox.Show("Auction created");
                 }
             }
 
             Auctions = database.DatabaseGet(Auction);
 
-            MessageBox.Show("Auction created");
+            
             this.Close();
             MyAuctions = database.DatabaseGetForUser(Auction, User);
             Auctions = database.DatabaseGet(Auction);
