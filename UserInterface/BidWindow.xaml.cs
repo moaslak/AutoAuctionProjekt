@@ -20,11 +20,11 @@ namespace UserInterface
     /// </summary>
     public partial class BidWindow : Window
     {
-        public BidWindow(AuctionBid auctionBid, User buyer, BuyerWindow buyerWindow)
+        public BidWindow(AuctionBid auctionBid, User user, BuyerWindow buyerWindow)
         {
             InitializeComponent();
             this.AuctionBid = auctionBid;
-            this.Buyer = buyer;
+            this.User = user;
             this.BuyerWindow = buyerWindow;
         }
 
@@ -36,6 +36,9 @@ namespace UserInterface
 
         private void BidBtn_Click(object sender, RoutedEventArgs e)
         {
+            Database database = new Database();
+            pBuyer = database.DatabaseSelect(User.UserName, pBuyer);
+            cBuyer = database.DatabaseSelect(User.UserName, cBuyer);
             bool fundsOK = false;
             if(cBuyer != null)
             {
