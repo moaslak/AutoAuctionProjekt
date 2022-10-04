@@ -29,14 +29,16 @@ namespace UserInterface
             this.User = user;
             this.Auctions = database.DatabaseGet(auction);
             this.MyAuctions = database.DatabaseGetForUser(auction, User);
-            
+
             foreach (Auction a in MyAuctions)
             {
-                auctionListBx.Items.Add(a);
+                if (!(a.Closed))
+                    auctionListBx.Items.Add(a);
             }
             foreach (Auction a in Auctions)
             {
-                allAuctionListBx.Items.Add(a);
+                if (!(a.Closed) && !(a.Seller.UserName == User.UserName || a.Buyer.UserName == User.UserName))
+                    allAuctionListBx.Items.Add(a);
             }
         }
 
@@ -49,11 +51,13 @@ namespace UserInterface
 
             foreach (Auction a in MyAuctions)
             {
-                auctionListBx.Items.Add(a);
+                if(!(a.Closed))
+                    auctionListBx.Items.Add(a);
             }
             foreach (Auction a in Auctions)
             {
-                allAuctionListBx.Items.Add(a);
+                if (!(a.Closed) && !(a.Seller.UserName == User.UserName || a.Buyer.UserName == User.UserName))
+                    allAuctionListBx.Items.Add(a);
             }
         }
 
