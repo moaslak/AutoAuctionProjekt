@@ -39,8 +39,6 @@ namespace UserInterface
                     ab.Status = "";
                 auctionBidsListBx.Items.Add(ab);
             }
-                
-            
         }
 
         public User User { get; set; }
