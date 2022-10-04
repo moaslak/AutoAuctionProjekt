@@ -115,7 +115,9 @@ namespace UserInterface
 
         private void profileBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
+            ProfileWindow profileWindow = new ProfileWindow(User);
+            profileWindow.Show();
         }
     }
 }

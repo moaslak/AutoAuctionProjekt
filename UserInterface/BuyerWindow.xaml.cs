@@ -30,7 +30,7 @@ namespace UserInterface
             BidBtn.Visibility = Visibility.Hidden;
             SellBtn.Visibility = Visibility.Hidden;
             if (Auction.Buyer.UserName == User.UserName && !(Auction.Closed) || Auction.Seller.UserName == User.UserName )
-            {
+            {       
                 BidBtn.Visibility = Visibility.Hidden;
                 CurrentHighBidderTextblock.Visibility = Visibility.Visible;
                 if (Auction.Seller.UserName == User.UserName)
