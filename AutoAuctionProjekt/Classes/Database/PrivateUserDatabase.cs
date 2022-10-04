@@ -95,7 +95,6 @@ namespace AutoAuctionProjekt.Classes
                 privateUser.SetID(Convert.ToUInt16(reader.GetValue(0)));
                 privateUser.UserName = reader.GetString(2);
                 privateUser.CPRNumber = reader.GetString(3);
-                //TODO: VALIDATE PASSWORD
                 privateUser.Password = reader.GetString(4);
                 privateUser.UserZipCode = reader.GetString(5);
                 privateUser.Balance = Convert.ToDecimal(reader.GetValue(6));
@@ -120,7 +119,6 @@ namespace AutoAuctionProjekt.Classes
                 privateUser.SetID(Convert.ToUInt16(reader.GetValue(1)));
                 privateUser.UserName = reader.GetString(2);
                 privateUser.CPRNumber = reader.GetString(3);
-                //TODO: VALIDATE PASSWORD
                 privateUser.Password = reader.GetString(4);
                 privateUser.UserZipCode = reader.GetString(5);
                 privateUser.Balance = Convert.ToDecimal(reader.GetValue(6));
@@ -145,7 +143,6 @@ namespace AutoAuctionProjekt.Classes
                 privateUser.SetID(Convert.ToUInt16(reader.GetValue(1)));
                 privateUser.UserName = reader.GetString(2);
                 privateUser.CPRNumber = reader.GetString(3);
-                //TODO: VALIDATE PASSWORD
                 privateUser.Password = reader.GetString(4);
                 privateUser.UserZipCode = reader.GetString(5);
                 privateUser.Balance = Convert.ToDecimal(reader.GetValue(6));

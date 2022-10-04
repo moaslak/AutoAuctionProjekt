@@ -122,7 +122,6 @@ namespace AutoAuctionProjekt.Classes
                 outputString = outputString + vehicle.ToString() + "\n";
 
             return outputString;
-            //TODO: return formatted string with vehicles from list
         }
         /// <summary>
         /// Makes a string of ISellers from a list.
