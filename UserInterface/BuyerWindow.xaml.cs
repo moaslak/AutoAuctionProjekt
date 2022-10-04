@@ -56,6 +56,13 @@ namespace UserInterface
                 CurrentHighBidderTextblock.Text = "Auction is closed";
                 SellBtn.Visibility = Visibility.Hidden;
             }
+
+            if(Auction.Seller.UserName == User.UserName)
+            {
+                SellBtn.Visibility = Visibility.Visible;
+                BidBtn.Visibility= Visibility.Hidden;
+                CurrentHighBidderTextblock.Visibility= Visibility.Hidden;
+            }
                 
             auctionListBx.Items.Add(Auction);
             ClosingDateAndStandingBidList.Items.Add(Auction);

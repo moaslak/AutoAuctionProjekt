@@ -20,25 +20,62 @@ namespace UserInterface
     /// </summary>
     public partial class BidWindow : Window
     {
-        public BidWindow(AuctionBid auctionBid, User buyer, BuyerWindow buyerWindow)
+        Database database = new Database();
+        public BidWindow(AuctionBid auctionBid, PrivateUser buyer, BuyerWindow buyerWindow)
         {
             InitializeComponent();
             this.AuctionBid = auctionBid;
-            this.Buyer = buyer;
+            this.pBuyer = buyer;
+            this.BuyerWindow = buyerWindow;
+        }
+
+        public BidWindow(AuctionBid auctionBid, CorporateUser buyer, BuyerWindow buyerWindow)
+        {
+            InitializeComponent();
+            this.AuctionBid = auctionBid;
+            this.cBuyer = buyer;
             this.BuyerWindow = buyerWindow;
         }
 
         AuctionBid AuctionBid { get; set; }
-        User Buyer { get; set; }
+        PrivateUser pBuyer { get; set; }
+        CorporateUser cBuyer { get; set; }
+        User User { get; set; }
         BuyerWindow BuyerWindow { get; set; }
 
         private void BidBtn_Click(object sender, RoutedEventArgs e)
         {
-            AuctionBid.Bid(AuctionBid.Auction, Convert.ToDecimal(BidInput.Text));
-            MessageBox.Show("Bid made");
-            BuyerWindow newBuyerWindow = new BuyerWindow(AuctionBid.Auction, Buyer);
-            this.Close();
+            bool fundsOK = false;
+            if(cBuyer != null)
+            {
+                
+                if ((cBuyer.Balance + cBuyer.Credit) < Convert.ToDecimal(BidInput.Text) || AuctionBid.Auction.StandingBid > Convert.ToDecimal(BidInput.Text))
+                    MessageBox.Show("Not enough money or to low bid!");
+                else
+                    fundsOK = true;
+                User = cBuyer;
+            }
+            else
+            {
+                if (pBuyer.Balance < Convert.ToDecimal(BidInput.Text) || AuctionBid.Auction.StandingBid > Convert.ToDecimal(BidInput.Text))
+                    MessageBox.Show("Not enough money or to low bid!");
+                else
+                    fundsOK = true;
+                User = pBuyer;
+            }
+
+            if (fundsOK)
+            {
+                AuctionBid.Bid(AuctionBid.Auction, Convert.ToDecimal(BidInput.Text));
+                MessageBox.Show("Bid made");
+            }
+            else
+                MessageBox.Show("No bid made, due to lack of funds!");
+            
+
+            BuyerWindow newBuyerWindow = new BuyerWindow(AuctionBid.Auction, User);
             BuyerWindow.Close();
+            this.Close();
             newBuyerWindow.Show();
         }
 

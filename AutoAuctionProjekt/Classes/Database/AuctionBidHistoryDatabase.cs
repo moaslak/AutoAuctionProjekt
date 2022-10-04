@@ -23,7 +23,10 @@ namespace AutoAuctionProjekt.Classes
             cmd.Parameters.Add("@CurrentHighestBidder", SqlDbType.VarChar).Value = auctionBid.Bidder;
             cmd.Parameters.Add("@StandingBid", SqlDbType.Decimal).Value = auctionBid.Auction.StandingBid;
             cmd.Parameters.Add("@BidDate", SqlDbType.DateTime).Value = auctionBid.BidDate;
-            cmd.Parameters.Add("@Status", SqlDbType.VarChar).Value = auctionBid.Status;
+            string status = auctionBid.Status;
+            if (status == null)
+                status = "";
+            cmd.Parameters.Add("@Status", SqlDbType.VarChar).Value = status;
 
             connection.Open();
             try
