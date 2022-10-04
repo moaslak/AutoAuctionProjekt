@@ -32,11 +32,17 @@ namespace UserInterface
 
             foreach (Auction a in MyAuctions)
             {
+                if (a.ClosingDate.CompareTo(DateTime.Now) < 0)
+                    a.CloseAuction();
+
                 if (!(a.Closed))
                     auctionListBx.Items.Add(a);
             }
             foreach (Auction a in Auctions)
             {
+                if (a.ClosingDate.CompareTo(DateTime.Now) < 0)
+                    a.CloseAuction();
+
                 if (!(a.Closed) && !(a.Seller.UserName == User.UserName || a.Buyer.UserName == User.UserName))
                     allAuctionListBx.Items.Add(a);
             }
@@ -51,11 +57,17 @@ namespace UserInterface
 
             foreach (Auction a in MyAuctions)
             {
-                if(!(a.Closed))
+                if (a.ClosingDate.CompareTo(DateTime.Now) < 0)
+                    a.CloseAuction();
+
+                if (!(a.Closed))
                     auctionListBx.Items.Add(a);
             }
             foreach (Auction a in Auctions)
             {
+                if (a.ClosingDate.CompareTo(DateTime.Now) < 0)
+                    a.CloseAuction();
+
                 if (!(a.Closed) && !(a.Seller.UserName == User.UserName || a.Buyer.UserName == User.UserName))
                     allAuctionListBx.Items.Add(a);
             }

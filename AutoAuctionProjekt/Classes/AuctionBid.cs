@@ -37,8 +37,7 @@ namespace AutoAuctionProjekt.Classes
 
                     database.DatabaseUpdate(auction);
                     database.AddBidToHistory(this);
-                }
-
+                }                  
             } catch(Exception e)
             {
                 Console.WriteLine(e.Message);
