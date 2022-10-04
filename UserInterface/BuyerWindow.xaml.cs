@@ -24,30 +24,29 @@ namespace UserInterface
         {
             //TODO: Dynamic update window
             InitializeComponent();
-            Database database = new Database();
+            
+
             this.Auction = auction;
             this.User = user;
             BidBtn.Visibility = Visibility.Hidden;
             SellBtn.Visibility = Visibility.Hidden;
-            if (Auction.Buyer.UserName == User.UserName && !(Auction.Closed) || Auction.Seller.UserName == User.UserName )
+            if (Auction.Buyer.UserName == User.UserName)
             {
                 BidBtn.Visibility = Visibility.Hidden;
                 CurrentHighBidderTextblock.Visibility = Visibility.Visible;
-                if (Auction.Seller.UserName == User.UserName)
-                    SellBtn.Visibility = Visibility.Visible;
             }
-            else
+            else if(Auction.Seller.UserName != User.UserName || Auction.Buyer.UserName == "")
             {
                 BidBtn.Visibility = Visibility.Visible;
                 CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
                 SellBtn.Visibility = Visibility.Hidden;
             }
 
-            if(Auction.Seller.UserName != User.UserName || Auction.Buyer.UserName == "")
+            if(Auction.Seller.UserName == User.UserName)
             {
-                BidBtn.Visibility = Visibility.Visible;
+                BidBtn.Visibility = Visibility.Hidden;
                 CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
-                SellBtn.Visibility = Visibility.Hidden;
+                SellBtn.Visibility = Visibility.Visible;
             }
 
             if (Auction.Closed)
@@ -64,6 +63,8 @@ namespace UserInterface
 
         Auction Auction { get; set; }
         User User { get; set; }
+        CorporateUser cUser { get; set; }
+        PrivateUser pUser { get; set; }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow(User);
@@ -78,9 +79,21 @@ namespace UserInterface
 
         private void BidBtn_Click(object sender, RoutedEventArgs e)
         {
-            AuctionBid auctionBid = new AuctionBid(Auction, User);
-            BidWindow bidWindow = new BidWindow(auctionBid, auctionBid.Bidder);
-            bidWindow.Show();
+            Database database = new Database();
+            cUser = database.DatabaseSelect(User.UserName, cUser);
+            pUser = database.DatabaseSelect(User.UserName, pUser);
+
+            AuctionBid auctionBid = new AuctionBid(Auction, User.UserName);
+            if(cUser != null)
+            {
+                BidWindow bidWindow = new BidWindow(auctionBid, cUser, this);
+                bidWindow.Show();
+            }
+            else if(pUser != null)
+            {
+                BidWindow bidWindow = new BidWindow(auctionBid, pUser, this);
+                bidWindow.Show();
+            }            
         }
 
         private void ClosingDateAndBid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -96,6 +109,9 @@ namespace UserInterface
             List<PrivateUser> privateUsers = database.DatabaseGet(new PrivateUser("", "", "", ""));
             List<CorporateUser> corporateUsers = database.DatabaseGet(new CorporateUser("", "", "", "", 0));
 
+            CorporateUser cBuyer = database.DatabaseSelect(Auction.Buyer.UserName, new CorporateUser("", "", "", "", 0));
+            PrivateUser pBuyer = database.DatabaseSelect(Auction.Buyer.UserName, new PrivateUser("", "", "", ""));
+
             foreach(PrivateUser p in privateUsers)
             {
                 if(p.UserName == User.UserName)
@@ -103,6 +119,16 @@ namespace UserInterface
                     PrivateUser privateUser = database.DatabaseSelect(User.UserName, new PrivateUser("","","",""));
                     privateUser.Balance = privateUser.Balance + Auction.StandingBid;
                     privateUser = database.DatabaseUpdate(privateUser);
+                    if(cBuyer != null)
+                    {
+                        cBuyer.Balance = cBuyer.Balance - Auction.StandingBid;
+                        cBuyer = database.DatabaseUpdate(cBuyer);
+                    }
+                    else if(pBuyer != null)
+                    {
+                        pBuyer.Balance = pBuyer.Balance - Auction.StandingBid;
+                        pBuyer = database.DatabaseUpdate(pBuyer);
+                    }
                 }     
             }
             foreach (CorporateUser c in corporateUsers)
@@ -112,6 +138,17 @@ namespace UserInterface
                     CorporateUser corporateUser = database.DatabaseSelect(User.UserName, new CorporateUser("", "", "", "",0));
                     corporateUser.Balance = corporateUser.Balance + Auction.StandingBid;
                     corporateUser = database.DatabaseUpdate(corporateUser);
+
+                    if (cBuyer != null)
+                    {
+                        cBuyer.Balance = cBuyer.Balance - Auction.StandingBid;
+                        cBuyer = database.DatabaseUpdate(cBuyer);
+                    }
+                    else if (pBuyer != null)
+                    {
+                        pBuyer.Balance = pBuyer.Balance - Auction.StandingBid;
+                        pBuyer = database.DatabaseUpdate(pBuyer);
+                    }
                 }
             }
             Auction.CloseAuction();
