@@ -37,14 +37,14 @@ namespace AutoAuctionProjekt.Classes
             connection.Close();
         }
 
-        public Truck DatabaseSelect(uint Id, Truck truck)
+        public Truck DatabaseSelect(uint Id, Truck t)
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
             SqlCommand cmd = new SqlCommand("dbo.SelectTruck", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = Id;
-            //Truck truck = new Truck("1", 2, "3", 4, 5, false, 6, 7, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(8, 9, 10), Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, 11);
+            Truck truck = new Truck("1", 2, "3", 4, 5, false, 6, 7, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(8, 9, 10), Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, 11);
             connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
