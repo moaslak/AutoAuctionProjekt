@@ -29,21 +29,20 @@ namespace UserInterface
             this.User = user;
             BidBtn.Visibility = Visibility.Hidden;
             SellBtn.Visibility = Visibility.Hidden;
-            if (Auction.Buyer.UserName == User.UserName && !(Auction.Closed) || Auction.Seller.UserName == User.UserName )
+            if (Auction.Buyer.UserName == User.UserName && !(Auction.Closed))
             {
                 BidBtn.Visibility = Visibility.Hidden;
                 CurrentHighBidderTextblock.Visibility = Visibility.Visible;
-                if (Auction.Seller.UserName == User.UserName)
-                    SellBtn.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                BidBtn.Visibility = Visibility.Visible;
-                CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
                 SellBtn.Visibility = Visibility.Hidden;
             }
+            if(Auction.Seller.UserName == User.UserName && !(Auction.Closed))
+            {
+                SellBtn.Visibility = Visibility.Visible;
+                BidBtn.Visibility = Visibility.Hidden;
+                CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
+            }
 
-            if(Auction.Seller.UserName != User.UserName || Auction.Buyer.UserName == "")
+            if(Auction.Buyer.UserName != User.UserName && !(Auction.Closed) && Auction.Seller.UserName != User.UserName)
             {
                 BidBtn.Visibility = Visibility.Visible;
                 CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
