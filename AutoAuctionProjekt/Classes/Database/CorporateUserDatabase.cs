@@ -99,7 +99,6 @@ namespace AutoAuctionProjekt.Classes
                 corporateUser.UserName = reader.GetString(2);
                 corporateUser.CVRNumber = reader.GetString(3);
                 corporateUser.Credit = Convert.ToDecimal(reader.GetValue(4));
-                //TODO: VALIDATE PASSWORD
                 corporateUser.Password = reader.GetString(5);
                 corporateUser.UserZipCode = reader.GetString(6);
                 corporateUser.Balance = Convert.ToDecimal(reader.GetValue(7));
@@ -125,7 +124,6 @@ namespace AutoAuctionProjekt.Classes
                 corporateUser.UserName = reader.GetString(2);
                 corporateUser.CVRNumber = reader.GetString(3);
                 corporateUser.Credit = Convert.ToDecimal(reader.GetValue(4));
-                //TODO: VALIDATE PASSWORD
                 corporateUser.Password = reader.GetString(5);
                 corporateUser.UserZipCode = reader.GetString(6);
                 corporateUser.Balance = Convert.ToDecimal(reader.GetValue(7));
@@ -151,7 +149,6 @@ namespace AutoAuctionProjekt.Classes
                 corporateUser.UserName = reader.GetString(2);
                 corporateUser.CVRNumber = reader.GetString(3);
                 corporateUser.Credit = Convert.ToDecimal(reader.GetValue(4));
-                //TODO: VALIDATE PASSWORD
                 corporateUser.Password = reader.GetString(5);
                 corporateUser.UserZipCode = reader.GetString(6);
                 corporateUser.Balance = Convert.ToDecimal(reader.GetValue(7));

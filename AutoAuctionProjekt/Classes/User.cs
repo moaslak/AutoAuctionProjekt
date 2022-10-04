@@ -83,8 +83,6 @@ privat og company som klasser
                 + ", Seller zip code: " + Zipcode
                 + ", Balance: " + Balance;
         }
-
-        //TODO: U4 - Implement interface proberties and methods.
         public string ReceiveBidNodification(string message)
         {
             //TODO: expand this. 

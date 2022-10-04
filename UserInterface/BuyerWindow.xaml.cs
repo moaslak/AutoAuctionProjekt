@@ -22,7 +22,6 @@ namespace UserInterface
     {
         public BuyerWindow(Auction auction, User user)
         {
-            //TODO: Dynamic update window
             InitializeComponent();
             
 
