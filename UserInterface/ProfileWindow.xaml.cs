@@ -67,9 +67,21 @@ namespace UserInterface
 
         private void addBalBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            decimal balance = User.Balance;
-            balance = Convert.ToDecimal(balanceBox.Text);
+            PrivateUser privateUser = new PrivateUser("", "", "", "");
+            CorporateUser corporateUser = new CorporateUser("", "", "", "", 0);
+            privateUser = database.DatabaseSelect(User.UserName, privateUser);
+            corporateUser = database.DatabaseSelect(User.UserName, corporateUser);
+            User.UserName += Convert.ToDecimal(balanceBox.Text);
+            if(privateUser != null)
+            {
+                privateUser.Balance += Convert.ToDecimal(balanceBox.Text);
+                database.DatabaseUpdate(privateUser);
+            }
+            else
+            {
+                corporateUser.Balance += Convert.ToDecimal(balanceBox.Text);
+                database.DatabaseUpdate(corporateUser);
+            }
             MessageBox.Show("Balance added " + balanceBox.Text);
         }
     }
