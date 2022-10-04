@@ -20,22 +20,25 @@ namespace UserInterface
     /// </summary>
     public partial class BidWindow : Window
     {
-        public BidWindow(AuctionBid auctionBid, User buyer)
+        public BidWindow(AuctionBid auctionBid, User buyer, BuyerWindow buyerWindow)
         {
             InitializeComponent();
             this.AuctionBid = auctionBid;
             this.Buyer = buyer;
+            this.BuyerWindow = buyerWindow;
         }
 
         AuctionBid AuctionBid { get; set; }
         User Buyer { get; set; }
-
+        BuyerWindow BuyerWindow { get; set; }
         private void BidBtn_Click(object sender, RoutedEventArgs e)
         {
             AuctionBid.Bid(AuctionBid.Auction, Convert.ToDecimal(BidInput.Text));
             MessageBox.Show("Bid made");
-            BuyerWindow buyerWindow = new BuyerWindow(AuctionBid.Auction, Buyer);
+            BuyerWindow newBuyerWindow = new BuyerWindow(AuctionBid.Auction, Buyer);
+            BuyerWindow.Close();
             this.Close();
+            newBuyerWindow.Show();
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

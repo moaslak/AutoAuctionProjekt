@@ -79,7 +79,7 @@ namespace UserInterface
         private void BidBtn_Click(object sender, RoutedEventArgs e)
         {
             AuctionBid auctionBid = new AuctionBid(Auction, User);
-            BidWindow bidWindow = new BidWindow(auctionBid, auctionBid.Bidder);
+            BidWindow bidWindow = new BidWindow(auctionBid, auctionBid.Bidder, this);
             bidWindow.Show();
         }
 
