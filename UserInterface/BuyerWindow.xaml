@@ -47,22 +47,25 @@
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="0">Name: </TextBlock>
                         <TextBlock Grid.Column="0" Grid.Row="1">Year: </TextBlock>
-                        <TextBlock Grid.Column="0" Grid.Row="2">Standing bid: </TextBlock>
+                        <TextBlock Grid.Column="0" Grid.Row="2">Minimum price: </TextBlock>
                         <TextBlock Grid.Column="0" Grid.Row="3">Registration number: </TextBlock>
                         <TextBlock Grid.Column="0" Grid.Row="4">Km: </TextBlock>
                         <TextBlock Grid.Column="0" Grid.Row="5">Has tow bar: </TextBlock>
                         <TextBlock Grid.Column="0" Grid.Row="6">Engine size: </TextBlock>
                         <TextBlock Grid.Column="0" Grid.Row="7">Fuel type: </TextBlock>
                         <TextBlock Grid.Column="0" Grid.Row="8">Energy class: </TextBlock>
+                        <TextBlock Grid.Column="0" Grid.Row="9">Seller: </TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Vehicle.Name}" HorizontalAlignment="Right"></TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Vehicle.Year}" HorizontalAlignment="Right"></TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding StandingBid}" HorizontalAlignment="Right"></TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding MinimumPrice}" HorizontalAlignment="Right"></TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Vehicle.RegistrationNumber}" HorizontalAlignment="Right"></TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Vehicle.Km}" HorizontalAlignment="Right"></TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Vehicle.HasTowbar}" HorizontalAlignment="Right"></TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Vehicle.EngineSize}" HorizontalAlignment="Right"></TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Vehicle.FuelType}" HorizontalAlignment="Right"></TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="8" Text="{Binding Vehicle.EnergyClass}" HorizontalAlignment="Right"></TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="9" Text="{Binding SellerName}" HorizontalAlignment="Right"></TextBlock>
+                        
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

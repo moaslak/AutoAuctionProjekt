@@ -71,7 +71,6 @@ namespace UserInterface
             CorporateUser corporateUser = new CorporateUser("", "", "", "", 0);
             privateUser = database.DatabaseSelect(User.UserName, privateUser);
             corporateUser = database.DatabaseSelect(User.UserName, corporateUser);
-            User.UserName += Convert.ToDecimal(balanceBox.Text);
             if(privateUser != null)
             {
                 privateUser.Balance += Convert.ToDecimal(balanceBox.Text);
