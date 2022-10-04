@@ -25,7 +25,6 @@ namespace UserInterface
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            DatabaseConnection databaseConnection = new();
             Database database = new Database();
             try
             {
@@ -37,8 +36,8 @@ namespace UserInterface
                 {
                     try
                     {
-                        privateUser.LoginOK(privateUser.UserName, privateUser.Password);
-                        privateUser.ToString();
+                        privateUser = database.DatabaseSelect(UserTxtbox.Text, privateUser);
+                        //privateUser.LoginOK(privateUser.UserName, privateUser.Password);
                         List<Auction> myAuctions = database.DatabaseGetForUser(auction, privateUser);
                         MainWindow mainWindow = new MainWindow(privateUser, auctions, myAuctions);
                         this.Hide();
@@ -54,9 +53,10 @@ namespace UserInterface
                 {
                     try
                     {
-                        corporateUser.LoginOK(corporateUser.UserName, corporateUser.Password);
-                        corporateUser.ToString();
-                        MainWindow mainWindow = new MainWindow(corporateUser);
+                        corporateUser = database.DatabaseSelect(UserTxtbox.Text, corporateUser);
+                        //corporateUser.LoginOK(corporateUser.UserName, corporateUser.Password);
+                        List<Auction> myAuctions = database.DatabaseGetForUser(auction, corporateUser);
+                        MainWindow mainWindow = new MainWindow(corporateUser, auctions, myAuctions);
                         this.Hide();
                         mainWindow.Show();
                     }

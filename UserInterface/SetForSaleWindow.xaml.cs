@@ -190,7 +190,8 @@ namespace UserInterface
             this.Close();
             MyAuctions = database.DatabaseGetForUser(Auction, User);
             Auctions = database.DatabaseGet(Auction);
-            MainWindow mainWindow = new MainWindow(User, Auctions, MyAuctions);
+            //MainWindow mainWindow = new MainWindow(User, Auctions, MyAuctions);
+            MainWindow mainWindow = new MainWindow(User);
             mainWindow.Show();
         }
 
@@ -304,7 +305,8 @@ namespace UserInterface
             this.Close();
             MyAuctions = database.DatabaseGetForUser(Auction, User);
             Auctions = database.DatabaseGet(Auction);
-            MainWindow mainWindow = new MainWindow(User,Auctions, MyAuctions);
+            //MainWindow mainWindow = new MainWindow(User,Auctions, MyAuctions);
+            MainWindow mainWindow = new MainWindow(User);
             mainWindow.Show();
         }
     }
