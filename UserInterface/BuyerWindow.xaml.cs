@@ -44,9 +44,9 @@ namespace UserInterface
             }
             if(Auction.Buyer.UserName != User.UserName && !(Auction.Closed) && Auction.Seller.UserName != User.UserName)
             {
-                BidBtn.Visibility = Visibility.Hidden;
+                BidBtn.Visibility = Visibility.Visible;
                 CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
-                SellBtn.Visibility = Visibility.Visible;
+                SellBtn.Visibility = Visibility.Hidden;
             }
 
             if (Auction.Closed)
@@ -86,8 +86,8 @@ namespace UserInterface
 
         private void BidBtn_Click(object sender, RoutedEventArgs e)
         {
-            AuctionBid auctionBid = new AuctionBid(Auction, User);
-            BidWindow bidWindow = new BidWindow(auctionBid, auctionBid.Bidder, this);
+            AuctionBid auctionBid = new AuctionBid(Auction, User.UserName);
+            BidWindow bidWindow = new BidWindow(auctionBid, User, this);
             bidWindow.Show();
         }
 
