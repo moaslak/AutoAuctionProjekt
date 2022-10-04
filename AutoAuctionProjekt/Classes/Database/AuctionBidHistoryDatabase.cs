@@ -106,10 +106,7 @@ namespace AutoAuctionProjekt.Classes
         public List<AuctionBid> SelectAuctionBidHistory(string username)
         {
             List<AuctionBid> list = new List<AuctionBid>();
-            Bus bus = new Bus("", 0, "", 0, 0, false, 5, 5, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, false);
-            PrivateUser privateUser = new PrivateUser("", "", "", "");
-            DateTime dateTime = Convert.ToDateTime("2022-10-10 00:00:00.000");
-            Auction auction = new Auction(bus, privateUser, 0, dateTime);
+            
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
             SqlCommand cmd = new SqlCommand("dbo.SelectAuctionBidHistoryByUsername", connection);
@@ -119,20 +116,26 @@ namespace AutoAuctionProjekt.Classes
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
+                Bus bus = new Bus("", 0, "", 0, 0, false, 5, 5, Vehicle.FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), 0, 0, Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, false);
+                PrivateUser privateUser = new PrivateUser("", "", "", "");
+                DateTime dateTime = Convert.ToDateTime("2022-10-10 00:00:00.000");
+                Auction auction = new Auction(bus, privateUser, 0, dateTime);
                 AuctionBid auctionBid = new AuctionBid(auction, privateUser);
                 auctionBid.SetID(Convert.ToUInt16(reader.GetValue(0)));
                 auctionBid.Auction.SetID(Convert.ToUInt16(reader.GetValue(1)));
                 auctionBid.Bidder.UserName = reader.GetValue(2).ToString();
                 auctionBid.Auction.StandingBid = Convert.ToDecimal(reader.GetValue(3));
                 auctionBid.BidDate = Convert.ToDateTime(reader.GetValue(4));
-                bool status = Convert.ToBoolean(reader.GetValue(5));
-                if (status)
-                    auctionBid.Auction.CloseAuction();
-                else
-                    auctionBid.Auction.OpenAuction();
+                auctionBid.Status = reader.GetValue(5).ToString();
+                
                 list.Add(auctionBid);
             }
             connection.Close();
+            
+            for(int i = 0; i < list.Count; i++)
+            {
+                list[i].Auction = DatabaseSelect(list[i].Auction.ID, list[i].Auction);
+            }
             return list;
         }
     }

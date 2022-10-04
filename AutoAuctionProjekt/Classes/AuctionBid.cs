@@ -15,12 +15,14 @@ namespace AutoAuctionProjekt.Classes
         public uint ID { get; private set; }
         public void SetID(uint id)
         {
-            this.ID = this.Auction.ID;
+            this.ID = id;
         }
 
         public Auction Auction { get; set; }
         public User Bidder { get; set; }
         public DateTime BidDate {get; set;} = DateTime.Now;
+
+        public string Status { get; set; }
 
         public void Bid(Auction auction, Decimal newBid)
         {

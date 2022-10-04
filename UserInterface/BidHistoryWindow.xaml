@@ -9,11 +9,24 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30">Your bid history</TextBlock>
-        <ListView x:Name="auctionBidsListBx" Grid.Row="1" Grid.RowSpan="1" Margin="10,0,10,0" ItemsSource="{Binding auctionBids}" SelectionChanged="auctionListBx_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <Grid Grid.Row="1" Height="20" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0">Name</TextBlock>
+            <TextBlock Grid.Column="1">Year</TextBlock>
+            <TextBlock Grid.Column="2">Standing bid</TextBlock>
+            <TextBlock Grid.Column="3">Status</TextBlock>
+        </Grid>
+        <ListView x:Name="auctionBidsListBx" Grid.Row="2" Grid.RowSpan="1" Margin="10,0,10,0" ItemsSource="{Binding auctionBids}" SelectionChanged="auctionListBx_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -31,11 +44,11 @@
                         <TextBlock x:Name="NameField" Grid.Column="0" Text="{Binding Auction.Vehicle.Name}"></TextBlock>
                         <TextBlock x:Name="YearField" Grid.Column="1" Text="{Binding Auction.Vehicle.Year}"></TextBlock>
                         <TextBlock x:Name="BidField" Grid.Column="2" Text="{Binding Auction.StandingBid}"></TextBlock>
-                        <TextBlock x:Name="FinalField" Grid.Column="3" Text=""></TextBlock>
+                        <TextBlock x:Name="FinalField" Grid.Column="3" Text="{Binding Status}"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="BackBtn" Grid.Row="2" Height="40" Width="80" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="BackBtn_Click">Back</Button>
+        <Button x:Name="BackBtn" Grid.Row="3" Height="40" Width="80" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="BackBtn_Click">Back</Button>
     </Grid>
 </Window>
