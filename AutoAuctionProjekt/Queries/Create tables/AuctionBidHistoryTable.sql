@@ -9,3 +9,6 @@ CREATE TABLE AuctionBidHistory(
 )
 ALTER TABLE AuctionBidHistory
   ADD Status BIT
+
+alter table auctionbidhistory
+alter column Status VARCHAR(64)

@@ -323,6 +323,76 @@ namespace AutoAuctionProjekt.Classes
                     auction.OpenAuction();
             }
             connection.Close();
+
+            Truck truck = new Truck("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, new HeavyVehicle.VehicleDimensionsStruct(0, 0, 0), EnergyClassEnum.A, DriversLisenceEnum.A, 0);
+            PrivatePersonalCar privatePersonalCar = new PrivatePersonalCar("", 0, "", 0, 0, false, 5, 0, FuelTypeEnum.Diesel, 0, new PersonalCar.TrunkDimentionsStruct(0, 0, 0), false, DriversLisenceEnum.A, EnergyClassEnum.A);
+            ProfessionalPersonalCar professionalPersonalCar = new ProfessionalPersonalCar("", 0, "", 0, 5, 5, 5, FuelTypeEnum.Diesel, 0, new PersonalCar.TrunkDimentionsStruct(0, 0, 0), false, 0, DriversLisenceEnum.A, EnergyClassEnum.A);
+            List<Bus> buses = DatabaseGet(bus);
+            List<Truck> trucks = DatabaseGet(truck);
+            List<PrivatePersonalCar> privatePersonalCars = DatabaseGet(privatePersonalCar);
+            List<ProfessionalPersonalCar> professionalPersonalCars = DatabaseGet(professionalPersonalCar);
+
+            List<uint> busIDs = new List<uint>();
+            List<uint> truckIDs = new List<uint>();
+            List<uint> privateCarIDs = new List<uint>();
+            List<uint> profCarIDs = new List<uint>();
+
+            foreach (Bus b in buses)
+                busIDs.Add(b.ID);
+            foreach (Truck t in trucks)
+                truckIDs.Add(t.ID);
+            foreach (PrivatePersonalCar p in privatePersonalCars)
+                privateCarIDs.Add(p.ID);
+            foreach (ProfessionalPersonalCar professional in professionalPersonalCars)
+                profCarIDs.Add(professional.ID);
+
+            PrivateUser pUser = new PrivateUser("", "", "", "");
+            CorporateUser cUser = new CorporateUser("", "", "", "", 0);
+
+            List<PrivateUser> privateUsers = DatabaseGet(pUser);
+            List<CorporateUser> corporateUsers = DatabaseGet(cUser);
+
+            List<string> privateIDs = new List<string>();
+            List<string> corporateIDs = new List<string>();
+
+            foreach (PrivateUser p in privateUsers)
+                privateIDs.Add(p.UserName);
+            foreach (CorporateUser c in corporateUsers)
+                corporateIDs.Add(c.UserName);
+
+                if (busIDs.Contains(auction.Vehicle.ID))
+                {
+                    auction.Vehicle = DatabaseSelect(auction.Vehicle.ID, bus);
+                }
+                if (truckIDs.Contains(auction.Vehicle.ID))
+                {
+                    auction.Vehicle = DatabaseSelect(auction.Vehicle.ID, truck);
+                }
+                if (privateCarIDs.Contains(auction.Vehicle.ID))
+                {
+                    auction.Vehicle = DatabaseSelect(auction.Vehicle.ID, privatePersonalCar);
+                }
+                if (profCarIDs.Contains(auction.Vehicle.ID))
+                {
+                    auction.Vehicle = DatabaseSelect(auction.Vehicle.ID, professionalPersonalCar);
+                }
+                if (privateIDs.Contains(auction.SellerName))
+                {
+                    auction.Seller = DatabaseSelect(auction.SellerName, pUser);
+                }
+                if (corporateIDs.Contains(auction.SellerName))
+                {
+                    auction.Seller = DatabaseSelect(auction.SellerName, cUser);
+                }
+                if (privateIDs.Contains(auction.BuyerName))
+                {
+                    auction.Buyer = DatabaseSelect(auction.BuyerName, pUser);
+                }
+                if (corporateIDs.Contains(auction.BuyerName))
+                {
+                    auction.Buyer = DatabaseSelect(auction.BuyerName, cUser);
+                }
+
             return auction;
         }
 
