@@ -20,20 +20,11 @@ namespace UserInterface
     /// </summary>
     public partial class BidWindow : Window
     {
-        Database database = new Database();
-        public BidWindow(AuctionBid auctionBid, PrivateUser buyer, BuyerWindow buyerWindow)
+        public BidWindow(AuctionBid auctionBid, User buyer, BuyerWindow buyerWindow)
         {
             InitializeComponent();
             this.AuctionBid = auctionBid;
-            this.pBuyer = buyer;
-            this.BuyerWindow = buyerWindow;
-        }
-
-        public BidWindow(AuctionBid auctionBid, CorporateUser buyer, BuyerWindow buyerWindow)
-        {
-            InitializeComponent();
-            this.AuctionBid = auctionBid;
-            this.cBuyer = buyer;
+            this.Buyer = buyer;
             this.BuyerWindow = buyerWindow;
         }
 

@@ -30,19 +30,19 @@ namespace UserInterface
             this.User = user;
             BidBtn.Visibility = Visibility.Hidden;
             SellBtn.Visibility = Visibility.Hidden;
-            if (Auction.Buyer.UserName == User.UserName)
+            if (Auction.Buyer.UserName == User.UserName && !(Auction.Closed))
             {
                 BidBtn.Visibility = Visibility.Hidden;
                 CurrentHighBidderTextblock.Visibility = Visibility.Visible;
-            }
-            else if(Auction.Seller.UserName != User.UserName || Auction.Buyer.UserName == "")
-            {
-                BidBtn.Visibility = Visibility.Visible;
-                CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
                 SellBtn.Visibility = Visibility.Hidden;
             }
-
-            if(Auction.Seller.UserName == User.UserName)
+            if(Auction.Seller.UserName == User.UserName && !(Auction.Closed))
+            {
+                SellBtn.Visibility = Visibility.Visible;
+                BidBtn.Visibility = Visibility.Hidden;
+                CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
+            }
+            if(Auction.Buyer.UserName != User.UserName && !(Auction.Closed) && Auction.Seller.UserName != User.UserName)
             {
                 BidBtn.Visibility = Visibility.Hidden;
                 CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
@@ -86,21 +86,9 @@ namespace UserInterface
 
         private void BidBtn_Click(object sender, RoutedEventArgs e)
         {
-            Database database = new Database();
-            cUser = database.DatabaseSelect(User.UserName, cUser);
-            pUser = database.DatabaseSelect(User.UserName, pUser);
-
-            AuctionBid auctionBid = new AuctionBid(Auction, User.UserName);
-            if(cUser != null)
-            {
-                BidWindow bidWindow = new BidWindow(auctionBid, cUser, this);
-                bidWindow.Show();
-            }
-            else if(pUser != null)
-            {
-                BidWindow bidWindow = new BidWindow(auctionBid, pUser, this);
-                bidWindow.Show();
-            }            
+            AuctionBid auctionBid = new AuctionBid(Auction, User);
+            BidWindow bidWindow = new BidWindow(auctionBid, auctionBid.Bidder, this);
+            bidWindow.Show();
         }
 
         private void ClosingDateAndBid_SelectionChanged(object sender, SelectionChangedEventArgs e)
