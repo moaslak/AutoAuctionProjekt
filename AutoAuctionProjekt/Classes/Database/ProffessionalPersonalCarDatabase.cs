@@ -150,15 +150,15 @@ namespace AutoAuctionProjekt.Classes
             return professionalPersonalCars;
         }
 
-        public ProfessionalPersonalCar DatabaseSelect(uint Id, ProfessionalPersonalCar professionalPersonalCar)
+        public ProfessionalPersonalCar DatabaseSelect(uint Id, ProfessionalPersonalCar profCar)
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             SqlConnection connection = databaseConnection.SetSqlConnection();
             SqlCommand cmd = new SqlCommand("dbo.SelectProfessionalPersonalCar", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = Id;
-            //ProfessionalPersonalCar professionalPersonalCar = new ProfessionalPersonalCar("1", 2, "3", 4, 5, 6, 7, Vehicle.FuelTypeEnum.Diesel,
-            //    8, new ProfessionalPersonalCar.TrunkDimentionsStruct(9, 10, 11), false, 12, Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
+            ProfessionalPersonalCar professionalPersonalCar = new ProfessionalPersonalCar("1", 2, "3", 4, 5, 6, 7, Vehicle.FuelTypeEnum.Diesel,
+                8, new ProfessionalPersonalCar.TrunkDimentionsStruct(9, 10, 11), false, 12, Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
             connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
