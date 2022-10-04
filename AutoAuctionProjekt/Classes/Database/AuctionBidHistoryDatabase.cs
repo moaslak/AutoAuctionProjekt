@@ -20,7 +20,7 @@ namespace AutoAuctionProjekt.Classes
             SqlCommand cmd = new SqlCommand("dbo.AddBid", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@AuctionID", SqlDbType.Int).Value = auctionBid.Auction.ID;
-            cmd.Parameters.Add("@CurrentHighestBidder", SqlDbType.VarChar).Value = auctionBid.Bidder.UserName;
+            cmd.Parameters.Add("@CurrentHighestBidder", SqlDbType.VarChar).Value = auctionBid.Bidder;
             cmd.Parameters.Add("@StandingBid", SqlDbType.Decimal).Value = auctionBid.Auction.StandingBid;
             cmd.Parameters.Add("@BidDate", SqlDbType.DateTime).Value = auctionBid.BidDate;
             cmd.Parameters.Add("@Status", SqlDbType.VarChar).Value = auctionBid.Status;
@@ -53,10 +53,10 @@ namespace AutoAuctionProjekt.Classes
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                AuctionBid auctionBid = new AuctionBid(auction, privateUser);
+                AuctionBid auctionBid = new AuctionBid(auction, privateUser.UserName);
                 auctionBid.SetID(Convert.ToUInt16(reader.GetValue(0)));
                 auctionBid.Auction.SetID(Convert.ToUInt16(reader.GetValue(1)));
-                auctionBid.Bidder.UserName = reader.GetValue(2).ToString();
+                auctionBid.Bidder = reader.GetValue(2).ToString();
                 auctionBid.Auction.StandingBid = Convert.ToDecimal(reader.GetValue(3));
                 auctionBid.BidDate = Convert.ToDateTime(reader.GetValue(4));
                 bool status = Convert.ToBoolean(reader.GetValue(5));
@@ -86,10 +86,10 @@ namespace AutoAuctionProjekt.Classes
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                AuctionBid auctionBid = new AuctionBid(auction, privateUser);
+                AuctionBid auctionBid = new AuctionBid(auction, privateUser.UserName);
                 auctionBid.SetID(Convert.ToUInt16(reader.GetValue(0)));
                 auctionBid.Auction.SetID(Convert.ToUInt16(reader.GetValue(1)));
-                auctionBid.Bidder.UserName = reader.GetValue(2).ToString();
+                auctionBid.Bidder = reader.GetValue(2).ToString();
                 auctionBid.Auction.StandingBid = Convert.ToDecimal(reader.GetValue(3));
                 auctionBid.BidDate = Convert.ToDateTime(reader.GetValue(4));
                 bool status = Convert.ToBoolean(reader.GetValue(5));
@@ -120,10 +120,10 @@ namespace AutoAuctionProjekt.Classes
                 PrivateUser privateUser = new PrivateUser("", "", "", "");
                 DateTime dateTime = Convert.ToDateTime("2022-10-10 00:00:00.000");
                 Auction auction = new Auction(bus, privateUser, 0, dateTime);
-                AuctionBid auctionBid = new AuctionBid(auction, privateUser);
+                AuctionBid auctionBid = new AuctionBid(auction, privateUser.UserName);
                 auctionBid.SetID(Convert.ToUInt16(reader.GetValue(0)));
                 auctionBid.Auction.SetID(Convert.ToUInt16(reader.GetValue(1)));
-                auctionBid.Bidder.UserName = reader.GetValue(2).ToString();
+                auctionBid.Bidder = reader.GetValue(2).ToString();
                 auctionBid.Auction.StandingBid = Convert.ToDecimal(reader.GetValue(3));
                 auctionBid.BidDate = Convert.ToDateTime(reader.GetValue(4));
                 auctionBid.Status = reader.GetValue(5).ToString();
