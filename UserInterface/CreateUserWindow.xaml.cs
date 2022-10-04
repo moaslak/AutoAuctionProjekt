@@ -32,7 +32,7 @@ namespace UserInterface
             PrivateUser privateUser = new PrivateUser("", "", "", "");
             CorporateUser corporateUser = new CorporateUser("", "", "", "", 0);
             
-            if(PrivateUserRdBtn.IsChecked != null)
+            if(PrivateUserRdBtn.IsChecked == true)
             {
                 try
                 {
@@ -59,7 +59,7 @@ namespace UserInterface
                     throw new ArgumentException("Wrong", ex);
                 }
             }
-            else if(CorporateUserRdBtn.IsChecked != null)
+            else if(CorporateUserRdBtn.IsChecked == true)
             {
                 try
                 {
