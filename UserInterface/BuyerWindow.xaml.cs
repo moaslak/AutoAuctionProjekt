@@ -30,8 +30,10 @@ namespace UserInterface
             this.User = user;
             BidBtn.Visibility = Visibility.Hidden;
             SellBtn.Visibility = Visibility.Hidden;
+
             if (Auction.Buyer.UserName == User.UserName && !(Auction.Closed))
             {
+
                 BidBtn.Visibility = Visibility.Hidden;
                 CurrentHighBidderTextblock.Visibility = Visibility.Visible;
                 SellBtn.Visibility = Visibility.Hidden;
