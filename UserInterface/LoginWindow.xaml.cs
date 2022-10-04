@@ -34,36 +34,51 @@ namespace UserInterface
                 List<Auction> auctions = database.DatabaseGet(auction);
                 if (privateUser != null)
                 {
-                    try
+                    if (privateUser.UserName == UserTxtbox.Text && privateUser.Password == PasswordTxtbox.Password)
                     {
-                        privateUser = database.DatabaseSelect(UserTxtbox.Text, privateUser);
-                        //privateUser.LoginOK(privateUser.UserName, privateUser.Password);
-                        List<Auction> myAuctions = database.DatabaseGetForUser(auction, privateUser);
-                        MainWindow mainWindow = new MainWindow(privateUser, auctions, myAuctions);
-                        this.Hide();
-                        mainWindow.Show();
-                    }
-                    catch (Exception ex)
-                    {
+                        try
+                        {
+                            privateUser = database.DatabaseSelect(UserTxtbox.Text, privateUser);
+                            //privateUser.LoginOK(privateUser.UserName, privateUser.Password);
+                            List<Auction> myAuctions = database.DatabaseGetForUser(auction, privateUser);
+                            MainWindow mainWindow = new MainWindow(privateUser, auctions, myAuctions);
+                            this.Hide();
+                            mainWindow.Show();
+                        }
+                        catch (Exception ex)
+                        {
 
-                        throw new ArgumentException("Wrong login", ex);
+                            throw new ArgumentException("Wrong login", ex);
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("Failed login");
+                    }
+                    
                 }
                 else if (corporateUser != null)
                 {
-                    try
+                    if(corporateUser.UserName == UserTxtbox.Text && corporateUser.Password == PasswordTxtbox.Password)
                     {
-                        corporateUser = database.DatabaseSelect(UserTxtbox.Text, corporateUser);
-                        //corporateUser.LoginOK(corporateUser.UserName, corporateUser.Password);
-                        List<Auction> myAuctions = database.DatabaseGetForUser(auction, corporateUser);
-                        MainWindow mainWindow = new MainWindow(corporateUser, auctions, myAuctions);
-                        this.Hide();
-                        mainWindow.Show();
-                    }
-                    catch (Exception ex)
-                    {
+                        try
+                        {
+                            corporateUser = database.DatabaseSelect(UserTxtbox.Text, corporateUser);
+                            //corporateUser.LoginOK(corporateUser.UserName, corporateUser.Password);
+                            List<Auction> myAuctions = database.DatabaseGetForUser(auction, corporateUser);
+                            MainWindow mainWindow = new MainWindow(corporateUser, auctions, myAuctions);
+                            this.Hide();
+                            mainWindow.Show();
+                        }
+                        catch (Exception ex)
+                        {
 
-                        throw new ArgumentException("Wrong login", ex);
+                            throw new ArgumentException("Wrong login", ex);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed login");
                     }
                 }
             } catch(Exception ex)

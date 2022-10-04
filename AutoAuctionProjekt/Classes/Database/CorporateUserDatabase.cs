@@ -21,7 +21,8 @@ namespace AutoAuctionProjekt.Classes
             foreach (byte b in type.PasswordHash)
                 encryptedPassword = encryptedPassword + b.ToString();
 
-            cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = encryptedPassword;
+            //cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = encryptedPassword;
+            cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = type.Password;
             cmd.Parameters.Add("@UserZipCode", SqlDbType.VarChar).Value = type.UserZipCode;
             cmd.Parameters.Add("@Balance", SqlDbType.Decimal).Value = type.Balance;
             if (type.Zipcode != null)
@@ -171,12 +172,13 @@ namespace AutoAuctionProjekt.Classes
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = updatedType.ID;
             cmd.Parameters.Add("@Username", SqlDbType.VarChar).Value = updatedType.UserName;
-
+            /*
             string encryptedPassword = "";
             foreach (byte b in updatedType.PasswordHash)
                 encryptedPassword = encryptedPassword + b.ToString();
 
-            cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = encryptedPassword; //TODO: ENCRYPT PASSWORD !!!
+            cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = encryptedPassword;*/ //TODO: ENCRYPT PASSWORD !!!
+            cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = updatedType.Password;
             cmd.Parameters.Add("@UserZipCode", SqlDbType.VarChar).Value = updatedType.UserZipCode;
             cmd.Parameters.Add("@Balance", SqlDbType.Decimal).Value = updatedType.Balance;
             cmd.Parameters.Add("@ZipcodeSeller", SqlDbType.VarChar).Value = updatedType.Zipcode;
