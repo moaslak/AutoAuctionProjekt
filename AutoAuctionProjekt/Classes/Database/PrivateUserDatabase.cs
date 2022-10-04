@@ -21,7 +21,8 @@ namespace AutoAuctionProjekt.Classes
             foreach (byte b in type.PasswordHash)
                 encryptedPassword = encryptedPassword + b.ToString();
 
-            cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = encryptedPassword;
+            //cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = encryptedPassword;
+            cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar).Value = type.Password;
             cmd.Parameters.Add("@UserZipCode", SqlDbType.VarChar).Value = type.UserZipCode;
             cmd.Parameters.Add("@Balance", SqlDbType.Decimal).Value = type.Balance;
             if (type.Zipcode != null)
