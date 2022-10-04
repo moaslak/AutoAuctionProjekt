@@ -35,18 +35,18 @@ namespace UserInterface
                 BidBtn.Visibility = Visibility.Hidden;
                 CurrentHighBidderTextblock.Visibility = Visibility.Visible;
             }
-            else
+            else if(Auction.Seller.UserName != User.UserName || Auction.Buyer.UserName == "")
             {
                 BidBtn.Visibility = Visibility.Visible;
                 CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
                 SellBtn.Visibility = Visibility.Hidden;
             }
 
-            if(Auction.Seller.UserName != User.UserName || Auction.Buyer.UserName == "")
+            if(Auction.Seller.UserName == User.UserName)
             {
-                BidBtn.Visibility = Visibility.Visible;
+                BidBtn.Visibility = Visibility.Hidden;
                 CurrentHighBidderTextblock.Visibility = Visibility.Hidden;
-                SellBtn.Visibility = Visibility.Hidden;
+                SellBtn.Visibility = Visibility.Visible;
             }
 
             if (Auction.Closed)
