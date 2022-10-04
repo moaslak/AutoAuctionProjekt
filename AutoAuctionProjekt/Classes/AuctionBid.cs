@@ -6,7 +6,7 @@ namespace AutoAuctionProjekt.Classes
 {
     public class AuctionBid
     {
-        public AuctionBid(Auction auction, User bidder)
+        public AuctionBid(Auction auction, string bidder)
         {
             this.Auction = auction;
             this.Bidder = bidder;
@@ -19,7 +19,7 @@ namespace AutoAuctionProjekt.Classes
         }
 
         public Auction Auction { get; set; }
-        public User Bidder { get; set; }
+        public string Bidder { get; set; }
         public DateTime BidDate {get; set;} = DateTime.Now;
 
         public string Status { get; set; }
@@ -31,7 +31,7 @@ namespace AutoAuctionProjekt.Classes
                 if (BidDate.CompareTo(auction.ClosingDate) < 0 && auction.Closed==false && newBid > auction.StandingBid)
                 {
                     auction.StandingBid = newBid;
-                    auction.Buyer = Bidder;
+                    auction.Buyer.UserName = Bidder;
 
                     Database database = new Database();
 

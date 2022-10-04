@@ -20,8 +20,18 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"> Welcome</TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"> My Auctions</TextBlock>
-        <ListView x:Name="auctionListBx" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,0" ItemsSource="{Binding MyAuctions}" SelectionChanged="auctionListBx_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">My Auctions</TextBlock>
+        <Grid Grid.Column="0" Grid.Row="0" Height="25" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0">Name</TextBlock>
+            <TextBlock Grid.Column="1">Year</TextBlock>
+            <TextBlock Grid.Column="2">Standing bid</TextBlock>
+        </Grid>
+        <ListView x:Name="auctionListBx" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="10,10,10,0" ItemsSource="{Binding MyAuctions}" SelectionChanged="auctionListBx_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -43,7 +53,17 @@
             </ListView.ItemTemplate>
         </ListView>
         <TextBlock Text="All Auctions" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-        <ListView x:Name="allAuctionListBx" Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,10" Background="White" SelectionChanged="allAuctionListBx_SelectionChanged" ItemsSource="{Binding Auctions}" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <Grid Grid.Column="0" Grid.Row="3" Height="25" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0">Name</TextBlock>
+            <TextBlock Grid.Column="1">Year</TextBlock>
+            <TextBlock Grid.Column="2">Standing bid</TextBlock>
+        </Grid>
+        <ListView x:Name="allAuctionListBx" Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Margin="10,10,10,10" Background="White" SelectionChanged="allAuctionListBx_SelectionChanged" ItemsSource="{Binding Auctions}" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
