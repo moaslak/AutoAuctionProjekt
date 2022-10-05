@@ -43,7 +43,7 @@
         <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-55,0,0,10">Year</Label>
         <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,23,10">Standing Bid</Label>
         <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" >Balance: </Label>
-        <TextBox x:Name="balanceBox" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Margin="15,5,0,0"></TextBox>
+        <TextBox x:Name="balanceBox" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Margin="15,5,0,0" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Button x:Name="addBalBtn" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,15,0" Click="addBalBtn_Click">Add</Button>
         <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0">Balance total: </Label>
         <TextBlock x:Name="balTotal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="100" Margin="0,5,10,0"></TextBlock>

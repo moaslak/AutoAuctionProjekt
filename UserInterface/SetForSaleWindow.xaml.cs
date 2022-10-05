@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -202,7 +203,15 @@ namespace UserInterface
 
         private void CreateAuctionBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            bool SUCCES = false;
+
+            if (EngineSizeTxtBox.Text == "")
+                EngineSizeTxtBox.Text = "0";
+            double minEngineSizeHeavy = 4.2;
+            double maxEngineSizeHeavy = 15;
+            double minEngineSizePersonal = 0.7;
+            double maxEngineSizePersoanl = 10;
+
             bool hasTowBar = false;
             if (TowBarCheckBox.IsChecked == true)
                 hasTowBar = true;
@@ -224,7 +233,14 @@ namespace UserInterface
 
             if (PrivatePersonalCarRdBtn.IsChecked == true)
             {
-                if(!(NameTxtBox.Text == "" || MilageTxtBox.Text == "" || RegNumTxtBox.Text == "" || YearTxtBox.Text == "" || MinPriceTxtBox.Text == ""
+                if (Convert.ToDouble(EngineSizeTxtBox.Text) > maxEngineSizePersoanl || Convert.ToDouble(EngineSizeTxtBox.Text) < minEngineSizePersonal)
+                {
+                    double a = Convert.ToDouble(EngineSizeTxtBox.Text);
+                    MessageBox.Show("Engine size MUST be between " + minEngineSizePersonal + " L and " + maxEngineSizePersoanl + " L!");
+                    EngineSizeTxtBox.Text = "";
+                }
+
+                if (!(NameTxtBox.Text == "" || MilageTxtBox.Text == "" || RegNumTxtBox.Text == "" || YearTxtBox.Text == "" || MinPriceTxtBox.Text == ""
                     || ClosingDateTxtBox.Text == "" || TrunkHeightTxtBox.Text == "" || TrunkWidthTxtBox.Text == "" || TrunkDepthTxtBox.Text == ""
                     || EngineSizeTxtBox.Text == "" || NumberOfSeatsTxtBox.Text == ""))
                 {
@@ -235,15 +251,24 @@ namespace UserInterface
                     database.DatabaseCreate(privatePersonalCar);
                     List<PrivatePersonalCar> privatePersonalCars = database.DatabaseGet(privatePersonalCar);
                     privatePersonalCar = privatePersonalCars[privatePersonalCars.Count - 1];
-                    Auction newAuction = new Auction(privatePersonalCar, User, privatePersonalCar.NewPrice,Convert.ToDateTime(ClosingDateTxtBox.Text));
+                    Auction newAuction = new Auction(privatePersonalCar, User, privatePersonalCar.NewPrice, Convert.ToDateTime(ClosingDateTxtBox.Text));
                     newAuction.Seller.UserName = User.UserName;
                     database.DatabaseCreate(newAuction);
                     MessageBox.Show("Auction created");
+                    SUCCES = true;
                 }
+                else
+                    MessageBox.Show("ALL fields must be filled!");
 
             }
             if(ProfefssionalPersonalCarRdBtn.IsChecked == true)
             {
+                if (Convert.ToDouble(EngineSizeTxtBox.Text) > maxEngineSizePersoanl || Convert.ToDouble(EngineSizeTxtBox.Text) < minEngineSizePersonal)
+                {
+                    MessageBox.Show("Engine size MUST be between " + minEngineSizePersonal + " L and " + maxEngineSizePersoanl + " L!");
+                    EngineSizeTxtBox.Text = "";
+                }
+
                 if (!(NameTxtBox.Text == "" || MilageTxtBox.Text == "" || RegNumTxtBox.Text == "" || YearTxtBox.Text == "" || MinPriceTxtBox.Text == ""
                     || ClosingDateTxtBox.Text == "" || TrunkHeightTxtBox.Text == "" || TrunkWidthTxtBox.Text == "" || TrunkDepthTxtBox.Text == ""
                     || EngineSizeTxtBox.Text == "" || NumberOfSeatsTxtBox.Text == "" || LoadCapacityTxtBox.Text == ""))
@@ -259,11 +284,20 @@ namespace UserInterface
                     newAuction.Seller.UserName = User.UserName;
                     database.DatabaseCreate(newAuction);
                     MessageBox.Show("Auction created");
+                    SUCCES = true;
                 }
+                else
+                    MessageBox.Show("ALL fields must be filled!");
 
             }
             if(TruckRdBtn.IsChecked == true)
             {
+                if (Convert.ToDouble(EngineSizeTxtBox.Text) > maxEngineSizeHeavy || Convert.ToDouble(EngineSizeTxtBox.Text) < minEngineSizeHeavy)
+                {
+                    MessageBox.Show("Engine size MUST be between " + minEngineSizeHeavy + " L and " + maxEngineSizeHeavy + " L!");
+                    EngineSizeTxtBox.Text = "";
+                }
+
                 if (!(NameTxtBox.Text == "" || MilageTxtBox.Text == "" || RegNumTxtBox.Text == "" || YearTxtBox.Text == "" || MinPriceTxtBox.Text == ""
                    || ClosingDateTxtBox.Text == "" || HeightTxtBox.Text == "" || LengthTxtBox.Text == "" || WeightTxtBox.Text == "" || EngineSizeTxtBox.Text == ""
                    || LoadCapacityTxtBox.Text == ""))
@@ -278,10 +312,19 @@ namespace UserInterface
                     newAuction.Seller.UserName = User.UserName;
                     database.DatabaseCreate(newAuction);
                     MessageBox.Show("Auction created");
+                    SUCCES = true;
                 }
+                else
+                    MessageBox.Show("ALL fields must be filled!");
             }
             if(BusRdBtn.IsChecked == true)
             {
+                if (Convert.ToDouble(EngineSizeTxtBox.Text) > maxEngineSizeHeavy || Convert.ToDouble(EngineSizeTxtBox.Text) < minEngineSizeHeavy)
+                {
+                    MessageBox.Show("Engine size MUST be between " + minEngineSizeHeavy + " L and " + maxEngineSizeHeavy + " L!");
+                    EngineSizeTxtBox.Text = "";
+                }
+
                 if (!(NameTxtBox.Text == "" || MilageTxtBox.Text == "" || RegNumTxtBox.Text == "" || YearTxtBox.Text == "" || MinPriceTxtBox.Text == ""
                    || ClosingDateTxtBox.Text == "" || HeightTxtBox.Text == "" || LengthTxtBox.Text == "" || WeightTxtBox.Text == "" || EngineSizeTxtBox.Text == ""
                    || NumberOfSeatsTxtBox.Text == "" || NumberOfSleepingSpacesTxtbox.Text == ""))
@@ -296,18 +339,309 @@ namespace UserInterface
                     newAuction.Seller.UserName = User.UserName;
                     database.DatabaseCreate(newAuction);
                     MessageBox.Show("Auction created");
+                    SUCCES = true;
                 }
+                else
+                    MessageBox.Show("ALL fields must be filled!");
             }
-
-            Auctions = database.DatabaseGet(Auction);
-
+            if (SUCCES)
+            {
+                Auctions = database.DatabaseGet(Auction);
+                this.Close();
+                MyAuctions = database.DatabaseGetForUser(Auction, User);
+                Auctions = database.DatabaseGet(Auction);
+                //MainWindow mainWindow = new MainWindow(User,Auctions, MyAuctions);
+                MainWindow mainWindow = new MainWindow(User);
+                mainWindow.Show();
+            }
             
-            this.Close();
-            MyAuctions = database.DatabaseGetForUser(Auction, User);
-            Auctions = database.DatabaseGet(Auction);
-            //MainWindow mainWindow = new MainWindow(User,Auctions, MyAuctions);
-            MainWindow mainWindow = new MainWindow(User);
-            mainWindow.Show();
+        }
+
+        private void DecimalValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"^[0-9]*(?:\,[0-9]*)?$");
+            if (regex.IsMatch(e.Text) && !(e.Text == "," && ((TextBox)sender).Text.Contains(e.Text)))
+                e.Handled = false;
+            else
+                e.Handled = true;
+
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+
+        }
+
+        private void EngineSizeTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string num = "";
+            string dec = "";
+            
+            if (EngineSizeTxtBox.Text.Contains(","))
+            {
+                string[] strs = EngineSizeTxtBox.Text.Split(",");
+                num = strs[0];
+                char[] chars = new char[2];
+                int count = 0;
+                do
+                {
+                    chars = strs[1].ToCharArray();
+                    
+                    count++;
+                } while (count<2);
+                if(chars.Length == 0)
+                {
+                    
+                }
+                else if (chars.Length < 2)
+                    dec = chars[0].ToString();
+                else
+                    dec = chars[0].ToString() + chars[1].ToString();
+                
+                EngineSizeTxtBox.Text = num + "," + dec;
+            }
+        }
+
+        private void MilageTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string num = "";
+            string dec = "";
+
+            if (MilageTxtBox.Text.Contains(","))
+            {
+                string[] strs = MilageTxtBox.Text.Split(",");
+                num = strs[0];
+                char[] chars = new char[2];
+                int count = 0;
+                do
+                {
+                    chars = strs[1].ToCharArray();
+
+                    count++;
+                } while (count < 2);
+                if (chars.Length == 0)
+                {
+
+                }
+                else if (chars.Length < 2)
+                    dec = chars[0].ToString();
+                else
+                    dec = chars[0].ToString() + chars[1].ToString();
+
+                MilageTxtBox.Text = num + "," + dec;
+            }
+        }
+
+        private void MinPriceTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string num = "";
+            string dec = "";
+
+            if (MinPriceTxtBox.Text.Contains(","))
+            {
+                string[] strs = MinPriceTxtBox.Text.Split(",");
+                num = strs[0];
+                char[] chars = new char[2];
+                int count = 0;
+                do
+                {
+                    chars = strs[1].ToCharArray();
+
+                    count++;
+                } while (count < 2);
+                if (chars.Length == 0)
+                {
+
+                }
+                else if (chars.Length < 2)
+                    dec = chars[0].ToString();
+                else
+                    dec = chars[0].ToString() + chars[1].ToString();
+
+                MinPriceTxtBox.Text = num + "," + dec;
+            }
+        }
+
+        private void TrunkHeightTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string num = "";
+            string dec = "";
+
+            if (TrunkHeightTxtBox.Text.Contains(","))
+            {
+                string[] strs = TrunkHeightTxtBox.Text.Split(",");
+                num = strs[0];
+                char[] chars = new char[2];
+                int count = 0;
+                do
+                {
+                    chars = strs[1].ToCharArray();
+
+                    count++;
+                } while (count < 2);
+                if (chars.Length == 0)
+                {
+
+                }
+                else if (chars.Length < 2)
+                    dec = chars[0].ToString();
+                else
+                    dec = chars[0].ToString() + chars[1].ToString();
+
+                TrunkHeightTxtBox.Text = num + "," + dec;
+            }
+        }
+
+        private void TrunkWidthTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string num = "";
+            string dec = "";
+
+            if (TrunkWidthTxtBox.Text.Contains(","))
+            {
+                string[] strs = TrunkWidthTxtBox.Text.Split(",");
+                num = strs[0];
+                char[] chars = new char[2];
+                int count = 0;
+                do
+                {
+                    chars = strs[1].ToCharArray();
+
+                    count++;
+                } while (count < 2);
+                if (chars.Length == 0)
+                {
+
+                }
+                else if (chars.Length < 2)
+                    dec = chars[0].ToString();
+                else
+                    dec = chars[0].ToString() + chars[1].ToString();
+
+                TrunkWidthTxtBox.Text = num + "," + dec;
+            }
+        }
+
+        private void TrunkDepthTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string num = "";
+            string dec = "";
+
+            if (TrunkDepthTxtBox.Text.Contains(","))
+            {
+                string[] strs = TrunkDepthTxtBox.Text.Split(",");
+                num = strs[0];
+                char[] chars = new char[2];
+                int count = 0;
+                do
+                {
+                    chars = strs[1].ToCharArray();
+
+                    count++;
+                } while (count < 2);
+                if (chars.Length == 0)
+                {
+
+                }
+                else if (chars.Length < 2)
+                    dec = chars[0].ToString();
+                else
+                    dec = chars[0].ToString() + chars[1].ToString();
+
+                TrunkDepthTxtBox.Text = num + "," + dec;
+            }
+        }
+
+        private void HeightTextBox_TextChange(object sender, TextChangedEventArgs e)
+        {
+            string num = "";
+            string dec = "";
+
+            if (HeightTxtBox.Text.Contains(","))
+            {
+                string[] strs = HeightTxtBox.Text.Split(",");
+                num = strs[0];
+                char[] chars = new char[2];
+                int count = 0;
+                do
+                {
+                    chars = strs[1].ToCharArray();
+
+                    count++;
+                } while (count < 2);
+                if (chars.Length == 0)
+                {
+
+                }
+                else if (chars.Length < 2)
+                    dec = chars[0].ToString();
+                else
+                    dec = chars[0].ToString() + chars[1].ToString();
+
+                HeightTxtBox.Text = num + "," + dec;
+            }
+        }
+
+        private void WeightTextBox_TextChange(object sender, TextChangedEventArgs e)
+        {
+            string num = "";
+            string dec = "";
+
+            if (WeightTxtBox.Text.Contains(","))
+            {
+                string[] strs = WeightTxtBox.Text.Split(",");
+                num = strs[0];
+                char[] chars = new char[2];
+                int count = 0;
+                do
+                {
+                    chars = strs[1].ToCharArray();
+
+                    count++;
+                } while (count < 2);
+                if (chars.Length == 0)
+                {
+
+                }
+                else if (chars.Length < 2)
+                    dec = chars[0].ToString();
+                else
+                    dec = chars[0].ToString() + chars[1].ToString();
+
+                WeightTxtBox.Text = num + "," + dec;
+            }
+        }
+
+        private void LengthTextBox_TextChange(object sender, TextChangedEventArgs e)
+        {
+            string num = "";
+            string dec = "";
+
+            if (LengthTxtBox.Text.Contains(","))
+            {
+                string[] strs = LengthTxtBox.Text.Split(",");
+                num = strs[0];
+                char[] chars = new char[2];
+                int count = 0;
+                do
+                {
+                    chars = strs[1].ToCharArray();
+
+                    count++;
+                } while (count < 2);
+                if (chars.Length == 0)
+                {
+
+                }
+                else if (chars.Length < 2)
+                    dec = chars[0].ToString();
+                else
+                    dec = chars[0].ToString() + chars[1].ToString();
+
+                LengthTxtBox.Text = num + "," + dec;
+            }
         }
     }
 }

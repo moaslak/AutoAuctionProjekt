@@ -30,7 +30,7 @@
         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="top">Has tow bar</Label>
         <CheckBox x:Name="TowBarCheckBox" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"></CheckBox>
         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Km</Label>
-        <TextBox x:Name="MilageTxtBox" Grid.Row="2" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="MilageTxtBox" Grid.Row="2" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="DecimalValidationTextBox" TextChanged="MilageTxtBox_TextChanged"></TextBox>
         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top">Fuel type</Label>
         <ComboBox x:Name="FuelTypeComboBox" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" Margin="10" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem x:Name="PetrolSelection">Petrol</ComboBoxItem>
@@ -39,11 +39,11 @@
         <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Registration number</Label>
         <TextBox Name="RegNumTxtBox" Grid.Row="3" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
         <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Year</Label>
-        <TextBox x:Name="YearTxtBox" Grid.Row="4" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="YearTxtBox" Grid.Row="4" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Minumum price</Label>
-        <TextBox x:Name="MinPriceTxtBox" Grid.Row="5" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="MinPriceTxtBox" Grid.Row="5" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="DecimalValidationTextBox" TextChanged="MinPriceTxtBox_TextChanged"></TextBox>
         <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Closing date (yyyy-mm-dd hh:mm:ss.xxx)</Label>
-        <TextBox x:Name="ClosingDateTxtBox" Grid.Row="6" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <DatePicker x:Name="ClosingDateTxtBox" Grid.Row="6" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></DatePicker>
         <Grid Grid.Row="7" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -69,29 +69,29 @@
         <Label x:Name="VehicleDimensionLbl" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center">Vehicle dimensions</Label>
         <Label x:Name="TrunkDimensionLbl" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center">Trunk dimensions</Label>
         <Label x:Name="HeightTxtBoxLbl" Grid.Row="2" Grid.Column="1">Vehicle Height</Label>
-        <TextBox x:Name="HeightTxtBox" Grid.Row="2" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="HeightTxtBox" Grid.Row="2" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="DecimalValidationTextBox" TextChanged="HeightTextBox_TextChange"></TextBox>
         <Label x:Name="LengthTxtBoxLbl" Grid.Row="3" Grid.Column="1">Vehicle Length</Label>
-        <TextBox x:Name="LengthTxtBox" Grid.Row="3" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="LengthTxtBox" Grid.Row="3" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="DecimalValidationTextBox" TextChanged="LengthTextBox_TextChange"></TextBox>
         <Label x:Name="WeightTxtBoxLbl" Grid.Row="4" Grid.Column="1">Vehicle weight</Label>
-        <TextBox x:Name="WeightTxtBox" Grid.Row="4" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="WeightTxtBox" Grid.Row="4" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="DecimalValidationTextBox" TextChanged="WeightTextBox_TextChange"></TextBox>
         <Label x:Name="TrunkHeightTxtBoxLbl" Grid.Row="2" Grid.Column="1">Trunk Height</Label>
-        <TextBox x:Name="TrunkHeightTxtBox" Grid.Row="2" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="TrunkHeightTxtBox" Grid.Row="2" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="DecimalValidationTextBox" TextChanged="TrunkHeightTxtBox_TextChanged"></TextBox>
         <Label x:Name="TrunkWidthTxtBoxLbl" Grid.Row="3" Grid.Column="1">Trunk width</Label>
-        <TextBox x:Name="TrunkWidthTxtBox" Grid.Row="3" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="TrunkWidthTxtBox" Grid.Row="3" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="DecimalValidationTextBox" TextChanged="TrunkWidthTxtBox_TextChanged"></TextBox>
         <Label x:Name="TrunkDepthTxtBoxLbl" Grid.Row="4" Grid.Column="1">Trunk depth</Label>
-        <TextBox x:Name="TrunkDepthTxtBox" Grid.Row="4" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="TrunkDepthTxtBox" Grid.Row="4" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="DecimalValidationTextBox" TextChanged="TrunkDepthTxtBox_TextChanged"></TextBox>
         <Label x:Name="EngineSizeLabel" Grid.Row="5" Grid.Column="1">Engine size</Label>
-        <TextBox x:Name="EngineSizeTxtBox" Grid.Row="5" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="EngineSizeTxtBox" Grid.Row="5" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="DecimalValidationTextBox" TextChanged="EngineSizeTxtBox_TextChanged"></TextBox>
         <Label x:Name="HasISOFittingsLbl" Grid.Row="6" Grid.Column="1">Has ISO fittings</Label>
         <Label x:Name="LoadCapacityLbl" Grid.Row="6" Grid.Column="1">Load capacity</Label>
-        <TextBox x:Name="LoadCapacityTxtBox" Grid.Row="6" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="LoadCapacityTxtBox" Grid.Row="6" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="DecimalValidationTextBox"></TextBox>
         <CheckBox x:Name="HasISOFittingCheckBox" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"></CheckBox>
         <Label x:Name="NumberOfSeatsLbl" Grid.Row="7" Grid.Column="1">Number of seats</Label>
-        <TextBox x:Name="NumberOfSeatsTxtBox" Grid.Row="7" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="NumberOfSeatsTxtBox" Grid.Row="7" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Label x:Name="NumberOfSleepingSpacesLbl" Grid.Row="8" Grid.Column="1">Number of sleeping spaces</Label>
         <Label x:Name="HasSaftyBarLbl" Grid.Row="8" Grid.Column="1">Has safty bar</Label>
         <CheckBox x:Name="HasSaftyBarCheckBox" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center"></CheckBox>
-        <TextBox x:Name="NumberOfSleepingSpacesTxtbox" Grid.Row="8" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox x:Name="NumberOfSleepingSpacesTxtbox" Grid.Row="8" Grid.Column="1" Width="240" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Label x:Name="HasToiletlbl" Grid.Row="9" Grid.Column="1">Has toilet</Label>
         <CheckBox x:Name="HasToiletCheckBox" Grid.Row="9" Grid.Column="1" VerticalAlignment="Center"></CheckBox>
     </Grid>
