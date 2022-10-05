@@ -17,24 +17,12 @@ namespace AutoAuctionProjekt.Classes
             double kmPerLiter,
             FuelTypeEnum fuelType,
             ushort numberOfSeat,
-            TrunkDimentionsStruct trunkDimentions,
-            DriversLisenceEnum driversLisence,
-            EnergyClassEnum energyClass)
-            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, driversLisence, energyClass)
+            TrunkDimentionsStruct trunkDimentions)
+            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType)
         {
             this.NumberOfSeat = numberOfSeat;
             this.TrunkDimentions = trunkDimentions;
-            this.DriversLisence = driversLisence;
-            this.Name = name;
-            this.Year = year;
-            this.Km = km;
-            this.RegistrationNumber = registrationNumber;
-            this.NewPrice = newPrice;
-            this.HasTowbar = hasTowbar;
             this.EngineSize = engineSize;
-            this.KmPerLiter = kmPerLiter;
-            this.FuelType = fuelType;
-            this.Year = year;
         }
         /// <summary>
         /// Number of seat proberty

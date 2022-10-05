@@ -33,6 +33,30 @@ namespace AutoAuctionProjekt.Classes
             else
                 this.DriversLisence = DriversLisenceEnum.D;
         }
+
+        public Bus(
+            string name,
+            double km,
+            string registrationNumber,
+            ushort year,
+            decimal newPrice,
+            bool hasTowbar,
+            double engineSize,
+            double kmPerLiter,
+            FuelTypeEnum fuelType,
+            VehicleDimensionsStruct vehicleDimentions,
+            ushort numberOfSeats,
+            ushort numberOfSleepingSpaces,
+            bool hasToilet) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, vehicleDimentions)
+        {
+            this.NumberOfSeats = numberOfSeats;
+            this.NumberOfSleepingSpaces = numberOfSleepingSpaces;
+            this.HasToilet = hasToilet;
+            if (this.HasTowbar == true)
+                this.DriversLisence = DriversLisenceEnum.DE;
+            else
+                this.DriversLisence = DriversLisenceEnum.D;
+        }
         /// <summary>
         /// Engine size proberty
         /// must be between 4.2 and 15.0 L or cast an out of range exection.

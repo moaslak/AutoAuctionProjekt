@@ -22,6 +22,21 @@ namespace AutoAuctionProjekt.Classes
         {
             this.VehicleDimensions = vehicleDimentions;
         }
+
+        public HeavyVehicle(
+         string name,
+         double km,
+         string registrationNumber,
+         ushort year,
+         decimal newPrice,
+         bool hasTowbar,
+         double engineSize,
+         double kmPerLiter,
+         FuelTypeEnum fuelType,
+         VehicleDimensionsStruct vehicleDimentions) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType)
+        {
+            this.VehicleDimensions = vehicleDimentions;
+        }
         /// <summary>
         /// Vehicle dimentions proberty and struct
         /// </summary>

@@ -28,6 +28,27 @@ namespace AutoAuctionProjekt.Classes
             
             this.LoadCapacity = loadCapacity;
         }
+
+        public Truck(
+            string name,
+            double km,
+            string registrationNumber,
+            ushort year,
+            decimal newPrice,
+            bool hasTowbar,
+            double engineSize,
+            double kmPerLiter,
+            FuelTypeEnum fuelType,
+            VehicleDimensionsStruct vehicleDimentions,
+            double loadCapacity) : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, vehicleDimentions)
+        {
+            if (this.HasTowbar == true)
+                this.DriversLisence = DriversLisenceEnum.CE;
+            else
+                this.DriversLisence = DriversLisenceEnum.C;
+
+            this.LoadCapacity = loadCapacity;
+        }
         /// <summary>
         /// Engine size proberty
         /// must be between 4.2 and 15.0 L or cast an out of range exection.

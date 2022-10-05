@@ -21,12 +21,39 @@ namespace AutoAuctionProjekt.Classes
             double loadCapacity,
             DriversLisenceEnum driversLisence,
             EnergyClassEnum energyClass)
-            : base(name, km, registrationNumber, year, newPrice, true, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions, driversLisence, energyClass)
+            : base(name, km, registrationNumber, year, newPrice, true, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions)
         {
             if (this.LoadCapacity > 750)
                 this.DriversLisence = DriversLisenceEnum.BE;
             else
                 this.DriversLisence = DriversLisenceEnum.B;
+            this.LoadCapacity = loadCapacity;
+            this.HasSafetyBar = hasSafetyBar;
+        }
+
+        public ProfessionalPersonalCar(
+            string name,
+            double km,
+            string registrationNumber,
+            ushort year,
+            decimal newPrice,
+            bool hasTowbar,
+            double engineSize,
+            double kmPerLiter,
+            FuelTypeEnum fuelType,
+            ushort numberOfSeat,
+            TrunkDimentionsStruct trunkDimentions,
+            bool hasSafetyBar,
+            double loadCapacity)
+            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions)
+        {
+            if (this.LoadCapacity > 750)
+                this.DriversLisence = DriversLisenceEnum.BE;
+            else
+                this.DriversLisence = DriversLisenceEnum.B;
+
+            this.LoadCapacity = loadCapacity;
+            this.HasSafetyBar = hasSafetyBar;
         }
         /// <summary>
         /// Safety Bar proberty

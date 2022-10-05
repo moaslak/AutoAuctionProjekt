@@ -247,7 +247,7 @@ namespace UserInterface
                     PrivatePersonalCar privatePersonalCar = new PrivatePersonalCar(NameTxtBox.Text, Convert.ToDouble(MilageTxtBox.Text), RegNumTxtBox.Text, Convert.ToUInt16(YearTxtBox.Text),
                         Convert.ToDecimal(MinPriceTxtBox.Text), hasTowBar, Convert.ToDouble(EngineSizeTxtBox.Text), Convert.ToDouble(KmLTextbox.Text), fuelType, Convert.ToUInt16(NumberOfSeatsTxtBox.Text),
                         new PersonalCar.TrunkDimentionsStruct(Convert.ToDouble(TrunkHeightTxtBox.Text), Convert.ToDouble(TrunkWidthTxtBox.Text), Convert.ToDouble(TrunkDepthTxtBox.Text)),
-                        hasISOFittings, DriversLisenceEnum.B, EnergyClassEnum.A);
+                        hasISOFittings);
                     database.DatabaseCreate(privatePersonalCar);
                     List<PrivatePersonalCar> privatePersonalCars = database.DatabaseGet(privatePersonalCar);
                     privatePersonalCar = privatePersonalCars[privatePersonalCars.Count - 1];
@@ -263,6 +263,7 @@ namespace UserInterface
             }
             if (ProfefssionalPersonalCarRdBtn.IsChecked == true)
             {
+
                 if (Convert.ToDouble(EngineSizeTxtBox.Text) > maxEngineSizePersoanl || Convert.ToDouble(EngineSizeTxtBox.Text) < minEngineSizePersonal)
                 {
                     MessageBox.Show("Engine size MUST be between " + minEngineSizePersonal + " L and " + maxEngineSizePersoanl + " L!");
@@ -274,9 +275,9 @@ namespace UserInterface
                     || EngineSizeTxtBox.Text == "" || NumberOfSeatsTxtBox.Text == "" || LoadCapacityTxtBox.Text == ""))
                 {
                     ProfessionalPersonalCar professionalPersonalCar = new ProfessionalPersonalCar(NameTxtBox.Text, Convert.ToDouble(MilageTxtBox.Text), RegNumTxtBox.Text, Convert.ToUInt16(YearTxtBox.Text),
-                        Convert.ToDecimal(MinPriceTxtBox.Text), Convert.ToDouble(EngineSizeTxtBox.Text), 0, fuelType, Convert.ToUInt16(NumberOfSeatsTxtBox.Text),
+                        Convert.ToDecimal(MinPriceTxtBox.Text), hasTowBar, Convert.ToDouble(EngineSizeTxtBox.Text), Convert.ToDouble(KmLTextbox.Text), fuelType, Convert.ToUInt16(NumberOfSeatsTxtBox.Text),
                         new PersonalCar.TrunkDimentionsStruct(Convert.ToDouble(TrunkHeightTxtBox.Text), Convert.ToDouble(TrunkWidthTxtBox.Text), Convert.ToDouble(TrunkDepthTxtBox.Text)), hasSaftyBar,
-                        Convert.ToDouble(LoadCapacityTxtBox.Text), Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
+                        Convert.ToDouble(LoadCapacityTxtBox.Text));
                     database.DatabaseCreate(professionalPersonalCar);
                     List<ProfessionalPersonalCar> professionalPersonalCars = database.DatabaseGet(professionalPersonalCar);
                     professionalPersonalCar = professionalPersonalCars[professionalPersonalCars.Count - 1];
@@ -303,8 +304,8 @@ namespace UserInterface
                    || LoadCapacityTxtBox.Text == ""))
                 {
                     Truck truck = new Truck(NameTxtBox.Text, Convert.ToDouble(MilageTxtBox.Text), RegNumTxtBox.Text, Convert.ToUInt16(YearTxtBox.Text), Convert.ToDecimal(MinPriceTxtBox.Text), hasTowBar,
-                        Convert.ToDouble(EngineSizeTxtBox.Text), 0, fuelType, new HeavyVehicle.VehicleDimensionsStruct(Convert.ToDouble(HeightTxtBox.Text), Convert.ToDouble(WeightTxtBox.Text), Convert.ToDouble(LengthTxtBox.Text)),
-                        Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, Convert.ToDouble(LoadCapacityTxtBox.Text));
+                        Convert.ToDouble(EngineSizeTxtBox.Text), Convert.ToDouble(KmLTextbox.Text), fuelType, new HeavyVehicle.VehicleDimensionsStruct(Convert.ToDouble(HeightTxtBox.Text), Convert.ToDouble(WeightTxtBox.Text), 
+                        Convert.ToDouble(LengthTxtBox.Text)), Convert.ToDouble(LoadCapacityTxtBox.Text));
                     database.DatabaseCreate(truck);
                     List<Truck> trucks = database.DatabaseGet(truck);
                     truck = trucks[trucks.Count - 1];
@@ -330,8 +331,8 @@ namespace UserInterface
                    || NumberOfSeatsTxtBox.Text == "" || NumberOfSleepingSpacesTxtbox.Text == ""))
                 {
                     Bus bus = new Bus(NameTxtBox.Text, Convert.ToDouble(MilageTxtBox.Text), RegNumTxtBox.Text, Convert.ToUInt16(YearTxtBox.Text), Convert.ToDecimal(MinPriceTxtBox.Text),
-                        hasTowBar, Convert.ToDouble(EngineSizeTxtBox.Text), 0, fuelType, new HeavyVehicle.VehicleDimensionsStruct(Convert.ToDouble(HeightTxtBox.Text), Convert.ToDouble(WeightTxtBox.Text), Convert.ToDouble(LengthTxtBox.Text)),
-                        Convert.ToUInt16(NumberOfSeatsTxtBox.Text), Convert.ToUInt16(NumberOfSleepingSpacesTxtbox.Text), Vehicle.EnergyClassEnum.A, Vehicle.DriversLisenceEnum.A, hasToilet);
+                        hasTowBar, Convert.ToDouble(EngineSizeTxtBox.Text), Convert.ToDouble(KmLTextbox.Text), fuelType, new HeavyVehicle.VehicleDimensionsStruct(Convert.ToDouble(HeightTxtBox.Text), Convert.ToDouble(WeightTxtBox.Text), Convert.ToDouble(LengthTxtBox.Text)),
+                        Convert.ToUInt16(NumberOfSeatsTxtBox.Text), Convert.ToUInt16(NumberOfSleepingSpacesTxtbox.Text), hasToilet);
                     database.DatabaseCreate(bus);
                     List<Bus> buses = database.DatabaseGet(bus);
                     bus = buses[buses.Count - 1];
