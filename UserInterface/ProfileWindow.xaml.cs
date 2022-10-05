@@ -83,5 +83,10 @@ namespace UserInterface
             }
             MessageBox.Show("Balance added " + balanceBox.Text);
         }
+
+        private void chPssBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
