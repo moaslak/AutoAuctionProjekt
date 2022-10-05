@@ -74,6 +74,7 @@ namespace UserInterface
             corporateUser = database.DatabaseSelect(User.UserName, corporateUser);
             if(privateUser != null)
             {
+                //TODO: INPUT EXCEPTION HANDLING
                 privateUser.Balance += Convert.ToDecimal(balanceBox.Text);
                 database.DatabaseUpdate(privateUser);
             }
