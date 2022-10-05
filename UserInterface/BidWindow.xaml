@@ -19,7 +19,7 @@
         <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Your bid: </TextBlock>
         <Button x:Name="BidBtn" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="40" Width="80" Background="LightGreen" Margin="10,0,0,0" Click="BidBtn_Click">BID</Button> 
         <!-- COLUMN 1-->
-        <TextBox x:Name="BidInput" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="80" Height="20" TextChanged="BidInput_TextChanged"></TextBox>
+        <TextBox x:Name="BidInput" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="80" Height="20" PreviewTextInput="DecimalValidationTextBox" TextChanged="BidInput_TextChanged"></TextBox>
         <Button x:Name="CancelBtn" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="80" Height="40" Margin="10,0,0,0" Background="red" Click="CancelBtn_Click">Cancel</Button>
     </Grid>
 </Window>

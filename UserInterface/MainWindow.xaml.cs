@@ -33,7 +33,11 @@ namespace UserInterface
             foreach (Auction a in MyAuctions)
             {
                 if (a.ClosingDate.CompareTo(DateTime.Now) < 0)
+                {
                     a.CloseAuction();
+                    database.DatabaseUpdate(a);
+                }
+                    
 
                 if (!(a.Closed))
                     auctionListBx.Items.Add(a);
@@ -41,7 +45,10 @@ namespace UserInterface
             foreach (Auction a in Auctions)
             {
                 if (a.ClosingDate.CompareTo(DateTime.Now) < 0)
+                {
                     a.CloseAuction();
+                    database.DatabaseUpdate(a);
+                }
 
                 if (!(a.Closed) && !(a.Seller.UserName == User.UserName || a.Buyer.UserName == User.UserName))
                     allAuctionListBx.Items.Add(a);
