@@ -30,7 +30,7 @@ namespace AutoAuctionProjekt.Classes
             SqlConnectionStringBuilder SqlConnectionStringBuilder = new SqlConnectionStringBuilder();
 
             SqlConnectionStringBuilder.DataSource = "docker.data.techcollege.dk,20001";
-            SqlConnectionStringBuilder.ConnectTimeout = 5;
+            SqlConnectionStringBuilder.ConnectTimeout = 10;
             SqlConnectionStringBuilder.UserID = "mort40f4"; //TODO: indlæses fra GUI
             SqlConnectionStringBuilder.Password = "Test1234!"; //TODO: indlæses fra GUI
             //string database = File.ReadAllText("..\\Data\\CONFIG.txt"); //TODO: relative path
