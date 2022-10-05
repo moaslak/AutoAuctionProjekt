@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static AutoAuctionProjekt.Classes.Vehicle;
 
 namespace UserInterface
 {
@@ -31,7 +32,7 @@ namespace UserInterface
         }
 
         private User User { get; set; }
-        
+
         private List<Auction> Auctions { get; set; }
         private List<Auction> MyAuctions { get; set; }
         private Auction Auction { get; set; }
@@ -81,7 +82,7 @@ namespace UserInterface
             TrunkWidthTxtBoxLbl.Visibility = Visibility.Visible;
             TrunkWidthTxtBox.Visibility = Visibility.Visible;
             TrunkDepthTxtBoxLbl.Visibility = Visibility.Visible;
-            TrunkDepthTxtBox.Visibility= Visibility.Visible;
+            TrunkDepthTxtBox.Visibility = Visibility.Visible;
             NumberOfSeatsLbl.Visibility = Visibility.Visible;
             NumberOfSeatsTxtBox.Visibility = Visibility.Visible;
         }
@@ -155,7 +156,7 @@ namespace UserInterface
 
         private void ProfefssionalPersonalCarRdBtn_Checked(object sender, RoutedEventArgs e)
         {
-            if(ProfefssionalPersonalCarRdBtn.IsChecked == true)
+            if (ProfefssionalPersonalCarRdBtn.IsChecked == true)
             {
                 PrivatePersonalCarRdBtn.IsChecked = false;
                 TruckRdBtn.IsChecked = false;
@@ -166,7 +167,7 @@ namespace UserInterface
 
         private void TruckRdBtn_Checked(object sender, RoutedEventArgs e)
         {
-            if(TruckRdBtn.IsChecked == true)
+            if (TruckRdBtn.IsChecked == true)
             {
                 PrivatePersonalCarRdBtn.IsChecked = false;
                 ProfefssionalPersonalCarRdBtn.IsChecked = false;
@@ -177,7 +178,7 @@ namespace UserInterface
 
         private void BusRdBtn_Checked(object sender, RoutedEventArgs e)
         {
-            if(BusRdBtn.IsChecked == true)
+            if (BusRdBtn.IsChecked == true)
             {
                 PrivatePersonalCarRdBtn.IsChecked = false;
                 ProfefssionalPersonalCarRdBtn.IsChecked = false;
@@ -198,7 +199,7 @@ namespace UserInterface
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
 
         private void CreateAuctionBtn_Click(object sender, RoutedEventArgs e)
@@ -235,7 +236,6 @@ namespace UserInterface
             {
                 if (Convert.ToDouble(EngineSizeTxtBox.Text) > maxEngineSizePersoanl || Convert.ToDouble(EngineSizeTxtBox.Text) < minEngineSizePersonal)
                 {
-                    double a = Convert.ToDouble(EngineSizeTxtBox.Text);
                     MessageBox.Show("Engine size MUST be between " + minEngineSizePersonal + " L and " + maxEngineSizePersoanl + " L!");
                     EngineSizeTxtBox.Text = "";
                 }
@@ -245,9 +245,9 @@ namespace UserInterface
                     || EngineSizeTxtBox.Text == "" || NumberOfSeatsTxtBox.Text == ""))
                 {
                     PrivatePersonalCar privatePersonalCar = new PrivatePersonalCar(NameTxtBox.Text, Convert.ToDouble(MilageTxtBox.Text), RegNumTxtBox.Text, Convert.ToUInt16(YearTxtBox.Text),
-                        Convert.ToDecimal(MinPriceTxtBox.Text), hasTowBar, Convert.ToDouble(EngineSizeTxtBox.Text), 0, fuelType, Convert.ToUInt16(NumberOfSeatsTxtBox.Text),
+                        Convert.ToDecimal(MinPriceTxtBox.Text), hasTowBar, Convert.ToDouble(EngineSizeTxtBox.Text), Convert.ToDouble(KmLTextbox.Text), fuelType, Convert.ToUInt16(NumberOfSeatsTxtBox.Text),
                         new PersonalCar.TrunkDimentionsStruct(Convert.ToDouble(TrunkHeightTxtBox.Text), Convert.ToDouble(TrunkWidthTxtBox.Text), Convert.ToDouble(TrunkDepthTxtBox.Text)),
-                        hasISOFittings, Vehicle.DriversLisenceEnum.A, Vehicle.EnergyClassEnum.A);
+                        hasISOFittings, DriversLisenceEnum.B, EnergyClassEnum.A);
                     database.DatabaseCreate(privatePersonalCar);
                     List<PrivatePersonalCar> privatePersonalCars = database.DatabaseGet(privatePersonalCar);
                     privatePersonalCar = privatePersonalCars[privatePersonalCars.Count - 1];
@@ -261,7 +261,7 @@ namespace UserInterface
                     MessageBox.Show("ALL fields must be filled!");
 
             }
-            if(ProfefssionalPersonalCarRdBtn.IsChecked == true)
+            if (ProfefssionalPersonalCarRdBtn.IsChecked == true)
             {
                 if (Convert.ToDouble(EngineSizeTxtBox.Text) > maxEngineSizePersoanl || Convert.ToDouble(EngineSizeTxtBox.Text) < minEngineSizePersonal)
                 {
@@ -290,7 +290,7 @@ namespace UserInterface
                     MessageBox.Show("ALL fields must be filled!");
 
             }
-            if(TruckRdBtn.IsChecked == true)
+            if (TruckRdBtn.IsChecked == true)
             {
                 if (Convert.ToDouble(EngineSizeTxtBox.Text) > maxEngineSizeHeavy || Convert.ToDouble(EngineSizeTxtBox.Text) < minEngineSizeHeavy)
                 {
@@ -317,7 +317,7 @@ namespace UserInterface
                 else
                     MessageBox.Show("ALL fields must be filled!");
             }
-            if(BusRdBtn.IsChecked == true)
+            if (BusRdBtn.IsChecked == true)
             {
                 if (Convert.ToDouble(EngineSizeTxtBox.Text) > maxEngineSizeHeavy || Convert.ToDouble(EngineSizeTxtBox.Text) < minEngineSizeHeavy)
                 {
@@ -354,7 +354,7 @@ namespace UserInterface
                 MainWindow mainWindow = new MainWindow(User);
                 mainWindow.Show();
             }
-            
+
         }
 
         private void DecimalValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -378,7 +378,7 @@ namespace UserInterface
         {
             string num = "";
             string dec = "";
-            
+
             if (EngineSizeTxtBox.Text.Contains(","))
             {
                 string[] strs = EngineSizeTxtBox.Text.Split(",");
@@ -388,18 +388,18 @@ namespace UserInterface
                 do
                 {
                     chars = strs[1].ToCharArray();
-                    
+
                     count++;
-                } while (count<2);
-                if(chars.Length == 0)
+                } while (count < 2);
+                if (chars.Length == 0)
                 {
-                    
+
                 }
                 else if (chars.Length < 2)
                     dec = chars[0].ToString();
                 else
                     dec = chars[0].ToString() + chars[1].ToString();
-                
+
                 EngineSizeTxtBox.Text = num + "," + dec;
             }
         }
@@ -641,6 +641,36 @@ namespace UserInterface
                     dec = chars[0].ToString() + chars[1].ToString();
 
                 LengthTxtBox.Text = num + "," + dec;
+            }
+        }
+
+        private void KmLTextbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string num = "";
+            string dec = "";
+
+            if (KmLTextbox.Text.Contains(","))
+            {
+                string[] strs = KmLTextbox.Text.Split(",");
+                num = strs[0];
+                char[] chars = new char[2];
+                int count = 0;
+                do
+                {
+                    chars = strs[1].ToCharArray();
+
+                    count++;
+                } while (count < 2);
+                if (chars.Length == 0)
+                {
+
+                }
+                else if (chars.Length < 2)
+                    dec = chars[0].ToString();
+                else
+                    dec = chars[0].ToString() + chars[1].ToString();
+
+                KmLTextbox.Text = num + "," + dec;
             }
         }
     }
