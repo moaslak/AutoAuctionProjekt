@@ -183,14 +183,14 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="AutoAuctionProjekt.Interfaces.IDatabase&lt;T&gt;" Collapsed="true">
-    <Position X="21" Y="0.5" Width="1.5" />
+    <Position X="13.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAAABAAAAAAAAAQAAAAAAAAEAIAAAA=</HashCode>
       <FileName>Interfaces\IDatabase.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Delegate Name="AutoAuctionProjekt.Classes.NodificationDelegate" Collapsed="true">
-    <Position X="21" Y="1.5" Width="1.5" />
+    <Position X="13.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Classes\AuctionHouse.cs</FileName>
