@@ -25,6 +25,7 @@ Denne klasse samler de forskellige objekter, som skal bruges til at lave en aukt
 ## Database
 Databasen lagrer alle systemets data. Dette gælder køretøjer, auktioner, brugere og budhistorik. Det er MS SQL Server, som kører på en udleveret docker container. Denne styres udelukkende af backend’en.
 Til denne er oprettede adskillige stored procedures. Det netop disse som bruges af backend’en til at tilgå data i databasen.
+Alle tabellerne i databasen er koblet sammen ved fremmednøgler. Dette gøres for at koble data sammen, men samtidig også for at sikre at data ikke pludselig kan slettes. F.eks. Hvis man ønsker at slette et Vehicle, så kræves dette at denne ikke findes på en Auction, da denne så vil referere til noget data som ikke længere er der. Der er derimod oprettet stored procedures som kan bruges til at slette enkelte elementer, som så også sikrer at relationer til andre tabeller også fjernes. 
 
 ## Frontend
 Frontend'en er brugerfladen til programmet. Denne binder sin data fra backenden, som denne henter fra databasen. Denne er en WPF applikation, og indeholder vinduer til brugerhåndtering (oprettelse og login), hentning af auktionsdata, oprettelse af auktioner og budhåndtering af disse. Der findes tilmed et vindue som viser den indloggede brugers budhistorik.
