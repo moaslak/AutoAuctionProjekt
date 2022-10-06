@@ -111,7 +111,7 @@ namespace TestAutoAuctionProject
             auction.Buyer = privateUser;
             auction.Buyer.UserName = privateUser.UserName;
 
-            AuctionBid auctionBid = new AuctionBid(auction, privateUser);
+            AuctionBid auctionBid = new AuctionBid(auction, privateUser.UserName);
             bool success = false;
             try
             {
@@ -149,7 +149,7 @@ namespace TestAutoAuctionProject
 
             auction = database.DatabaseSelect(14, auction);
 
-            AuctionBid auctionBid = new AuctionBid(auction, privateUser);
+            AuctionBid auctionBid = new AuctionBid(auction, privateUser.UserName);
             Decimal newBid = auction.StandingBid;
             auctionBid.Bid(auction, newBid);
             Assert.True(auction.StandingBid >= newBid);

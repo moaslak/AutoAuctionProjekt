@@ -62,11 +62,8 @@ namespace AutoAuctionProjekt.Classes
                 auctionBid.Bidder = reader.GetValue(2).ToString();
                 auctionBid.Auction.StandingBid = Convert.ToDecimal(reader.GetValue(3));
                 auctionBid.BidDate = Convert.ToDateTime(reader.GetValue(4));
-                bool status = Convert.ToBoolean(reader.GetValue(5));
-                if (status)
-                    auctionBid.Auction.CloseAuction();              
-                else
-                    auctionBid.Auction.OpenAuction();
+                auctionBid.Status = reader.GetValue(5).ToString();
+
                 list.Add(auctionBid);
             }
             connection.Close();
