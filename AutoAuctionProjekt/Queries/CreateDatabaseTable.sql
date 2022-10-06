@@ -1,0 +1,118 @@
+﻿CREATE TABLE Vehicle(
+ID INT IDENTITY(1,1),
+Name VARCHAR(32),
+Km DECIMAL(12,2) NOT NULL,
+RegistrationNumber VARCHAR(16),
+Year int NOT NULL,
+NewPrice DECIMAL(12,2) NOT NULL,
+HasTowBar BIT NOT NULL,
+EngineSize DECIMAL(8,2) NOT NULL,
+KmPrLiter DECIMAL(8,2),
+DriversLicense VARCHAR(4) NOT NULL,
+FuelType VARCHAR(16) NOT NULL,
+EnergyClass VARCHAR(8) NOT NULL,
+PRIMARY KEY (ID)
+)
+
+CREATE TABLE HeavyVehicle(
+ID INT IDENTITY(1,1),
+VehicleID INT FOREIGN KEY REFERENCES Vehicle(ID),
+VehicleHeight DECIMAL(12,2) NOT NULL,
+VehicleWeight DECIMAL(12,2) NOT NULL,
+VehicleLength DECIMAL(12,2) NOT NULL
+PRIMARY KEY (ID),
+)
+
+CREATE TABLE Truck(
+ID INT IDENTITY(1,1),
+HeavyVehicleID INT FOREIGN KEY REFERENCES HeavyVehicle(ID),
+LoadCapacity DECIMAL(12,2) NOT NULL,
+PRIMARY KEY(ID)
+)
+
+CREATE TABLE Bus(
+ID INT IDENTITY(1,1),
+HeavyVehicleID INT FOREIGN KEY REFERENCES HeavyVehicle(ID),
+NumberOfSeats INT NOT NULL,
+NumberOfSleepingSpaces INT,
+HasToilet BIT,
+PRIMARY KEY(ID)
+)
+
+CREATE TABLE PersonalCar(
+ID INT IDENTITY(1,1),
+VehicleID INT FOREIGN KEY REFERENCES Vehicle(ID),
+NumberOfSeats INT NOT NULL,
+TrunkHeight DECIMAL(12,2),
+TrunkWidth DECIMAL(12,2),
+TrunkDepth DECIMAL(12,2),
+PRIMARY KEY(ID)
+)
+
+CREATE TABLE PrivatePersonalCar(
+ID INT IDENTITY(1,1),
+PersonalCarID INT FOREIGN KEY REFERENCES PersonalCar(ID),
+HasISOFittings BIT,
+PRIMARY KEY(ID)
+)
+
+CREATE TABLE ProfessionalPersonalCar(
+ID INT IDENTITY(1,1),
+PersonalCarID INT FOREIGN KEY REFERENCES PersonalCar(ID),
+HasSaftyBar BIT,
+LoadCapacity DECIMAL(12,2) NOT NULL,
+PRIMARY KEY(ID)
+)
+
+CREATE TABLE Users(
+ID INT IDENTITY(1,1),
+Username VARCHAR(64),
+PasswordHash VARCHAR(64) NOT NULL,
+UserZipCode VARCHAR(8),
+Balance DECIMAL(12,2),
+ZipcodeSeller VARCHAR(8)
+PRIMARY KEY(Username)
+)
+
+CREATE TABLE PrivateUser(
+ID INT IDENTITY(1,1),
+Username VARCHAR(64) FOREIGN KEY (Username) REFERENCES Users(Username) ON UPDATE CASCADE,
+CPRNumber VARCHAR(10) NOT NULL,
+PRIMARY KEY(ID))
+
+CREATE TABLE CorporateUser(
+ID INT IDENTITY(1,1),
+Username VARCHAR(64) FOREIGN KEY REFERENCES Users(Username) ON UPDATE CASCADE,
+CVRNumber VARCHAR(12) NOT NULL,
+Credit MONEY,
+PRIMARY KEY(ID)
+)
+
+CREATE TABLE Auctions(
+	ID INT IDENTITY(1,1),
+	VehicleID INT FOREIGN KEY REFERENCES Vehicle(ID),
+	Seller VARCHAR(64) FOREIGN KEY REFERENCES Users(Username),
+	Buyer VARCHAR(64) FOREIGN KEY REFERENCES Users(Username),
+	MinimumPrice DECIMAL(12,2),
+	StandingBid DECIMAL(12,2),
+	PRIMARY KEY(ID)
+)
+ALTER TABLE Auctions
+ADD ClosingDate DateTime
+
+ALTER TABLE Auctions
+ADD Closed BIT
+
+CREATE TABLE AuctionBidHistory(
+	ID INT IDENTITY(1,1),
+	AuctionID INT FOREIGN KEY REFERENCES Auctions(ID),
+	CurrentHighestBidder VARCHAR(64) FOREIGN KEY REFERENCES Users(Username),
+	StandingBid DECIMAL(12,2),
+	BidDate DateTime,
+	PRIMARY KEY(ID)
+)
+ALTER TABLE AuctionBidHistory
+  ADD Status BIT
+
+alter table auctionbidhistory
+alter column Status VARCHAR(64)
