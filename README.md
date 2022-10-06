@@ -3,7 +3,7 @@ H2 tværfagligt projekt
 Projektet er en WPF app som kan styre et auktionshus. Som udgangspunkt er det kun biler, som kan handles med; men der er muligheder for udvidelser af dette.
 Systemet indeholder 3 hovedelementer: en backend, en MS SQL database og en WPF frontend.
 ## Backend
-Backend'en håndtere al logikken, udregninger, oprettelser af auktioner, køretøjer og brugere; kommunikation med databasen og udstiller data til frontenden.
+Backend'en håndtere al logikken, udregninger, oprettelser af auktioner, køretøjer og brugere; kommunikation med databasen og udstiller data til frontenden. Til denne er der også lavet primitiv unit test.
 Bandend’en er skrevet i C#, og er løst koblet. Dette er opnået ved implementere adskillige interfaces. På denne kan associationer mellem klasser fjerenes, og nedarvningshierarkiet bliver dermed simplificeret.
 Der findes 4, isolerede, hierarkier med de generaliserede klasser:
 * Database
