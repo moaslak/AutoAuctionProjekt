@@ -1,14 +1,27 @@
 # AutoAuctionProjekt
-H2 tvæfaglig projekt
+H2 tværfaglig projekt
 Projektet er en WPF app som kan styre et auktionshus. Som udgangspunkt er det kun biler, som kan handles med; men der er muligheder for udvidelser af dette.
 Systemet indeholder 3 hovedelementer: en backend, en MS SQL database og en WPF frontend.
 ## Backend
-Backend'en håndtere al logikken, udregniner, oprettelser af auktioner, køretøjer og brugere; kommunikation med databasen og udstiller data til frontenden.
+Backend'en håndtere al logikken, udregninger, oprettelser af auktioner, køretøjer og brugere; kommunikation med databasen og udstiller data til frontenden.
+Bandend’en er skrevet i C#, og er løst koblet. Dette er opnået ved implementere adskillige interfaces. På denne kan associationer mellem klasser fjerenes, og nedarvningshierarkiet bliver dermed simplificeret.
+Der findes 4, isolerede, hierarkier med de generaliserede klasser:
+* Database
+* User
+* Vehicle
+* Auction
+### Database
+Denne bruges til alt kommunikation med systemets SQL database. Denne skrevet som en partial klasse, for overskuelighedens skyld. Flere af partials implementerer et interface, som giver grundlæggende CRUD-funktionalitet. Der laves override på samtlige metoder, så blot den generiske type skal ændres når den ønskede metode kaldes. 
+AuctionBid klassen implementerer IKKE denne, da denne ikke har behov for fuld CRUD-funktionalitet.
+### User
+De oprettede brugere gemmes i en tabel i databasen. Der findes to specifikke brugerklasser, privateUser og corporateUser, som begge nedarver fra den generaliserede abstrakte klasse User. 
+### Vehicle
+Dette hierarki benyttes til at instantiere køretøjer. Denne er opbygget som et simpelt nedarvningshieraki, og kalder de respektive partials fra databaseklassen.
+### Auction
+Denne klasse samler de forskellige objekter, som skal bruges til at lave en auktion, samt øvrig information omkring auktionerne; pris, slutdata mm..
 
 ## Database
-Databasen lagre alle systemets data. Dette gælder køretøjer, auktioner, brugere og budhistorik.
+Databasen lagrer alle systemets data. Dette gælder køretøjer, auktioner, brugere og budhistorik. Det er MS SQL Server, som kører på en udleveret docker container. Denne styres udelukkende af backend’en.
 
 ## Frontend
-Frontend'en er brugerfladen til programmet. Denne binder sin data fra backenden, som denne modtager fra databasen.
-
-
+Frontend'en er brugerfladen til programmet. Denne binder sin data fra backenden, som denne henter fra databasen.
