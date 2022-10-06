@@ -38,6 +38,8 @@
         </ComboBox>
         <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Registration number</Label>
         <TextBox Name="RegNumTxtBox" Grid.Row="3" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top">Km/L</Label>
+        <TextBox x:Name="KmLTextbox" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="50" Height="20" Margin="10" PreviewTextInput="DecimalValidationTextBox" TextChanged="KmLTextbox_TextChanged"></TextBox>
         <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Year</Label>
         <TextBox x:Name="YearTxtBox" Grid.Row="4" Grid.Column="0" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">Minumum price</Label>
