@@ -21,7 +21,25 @@ namespace AutoAuctionProjekt.Classes
             bool hasIsofixFittings,
             DriversLisenceEnum driversLisence, 
             EnergyClassEnum energyClass)
-            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions, driversLisence, energyClass)
+            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions)
+        {
+            this.DriversLisence = DriversLisenceEnum.B;
+        }
+
+        public PrivatePersonalCar(
+            string name,
+            double km,
+            string registrationNumber,
+            ushort year,
+            decimal newPrice,
+            bool hasTowbar,
+            double engineSize,
+            double kmPerLiter,
+            FuelTypeEnum fuelType,
+            ushort numberOfSeat,
+            TrunkDimentionsStruct trunkDimentions,
+            bool hasIsofixFittings)
+            : base(name, km, registrationNumber, year, newPrice, hasTowbar, engineSize, kmPerLiter, fuelType, numberOfSeat, trunkDimentions)
         {
             this.DriversLisence = DriversLisenceEnum.B;
         }
