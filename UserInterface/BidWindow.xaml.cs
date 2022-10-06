@@ -43,9 +43,11 @@ namespace UserInterface
             bool fundsOK = false;
             if(cBuyer != null)
             {
-                
-                if ((cBuyer.Balance + cBuyer.Credit) < Convert.ToDecimal(BidInput.Text) || AuctionBid.Auction.StandingBid > Convert.ToDecimal(BidInput.Text))
-                    MessageBox.Show("Not enough money or to low bid!");
+
+                if ((cBuyer.Balance + cBuyer.Credit) < Convert.ToDecimal(BidInput.Text))
+                    MessageBox.Show("Not enough money!!");
+                else if (AuctionBid.Auction.StandingBid >= Convert.ToDecimal(BidInput.Text))
+                    MessageBox.Show("To low bid");
                 else
                     fundsOK = true;
                 User = cBuyer;
@@ -53,7 +55,9 @@ namespace UserInterface
             else
             {
                 if (pBuyer.Balance < Convert.ToDecimal(BidInput.Text) || AuctionBid.Auction.StandingBid > Convert.ToDecimal(BidInput.Text))
-                    MessageBox.Show("Not enough money or to low bid!");
+                    MessageBox.Show("Not enough money!!!");
+                else if (AuctionBid.Auction.StandingBid >= Convert.ToDecimal(BidInput.Text))
+                    MessageBox.Show("To low bid");
                 else
                     fundsOK = true;
                 User = pBuyer;
@@ -65,7 +69,7 @@ namespace UserInterface
                 MessageBox.Show("Bid made");
             }
             else
-                MessageBox.Show("No bid made, due to lack of funds!");
+                MessageBox.Show("No bid made");
             
 
             BuyerWindow newBuyerWindow = new BuyerWindow(AuctionBid.Auction, User);
