@@ -43,5 +43,13 @@ namespace AutoAuctionProjekt.Classes
                 Console.WriteLine(e.Message);
             } 
         }
+
+        public Database Database
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

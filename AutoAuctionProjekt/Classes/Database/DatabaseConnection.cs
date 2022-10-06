@@ -11,6 +11,14 @@ namespace AutoAuctionProjekt.Classes
 {
     public class DatabaseConnection
     {
+        public Database Database
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public SqlConnection SetSqlConnection(string database)
         {
             SqlConnectionStringBuilder SqlConnectionStringBuilder = new SqlConnectionStringBuilder();
