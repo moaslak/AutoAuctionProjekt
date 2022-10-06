@@ -29,6 +29,13 @@ namespace UserInterface
             this.User = user;
             BidBtn.Visibility = Visibility.Hidden;
             SellBtn.Visibility = Visibility.Hidden;
+            if (this.Auction.ClosingDate.CompareTo(DateTime.Now) < 0)
+            {
+                this.Auction.CloseAuction();
+                Database database = new Database();
+                database.DatabaseUpdate(this.Auction);
+            }
+                
 
             if (Auction.Buyer.UserName == User.UserName && !(Auction.Closed))
             {
