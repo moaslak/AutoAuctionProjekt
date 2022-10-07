@@ -23,7 +23,7 @@ namespace UserInterface
     /// </summary>
     public partial class SetForSaleWindow : Window
     {
-        //TODO: SET KM PR L, drivers license, energy class
+        
         public SetForSaleWindow(User user)
         {
             InitializeComponent();
@@ -39,6 +39,9 @@ namespace UserInterface
 
         Database database = new Database();
 
+        /// <summary>
+        /// Sets up SetForSaleWindow for Buses and trucks 
+        /// </summary>
         private void HeavyVehicleSelected()
         {
             TrunkDimensionLbl.Visibility = Visibility.Hidden;
@@ -62,6 +65,9 @@ namespace UserInterface
             WeightTxtBox.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Sets up SetForSaleWindow for persoanl cars
+        /// </summary>
         private void PersonalCarSelected()
         {
             VehicleDimensionLbl.Visibility = Visibility.Hidden;
@@ -101,6 +107,9 @@ namespace UserInterface
             LoadCapacityTxtBox.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Sets up SetForSaleWindow for buses
+        /// </summary>
         private void BusSelected()
         {
             HeavyVehicleSelected();
@@ -117,6 +126,9 @@ namespace UserInterface
             HasToiletCheckBox.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Sets up SetForSaleWindow for private personal cars
+        /// </summary>
         private void PrivateCarSelected()
         {
             PersonalCarSelected();
@@ -130,6 +142,9 @@ namespace UserInterface
             HasISOFittingCheckBox.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Sets up SetForSaleWindow for professional personal cars
+        /// </summary>
         private void ProffessionalCarSelected()
         {
             PersonalCarSelected();
@@ -142,6 +157,11 @@ namespace UserInterface
             LoadCapacityTxtBox.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// envent handler for checking private personal car radio button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrivatePersonalCarRdBtn_Checked(object sender, RoutedEventArgs e)
         {
             if (PrivatePersonalCarRdBtn.IsChecked == true)
@@ -154,6 +174,11 @@ namespace UserInterface
             PrivateCarSelected();
         }
 
+        /// <summary>
+        /// envent handler for checking professional personal car radio button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProfefssionalPersonalCarRdBtn_Checked(object sender, RoutedEventArgs e)
         {
             if (ProfefssionalPersonalCarRdBtn.IsChecked == true)
@@ -165,6 +190,11 @@ namespace UserInterface
             ProffessionalCarSelected();
         }
 
+        /// <summary>
+        /// envent handler for checking truck radio button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TruckRdBtn_Checked(object sender, RoutedEventArgs e)
         {
             if (TruckRdBtn.IsChecked == true)
@@ -176,6 +206,11 @@ namespace UserInterface
             TruckSelected();
         }
 
+        /// <summary>
+        /// envent handler for checking bus radio button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BusRdBtn_Checked(object sender, RoutedEventArgs e)
         {
             if (BusRdBtn.IsChecked == true)
@@ -187,6 +222,11 @@ namespace UserInterface
             BusSelected();
         }
 
+        /// <summary>
+        /// event handler for cancel button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -202,6 +242,11 @@ namespace UserInterface
 
         }
 
+        /// <summary>
+        /// event handler for createAuction button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreateAuctionBtn_Click(object sender, RoutedEventArgs e)
         {
             bool SUCCES = false;
@@ -358,6 +403,11 @@ namespace UserInterface
 
         }
 
+        /// <summary>
+        /// Checks if an input is a numberm, and allows decimals
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DecimalValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex(@"^[0-9]*(?:\,[0-9]*)?$");
@@ -368,6 +418,11 @@ namespace UserInterface
 
         }
 
+        /// <summary>
+        /// checks if an input is an integer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
@@ -375,6 +430,11 @@ namespace UserInterface
 
         }
 
+        /// <summary>
+        /// Event handler that limits decimals to 2 digits.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EngineSizeTxtBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string num = "";
@@ -405,6 +465,11 @@ namespace UserInterface
             }
         }
 
+        /// <summary>
+        /// Event handler that limits decimals to 2 digits.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MilageTxtBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string num = "";
@@ -435,6 +500,11 @@ namespace UserInterface
             }
         }
 
+        /// <summary>
+        /// Event handler that limits decimals to 2 digits.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MinPriceTxtBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string num = "";
@@ -465,6 +535,11 @@ namespace UserInterface
             }
         }
 
+        /// <summary>
+        /// Event handler that limits decimals to 2 digits.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TrunkHeightTxtBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string num = "";
@@ -495,6 +570,11 @@ namespace UserInterface
             }
         }
 
+        /// <summary>
+        /// Event handler that limits decimals to 2 digits.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TrunkWidthTxtBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string num = "";
@@ -525,6 +605,11 @@ namespace UserInterface
             }
         }
 
+        /// <summary>
+        /// Event handler that limits decimals to 2 digits.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TrunkDepthTxtBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string num = "";
@@ -555,6 +640,11 @@ namespace UserInterface
             }
         }
 
+        /// <summary>
+        /// Event handler that limits decimals to 2 digits.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HeightTextBox_TextChange(object sender, TextChangedEventArgs e)
         {
             string num = "";
@@ -585,6 +675,11 @@ namespace UserInterface
             }
         }
 
+        /// <summary>
+        /// Event handler that limits decimals to 2 digits.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WeightTextBox_TextChange(object sender, TextChangedEventArgs e)
         {
             string num = "";
@@ -615,6 +710,11 @@ namespace UserInterface
             }
         }
 
+        /// <summary>
+        /// Event handler that limits decimals to 2 digits.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LengthTextBox_TextChange(object sender, TextChangedEventArgs e)
         {
             string num = "";
@@ -645,6 +745,11 @@ namespace UserInterface
             }
         }
 
+        /// <summary>
+        /// Event handler that limits decimals to 2 digits.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void KmLTextbox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string num = "";

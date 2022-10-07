@@ -41,12 +41,18 @@ namespace UserInterface
             pBuyer = database.DatabaseSelect(User.UserName, pBuyer);
             cBuyer = database.DatabaseSelect(User.UserName, cBuyer);
             bool fundsOK = false;
-            if(cBuyer != null)
+            if( AuctionBid.Auction.ClosingDate.CompareTo(AuctionBid.BidDate) < 0)
+            {
+                AuctionBid.Auction.CloseAuction();
+                database.DatabaseUpdate(this.AuctionBid.Auction);
+            }
+                
+            if (cBuyer != null)
             {
 
-                if ((cBuyer.Balance + cBuyer.Credit) < Convert.ToDecimal(BidInput.Text))
+                if ((cBuyer.Balance + cBuyer.Credit) < Convert.ToDecimal(BidInput.Text) && AuctionBid.Auction.Closed == false)
                     MessageBox.Show("Not enough money!!");
-                else if (AuctionBid.Auction.StandingBid >= Convert.ToDecimal(BidInput.Text))
+                else if (AuctionBid.Auction.StandingBid >= Convert.ToDecimal(BidInput.Text) || AuctionBid.Auction.MinimumPrice > Convert.ToDecimal(BidInput.Text))
                     MessageBox.Show("To low bid");
                 else
                     fundsOK = true;
@@ -54,16 +60,17 @@ namespace UserInterface
             }
             else
             {
-                if (pBuyer.Balance < Convert.ToDecimal(BidInput.Text) || AuctionBid.Auction.StandingBid > Convert.ToDecimal(BidInput.Text))
+                if (pBuyer.Balance < Convert.ToDecimal(BidInput.Text) || AuctionBid.Auction.StandingBid > Convert.ToDecimal(BidInput.Text)
+                    && AuctionBid.Auction.Closed == false)
                     MessageBox.Show("Not enough money!!!");
-                else if (AuctionBid.Auction.StandingBid >= Convert.ToDecimal(BidInput.Text))
+                else if (AuctionBid.Auction.StandingBid >= Convert.ToDecimal(BidInput.Text) || AuctionBid.Auction.MinimumPrice > Convert.ToDecimal(BidInput.Text))
                     MessageBox.Show("To low bid");
                 else
                     fundsOK = true;
                 User = pBuyer;
             }
 
-            if (fundsOK)
+            if (fundsOK && AuctionBid.Auction.Closed == false) 
             {
                 AuctionBid.Bid(AuctionBid.Auction, Convert.ToDecimal(BidInput.Text));
                 MessageBox.Show("Bid made");
