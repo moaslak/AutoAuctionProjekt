@@ -1,5 +1,5 @@
 # AutoAuctionProjekt
-H2 tværfagligt projekt
+## H2 tværfagligt projekt
 Projektet er en WPF app som kan styre et auktionshus. Som udgangspunkt er det kun biler, som kan handles med; men der er muligheder for udvidelser af dette.
 Systemet indeholder 3 hovedelementer: en backend, en MS SQL database og en WPF frontend.
 ## Backend
